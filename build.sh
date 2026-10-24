@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -euo pipefail
 SOURCE_DIR="${0:A:h}"
-DEST_DIR="${1:-${SOURCE_DIR:h}}"
+DEST_DIR="${1:-$SOURCE_DIR/build}"
 APP_PATH="$DEST_DIR/窗口记忆.app"
 mkdir -p "$APP_PATH/Contents/MacOS" "$APP_PATH/Contents/Resources"
 xcrun swiftc -swift-version 5 -O -whole-module-optimization -target arm64-apple-macosx14.0 \
@@ -17,8 +17,8 @@ cat > "$APP_PATH/Contents/Info.plist" <<'PLIST'
 <key>CFBundleDisplayName</key><string>窗口记忆</string>
 <key>CFBundleExecutable</key><string>WindowMemory</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>1.0.0</string>
-<key>CFBundleVersion</key><string>1</string>
+<key>CFBundleShortVersionString</key><string>1.1.0</string>
+<key>CFBundleVersion</key><string>2</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>LSUIElement</key><true/>
 <key>NSHighResolutionCapable</key><true/>

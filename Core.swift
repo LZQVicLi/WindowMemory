@@ -45,18 +45,64 @@ struct Layout: Codable, Identifiable {
     var windows: [WindowSlot]
 }
 
+enum AppearanceMode: String, Codable, CaseIterable, Identifiable {
+    case system, light, dark
+    var id: String { rawValue }
+    var title: String {
+        switch self { case .system: return "跟随系统"; case .light: return "浅色"; case .dark: return "深色" }
+    }
+}
+
 struct Preferences: Codable {
     var automatic = true
     var onLaunch = true
     var onNewWindow = true
     var onDisplay = true
     var onWake = true
+    var showWindowOnLogin = true
+    var launchAppsOnLogin = false
+    var appearance: AppearanceMode = .dark
+
+    init() {}
+    enum CodingKeys: String, CodingKey {
+        case automatic, onLaunch, onNewWindow, onDisplay, onWake, showWindowOnLogin, launchAppsOnLogin, appearance
+    }
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        automatic = try c.decodeIfPresent(Bool.self,forKey: .automatic) ?? true
+        onLaunch = try c.decodeIfPresent(Bool.self,forKey: .onLaunch) ?? true
+        onNewWindow = try c.decodeIfPresent(Bool.self,forKey: .onNewWindow) ?? true
+        onDisplay = try c.decodeIfPresent(Bool.self,forKey: .onDisplay) ?? true
+        onWake = try c.decodeIfPresent(Bool.self,forKey: .onWake) ?? true
+        showWindowOnLogin = try c.decodeIfPresent(Bool.self,forKey: .showWindowOnLogin) ?? true
+        launchAppsOnLogin = try c.decodeIfPresent(Bool.self,forKey: .launchAppsOnLogin) ?? false
+        appearance = try c.decodeIfPresent(AppearanceMode.self,forKey: .appearance) ?? .dark
+    }
 }
 
 struct SavedState: Codable {
-    var version = 1
+    var version = 2
     var preferences = Preferences()
     var layouts: [Layout] = []
+}
+
+struct LaunchTarget: Identifiable, Equatable {
+    var id: String
+    var name: String
+}
+
+func launchTargets(_ slots: [WindowSlot]) -> [LaunchTarget] {
+    var seen = Set<String>()
+    return slots.compactMap {
+        guard $0.enabled, !$0.bundleID.isEmpty, seen.insert($0.bundleID).inserted else { return nil }
+        return LaunchTarget(id: $0.bundleID,name: $0.appName)
+    }
+}
+
+func shouldShowWindowAtStartup(isLogin: Bool, background: Bool, firstRun: Bool, showAtLogin: Bool) -> Bool {
+    if firstRun { return true }
+    if background { return false }
+    return !isLogin || showAtLogin
 }
 
 func layoutKey(_ monitors: [Monitor]) -> String { monitors.map(\.id).sorted().joined(separator: "|") }
@@ -116,5 +162,24 @@ func runSelfTests() {
     let data = try! JSONEncoder().encode(state)
     let decoded = try! JSONDecoder().decode(SavedState.self, from: data)
     check(decoded.layouts.first?.windows.first?.bundleID == "test.app", "layout JSON round-trip")
-    print("All 10 self-tests passed.")
+    let oldJSON = Data(#"{"automatic":false,"onLaunch":true,"onNewWindow":false,"onDisplay":true,"onWake":true}"#.utf8)
+    let migrated = try! JSONDecoder().decode(Preferences.self,from: oldJSON)
+    check(!migrated.automatic && !migrated.onNewWindow && migrated.onWake, "upgrade preserves existing preferences")
+    check(migrated.showWindowOnLogin && !migrated.launchAppsOnLogin && migrated.appearance == .dark, "new preferences get safe migration defaults")
+    var preferences = Preferences(); preferences.appearance = .light; preferences.showWindowOnLogin = false
+    let preferencesRoundTrip = try! JSONDecoder().decode(Preferences.self,from: JSONEncoder().encode(preferences))
+    check(preferencesRoundTrip.appearance == .light && !preferencesRoundTrip.showWindowOnLogin, "theme and login options persist")
+    var first = state.layouts[0].windows[0]
+    var second = first; second.id = UUID(); second.title = "Another window"
+    var disabled = first; disabled.id = UUID(); disabled.bundleID = "disabled.app"; disabled.enabled = false
+    first.enabled = true
+    let targets = launchTargets([first,second,disabled])
+    check(targets.count == 1 && targets[0].id == "test.app", "one launch per app and disabled apps excluded")
+    check(launchTargets([disabled]).isEmpty, "disabled-only layout launches nothing")
+    check(shouldShowWindowAtStartup(isLogin: true,background: false,firstRun: false,showAtLogin: true), "login can show control panel")
+    check(!shouldShowWindowAtStartup(isLogin: true,background: false,firstRun: false,showAtLogin: false), "login can run quietly")
+    check(shouldShowWindowAtStartup(isLogin: false,background: false,firstRun: false,showAtLogin: false), "manual launch always shows control panel")
+    check(!shouldShowWindowAtStartup(isLogin: false,background: true,firstRun: false,showAtLogin: true), "background flag avoids foreground window")
+    check(shouldShowWindowAtStartup(isLogin: true,background: true,firstRun: true,showAtLogin: false), "first run shows onboarding")
+    print("All 20 self-tests passed.")
 }

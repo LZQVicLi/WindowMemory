@@ -19,7 +19,14 @@ final class Controller: NSObject, ObservableObject {
     @Published var busy = false
     @Published var loginEnabled = false
     @Published var loginNeedsApproval = false
+    @Published var selectedPage = "workspace"
+    @Published var launching = false
+    @Published var launchProgress = ""
+    @Published var launchFailures: [String] = []
+    @Published var runningBundleIDs = Set<String>()
     var current: Layout? { state.layouts.first { $0.id == layoutKey(monitors) } }
+    var targets: [LaunchTarget] { launchTargets(current?.windows ?? []) }
+    var canUndo: Bool { !undoFrames.isEmpty }
     let folder = FileManager.default.urls(for: .applicationSupportDirectory,in: .userDomainMask)[0].appendingPathComponent("WindowMemory",isDirectory: true)
     var file: URL { folder.appendingPathComponent("layouts.json") }
     private var window: NSWindow?
@@ -32,15 +39,19 @@ final class Controller: NSObject, ObservableObject {
     private var undoFrames: [(LiveWindow,Frame)] = []
     private var automaticSuspendedUntil = Date.distantPast
     private var isSaving = false
+    private var launchToken: UUID?
+    private var activeLaunchRequest: UUID?
 
     override init() {
         super.init()
         monitors = WindowAccess.monitors()
         if FileManager.default.fileExists(atPath: file.path) {
-            do { state = try JSONDecoder().decode(SavedState.self,from: Data(contentsOf: file)) }
+            do { state = try JSONDecoder().decode(SavedState.self,from: Data(contentsOf: file)); state.version = 2 }
             catch { tell("布局文件读取失败；原文件已保留。\(error.localizedDescription)",error: true) }
         }
         refreshLogin()
+        updateRunningApps()
+        applyAppearance()
     }
     func start() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -56,12 +67,12 @@ final class Controller: NSObject, ObservableObject {
         timer = Timer.scheduledTimer(withTimeInterval: 2.5,repeats: true) { [weak self] _ in self?.checkPermission() }
         if permitted { attachAll(); scheduleEnvironmentRestore() }
         let first = !UserDefaults.standard.bool(forKey: "hasOpened")
-        if first {
-            UserDefaults.standard.set(true,forKey: "hasOpened")
-            showWindow()
+        if first { UserDefaults.standard.set(true,forKey: "hasOpened") }
+        let login = isLoginLaunch || CommandLine.arguments.contains("--simulate-login")
+        if shouldShowWindowAtStartup(isLogin: login,background: CommandLine.arguments.contains("--background"),firstRun: first,showAtLogin: state.preferences.showWindowOnLogin) { showWindow() }
+        if login && state.preferences.launchAppsOnLogin {
+            DispatchQueue.main.asyncAfter(deadline: .now()+4) { [weak self] in self?.launchAndRestore() }
         }
-        // A normal launch opens the small control window; login starts quietly.
-        else if !CommandLine.arguments.contains("--background") && !isLoginLaunch { showWindow() }
     }
     private var isLoginLaunch: Bool {
         NSAppleEventManager.shared().currentAppleEvent?.paramDescriptor(forKeyword: keyAEPropData)?.enumCodeValue == keyAELaunchedAsLogInItem
@@ -86,6 +97,103 @@ final class Controller: NSObject, ObservableObject {
         generation += 1
         persist()
     }
+    func setAppearance(_ mode: AppearanceMode) {
+        state.preferences.appearance = mode
+        applyAppearance()
+        persist()
+    }
+    private func applyAppearance() {
+        switch state.preferences.appearance {
+        case .system: NSApp.appearance = nil
+        case .light: NSApp.appearance = NSAppearance(named: .aqua)
+        case .dark: NSApp.appearance = NSAppearance(named: .darkAqua)
+        }
+        window?.backgroundColor = NSColor.windowBackgroundColor
+    }
+    func updateRunningApps() {
+        let next = Set(NSWorkspace.shared.runningApplications.compactMap(\.bundleIdentifier))
+        if next != runningBundleIDs { runningBundleIDs = next }
+    }
+    func launchAndRestore() {
+        guard !launching, let layout = current else { tell("请先保存当前屏幕组合的布局。",error: true); return }
+        let apps = launchTargets(layout.windows)
+        guard !apps.isEmpty else { tell("没有勾选需要启动的 App。",error: true); return }
+        displayWork?.cancel()
+        generation += 1
+        launchToken = UUID()
+        let token = launchToken!
+        launching = true; launchFailures = []
+        handled = [:]
+        _ = restore(manual: true)
+        tell("正在启动布局中的 \(apps.count) 个 App…")
+        openNext(apps,index: 0,token: token,layoutID: layout.id,opened: 0,alreadyRunning: 0)
+    }
+    func cancelLaunch() {
+        launchToken = nil; activeLaunchRequest = nil; launching = false; launchProgress = ""
+        tell("已取消后续启动与归位。已经打开的 App 会保留。")
+    }
+    private func openNext(_ apps: [LaunchTarget], index: Int, token: UUID, layoutID: String, opened: Int, alreadyRunning: Int) {
+        guard launchToken == token else { return }
+        guard current?.id == layoutID else { cancelLaunch(); return }
+        guard index < apps.count else {
+            launching = false; launchProgress = ""
+            updateRunningApps()
+            if !launchFailures.isEmpty { tell("已发起 \(opened) 个 App 的启动，\(alreadyRunning) 个已在运行；部分 App 无法打开。",error: true) }
+            else if !permitted { tell("App 已打开。开启窗口控制权限后可恢复布局。",error: true) }
+            else { tell("\(opened) 个 App 已打开，\(alreadyRunning) 个已在运行；窗口出现后自动归位。") }
+            return
+        }
+        let target = apps[index]
+        guard current?.windows.contains(where: { $0.bundleID == target.id && $0.enabled }) == true else {
+            openNext(apps,index: index+1,token: token,layoutID: layoutID,opened: opened,alreadyRunning: alreadyRunning)
+            return
+        }
+        launchProgress = "\(index+1) / \(apps.count) · \(target.name)"
+        let running = NSRunningApplication.runningApplications(withBundleIdentifier: target.id).first
+        if let running, !WindowAccess.windows(for: running).isEmpty {
+            scheduleManualRestore(target.id,pid: running.processIdentifier,token: token,layoutID: layoutID)
+            openNext(apps,index: index+1,token: token,layoutID: layoutID,opened: opened,alreadyRunning: alreadyRunning+1)
+            return
+        }
+        guard let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: target.id) else {
+            launchFailures.append("\(target.name)：未找到已安装的 App")
+            openNext(apps,index: index+1,token: token,layoutID: layoutID,opened: opened,alreadyRunning: alreadyRunning)
+            return
+        }
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = false
+        configuration.createsNewApplicationInstance = false
+        let request = UUID()
+        activeLaunchRequest = request
+        DispatchQueue.main.asyncAfter(deadline: .now()+20) { [weak self] in
+            guard let self, self.launchToken == token, self.activeLaunchRequest == request else { return }
+            self.activeLaunchRequest = nil
+            self.launchFailures.append("\(target.name)：启动响应超时，可稍后重试")
+            self.openNext(apps,index: index+1,token: token,layoutID: layoutID,opened: opened,alreadyRunning: alreadyRunning)
+        }
+        NSWorkspace.shared.openApplication(at: url,configuration: configuration) { [weak self] app,error in
+            DispatchQueue.main.async {
+                guard let self, self.launchToken == token, self.current?.id == layoutID, self.activeLaunchRequest == request else { return }
+                self.activeLaunchRequest = nil
+                if let app {
+                    self.attach(app)
+                    self.scheduleManualRestore(target.id,pid: app.processIdentifier,token: token,layoutID: layoutID)
+                } else { self.launchFailures.append("\(target.name)：\(error?.localizedDescription ?? "启动失败")") }
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.25) {
+                    self.openNext(apps,index: index+1,token: token,layoutID: layoutID,opened: opened+(app == nil ? 0 : 1),alreadyRunning: alreadyRunning)
+                }
+            }
+        }
+    }
+    private func scheduleManualRestore(_ id: String, pid: pid_t, token: UUID, layoutID: String) {
+        for delay in [0.6,1.8,4.0,9.0,18.0,30.0] {
+            DispatchQueue.main.asyncAfter(deadline: .now()+delay) { [weak self] in
+                guard let self, self.launchToken == token, self.current?.id == layoutID,
+                      NSRunningApplication(processIdentifier: pid)?.bundleIdentifier == id else { return }
+                _ = self.restore(appID: id,onlyUnhandled: true,manual: true,recordUndo: false,reportEmpty: false)
+            }
+        }
+    }
     func setSlot(_ id: UUID, enabled: Bool) {
         guard let p = state.layouts.firstIndex(where: { $0.id == layoutKey(monitors) }),
               let w = state.layouts[p].windows.firstIndex(where: { $0.id == id }) else { return }
@@ -95,7 +203,7 @@ final class Controller: NSObject, ObservableObject {
     func saveLayout() {
         guard permitted else { WindowAccess.requestPermission(); return }
         guard !busy else { return }
-        busy = true; isSaving = true; generation += 1
+        busy = true; isSaving = true; generation += 1; launchToken = nil; launching = false
         defer { busy = false; isSaving = false }
         monitors = WindowAccess.monitors()
         let live = WindowAccess.allWindows()
@@ -116,7 +224,7 @@ final class Controller: NSObject, ObservableObject {
         if persist() { tell("已记住 \(Set(slots.map(\.bundleID)).count) 个 App、\(slots.count) 个窗口的位置。") }
     }
     @discardableResult
-    func restore(appID: String? = nil, onlyUnhandled: Bool = false, manual: Bool = false) -> Int {
+    func restore(appID: String? = nil, onlyUnhandled: Bool = false, manual: Bool = false, recordUndo: Bool = true, reportEmpty: Bool = true) -> Int {
         guard permitted, !busy, !isSaving else { return 0 }
         guard manual || (state.preferences.automatic && Date() > automaticSuspendedUntil) else { return 0 }
         guard let layout = current else {
@@ -127,7 +235,7 @@ final class Controller: NSObject, ObservableObject {
         var moved = 0, failed = 0
         let slots = layout.windows.filter { $0.enabled && (appID == nil || $0.bundleID == appID) }
         let grouped = Dictionary(grouping: slots,by: \.bundleID)
-        if manual { undoFrames = [] }
+        if manual && recordUndo { undoFrames = [] }
         for app in NSWorkspace.shared.runningApplications {
             guard let id = app.bundleIdentifier, let saved = grouped[id] else { continue }
             let windows = WindowAccess.windows(for: app)
@@ -136,13 +244,13 @@ final class Controller: NSObject, ObservableObject {
                 let w = windows[l], slot = saved[s], hash = CFHash(w.element)
                 if onlyUnhandled && handled[app.processIdentifier,default: []].contains(hash) { continue }
                 guard let screen = monitors.first(where: { $0.id == slot.monitorID }) else { continue }
-                if manual { undoFrames.append((w,w.frame)) }
+                if manual && recordUndo { undoFrames.append((w,w.frame)) }
                 if WindowAccess.move(w,to: slot.relative.placed(in: screen.visible)) {
                     moved += 1; handled[app.processIdentifier,default: []].insert(hash)
                 } else { failed += 1 }
             }
         }
-        if moved > 0 || failed > 0 || manual {
+        if moved > 0 || failed > 0 || (manual && reportEmpty) {
             if failed > 0 { tell("已恢复 \(moved) 个窗口；\(failed) 个窗口受 App 尺寸限制或系统权限影响。",error: true) }
             else if moved == 0 { tell("暂时没有可恢复的窗口。请打开已保存的 App，并退出全屏或最小化。") }
             else { tell("已恢复 \(moved) 个窗口 · \(Date().formatted(date: .omitted,time: .shortened))") }
@@ -152,7 +260,7 @@ final class Controller: NSObject, ObservableObject {
     func undo() {
         guard !undoFrames.isEmpty else { tell("还没有可撤销的手动恢复。"); return }
         automaticSuspendedUntil = Date().addingTimeInterval(10)
-        generation += 1
+        generation += 1; launchToken = nil; launching = false
         var count = 0
         for (w,f) in undoFrames { if WindowAccess.move(w,to: f) { count += 1 } }
         undoFrames = []; tell("已撤销，\(count) 个窗口回到恢复前的位置。")
@@ -164,7 +272,8 @@ final class Controller: NSObject, ObservableObject {
         alert.informativeText = "不会改变当前窗口位置。其他屏幕组合的布局会保留。"
         alert.addButton(withTitle: "忘记布局"); alert.addButton(withTitle: "取消")
         guard alert.runModal() == .alertFirstButtonReturn else { return }
-        state.layouts.removeAll { $0.id == layout.id }; generation += 1; persist(); tell("已忘记当前布局。")
+        state.layouts.removeAll { $0.id == layout.id }; generation += 1; launchToken = nil; launching = false
+        if persist() { tell("已忘记当前布局。") }
     }
     private func checkPermission() {
         let now = WindowAccess.trusted
@@ -176,6 +285,7 @@ final class Controller: NSObject, ObservableObject {
         // Some apps are not ready to accept AX notifications immediately after launching.
         if now { attachAll() }
         refreshLogin()
+        updateRunningApps()
     }
     private func attachAll() {
         for app in NSWorkspace.shared.runningApplications { attach(app) }
@@ -195,12 +305,14 @@ final class Controller: NSObject, ObservableObject {
         }
     }
     @objc private func appLaunched(_ note: Notification) {
+        updateRunningApps()
         guard let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else { return }
         attach(app)
         guard state.preferences.onLaunch, let id = app.bundleIdentifier else { return }
         scheduleApp(id,pid: app.processIdentifier)
     }
     @objc private func appTerminated(_ note: Notification) {
+        updateRunningApps()
         guard let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication else { return }
         if let observer = observers.removeValue(forKey: app.processIdentifier) {
             CFRunLoopRemoveSource(CFRunLoopGetMain(),AXObserverGetRunLoopSource(observer),.commonModes)
@@ -223,7 +335,7 @@ final class Controller: NSObject, ObservableObject {
         }
     }
     @objc private func displaysChanged() {
-        generation += 1
+        generation += 1; launchToken = nil; launching = false
         monitors = WindowAccess.monitors()
         if state.preferences.onDisplay { scheduleEnvironmentRestore() }
     }
@@ -256,9 +368,11 @@ final class Controller: NSObject, ObservableObject {
     }
     func showWindow() {
         if window == nil {
-            let w = NSWindow(contentRect: NSRect(x: 0,y: 0,width: 750,height: 730),styleMask: [.titled,.closable,.miniaturizable,.resizable],backing: .buffered,defer: false)
+            let w = NSWindow(contentRect: NSRect(x: 0,y: 0,width: 1020,height: 790),styleMask: [.titled,.closable,.miniaturizable,.resizable,.fullSizeContentView],backing: .buffered,defer: false)
             w.title = "窗口记忆"
-            w.minSize = NSSize(width: 690,height: 650)
+            w.titlebarAppearsTransparent = true
+            w.titleVisibility = .hidden
+            w.minSize = NSSize(width: 900,height: 650)
             w.isReleasedWhenClosed = false
             w.contentView = NSHostingView(rootView: MainView(model: self))
             w.center(); window = w
@@ -269,7 +383,7 @@ final class Controller: NSObject, ObservableObject {
     @objc private func statusClick() {
         if NSApp.currentEvent?.type == .rightMouseUp {
             let menu = NSMenu()
-            for (title,action) in [("打开窗口记忆",#selector(openPanel)),("记住当前布局",#selector(saveFromMenu)),("立即恢复",#selector(restoreFromMenu)),(state.preferences.automatic ? "暂停自动恢复" : "继续自动恢复",#selector(toggleAutomatic)),("退出窗口记忆",#selector(quit))] {
+            for (title,action) in [("打开窗口记忆",#selector(openPanel)),("启动布局 App 并恢复",#selector(launchFromMenu)),("记住当前布局",#selector(saveFromMenu)),("立即恢复",#selector(restoreFromMenu)),("设置…",#selector(settingsFromMenu)),(state.preferences.automatic ? "暂停自动恢复" : "继续自动恢复",#selector(toggleAutomatic)),("退出窗口记忆",#selector(quit))] {
                 let item = NSMenuItem(title: title,action: action,keyEquivalent: ""); item.target = self; menu.addItem(item)
             }
             statusItem.menu = menu; statusItem.button?.performClick(nil); statusItem.menu = nil
@@ -278,6 +392,8 @@ final class Controller: NSObject, ObservableObject {
     @objc private func openPanel() { showWindow() }
     @objc private func saveFromMenu() { saveLayout() }
     @objc private func restoreFromMenu() { _ = restore(manual: true) }
+    @objc private func launchFromMenu() { launchAndRestore() }
+    @objc private func settingsFromMenu() { selectedPage = "settings"; showWindow() }
     @objc private func toggleAutomatic() { setPreference(\.automatic,!state.preferences.automatic) }
     @objc private func quit() { NSApp.terminate(nil) }
 }
