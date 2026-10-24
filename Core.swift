@@ -43,6 +43,47 @@ struct Layout: Codable, Identifiable {
     var updatedAt: Date
     var monitors: [Monitor]
     var windows: [WindowSlot]
+    var launchRules: [LaunchRule] = []
+    var screenKey: String { layoutKey(monitors) }
+
+    init(id: String, name: String, updatedAt: Date, monitors: [Monitor], windows: [WindowSlot], launchRules: [LaunchRule] = []) {
+        self.id = id; self.name = name; self.updatedAt = updatedAt; self.monitors = monitors; self.windows = windows; self.launchRules = launchRules
+    }
+    enum CodingKeys: String, CodingKey { case id, name, updatedAt, monitors, windows, launchRules }
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self,forKey: .id); name = try c.decode(String.self,forKey: .name)
+        updatedAt = try c.decode(Date.self,forKey: .updatedAt)
+        monitors = try c.decode([Monitor].self,forKey: .monitors); windows = try c.decode([WindowSlot].self,forKey: .windows)
+        launchRules = try c.decodeIfPresent([LaunchRule].self,forKey: .launchRules) ?? []
+    }
+}
+
+struct LaunchRule: Codable, Equatable {
+    var bundleID: String
+    var delay: Double = 0.5
+    var windowTimeout: Double = 30
+}
+
+enum ShortcutAction: String, Codable, CaseIterable, Identifiable {
+    case launch, restore, save
+    var id: String { rawValue }
+    var title: String { switch self { case .launch: return "启动当前场景"; case .restore: return "恢复当前场景"; case .save: return "记住当前布局" } }
+}
+struct Shortcut: Codable, Equatable, Identifiable {
+    var action: ShortcutAction
+    var keyCode: UInt32
+    var modifiers: UInt32 = 6400
+    var id: String { action.rawValue }
+    static let keys: [(String,UInt32)] = [("↩",36),("R",15),("S",1),("W",13),("1",18),("2",19),("3",20),("4",21),("5",23),("6",22),("Space",49)]
+    static let modifierChoices: [(String,UInt32)] = [("⌃⌥⌘",6400),("⌃⌥",6144),("⌃⇧⌘",4864),("⌥⇧⌘",2816)]
+    static let defaults = [Shortcut(action: .launch,keyCode: 36),Shortcut(action: .restore,keyCode: 15),Shortcut(action: .save,keyCode: 1)]
+    var label: String { (Self.modifierChoices.first { $0.1 == modifiers }?.0 ?? "?") + (Self.keys.first { $0.1 == keyCode }?.0 ?? "?") }
+}
+func validShortcuts(_ values: [Shortcut]) -> Bool {
+    Set(values.map { "\($0.modifiers):\($0.keyCode)" }).count == values.count &&
+    Set(values.map(\.action)).count == values.count && values.count == ShortcutAction.allCases.count &&
+    values.allSatisfy { item in Shortcut.keys.contains { $0.1 == item.keyCode } && Shortcut.modifierChoices.contains { $0.1 == item.modifiers } }
 }
 
 enum AppearanceMode: String, Codable, CaseIterable, Identifiable {
@@ -62,10 +103,12 @@ struct Preferences: Codable {
     var showWindowOnLogin = true
     var launchAppsOnLogin = false
     var appearance: AppearanceMode = .dark
+    var shortcutsEnabled = true
+    var shortcuts = Shortcut.defaults
 
     init() {}
     enum CodingKeys: String, CodingKey {
-        case automatic, onLaunch, onNewWindow, onDisplay, onWake, showWindowOnLogin, launchAppsOnLogin, appearance
+        case automatic, onLaunch, onNewWindow, onDisplay, onWake, showWindowOnLogin, launchAppsOnLogin, appearance, shortcutsEnabled, shortcuts
     }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -77,26 +120,62 @@ struct Preferences: Codable {
         showWindowOnLogin = try c.decodeIfPresent(Bool.self,forKey: .showWindowOnLogin) ?? true
         launchAppsOnLogin = try c.decodeIfPresent(Bool.self,forKey: .launchAppsOnLogin) ?? false
         appearance = try c.decodeIfPresent(AppearanceMode.self,forKey: .appearance) ?? .dark
+        shortcutsEnabled = try c.decodeIfPresent(Bool.self,forKey: .shortcutsEnabled) ?? true
+        shortcuts = try c.decodeIfPresent([Shortcut].self,forKey: .shortcuts) ?? Shortcut.defaults
     }
 }
 
 struct SavedState: Codable {
-    var version = 2
+    var version = 3
     var preferences = Preferences()
     var layouts: [Layout] = []
+    var activeLayouts: [String:String] = [:]
+    init(version: Int = 3, preferences: Preferences = Preferences(), layouts: [Layout] = [], activeLayouts: [String:String] = [:]) {
+        self.version = version; self.preferences = preferences; self.layouts = layouts; self.activeLayouts = activeLayouts
+    }
+    enum CodingKeys: String, CodingKey { case version,preferences,layouts,activeLayouts }
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        version = try c.decodeIfPresent(Int.self,forKey: .version) ?? 1
+        preferences = try c.decodeIfPresent(Preferences.self,forKey: .preferences) ?? Preferences()
+        layouts = try c.decode([Layout].self,forKey: .layouts)
+        activeLayouts = try c.decodeIfPresent([String:String].self,forKey: .activeLayouts) ?? [:]
+    }
+}
+
+func selectedLayout(in state: SavedState, screenKey: String) -> Layout? {
+    let layouts = state.layouts.filter { $0.screenKey == screenKey }
+    let selected = state.activeLayouts[screenKey]
+    if selected == "" { return nil }
+    return layouts.first { $0.id == selected } ?? layouts.first
 }
 
 struct LaunchTarget: Identifiable, Equatable {
     var id: String
     var name: String
+    var delay: Double = 0.5
+    var windowTimeout: Double = 30
 }
 
-func launchTargets(_ slots: [WindowSlot]) -> [LaunchTarget] {
+func launchTargets(_ slots: [WindowSlot], rules: [LaunchRule] = []) -> [LaunchTarget] {
     var seen = Set<String>()
-    return slots.compactMap {
+    let unique: [LaunchTarget] = slots.compactMap {
         guard $0.enabled, !$0.bundleID.isEmpty, seen.insert($0.bundleID).inserted else { return nil }
         return LaunchTarget(id: $0.bundleID,name: $0.appName)
     }
+    let ordered = rules.map(\.bundleID) + unique.map(\.id).filter { id in !rules.contains { $0.bundleID == id } }
+    return ordered.compactMap { id in
+        guard var target = unique.first(where: { $0.id == id }) else { return nil }
+        if let rule = rules.first(where: { $0.bundleID == id }) {
+            target.delay = rule.delay; target.windowTimeout = rule.windowTimeout
+        }
+        return target
+    }
+}
+
+func windowRetryDelays(timeout: Double) -> [Double] {
+    let limit = min(120,max(1,timeout.isFinite ? timeout : 30))
+    return Array(Set([0.5,1.5,4.0,9.0,18.0,30.0,45.0,60.0,90.0,120.0].filter { $0 <= limit } + [limit])).sorted()
 }
 
 func shouldShowWindowAtStartup(isLogin: Bool, background: Bool, firstRun: Bool, showAtLogin: Bool) -> Bool {
@@ -181,5 +260,6 @@ func runSelfTests() {
     check(shouldShowWindowAtStartup(isLogin: false,background: false,firstRun: false,showAtLogin: false), "manual launch always shows control panel")
     check(!shouldShowWindowAtStartup(isLogin: false,background: true,firstRun: false,showAtLogin: true), "background flag avoids foreground window")
     check(shouldShowWindowAtStartup(isLogin: true,background: true,firstRun: true,showAtLogin: false), "first run shows onboarding")
-    print("All 20 self-tests passed.")
+    print("Core checks passed.")
+    runFeatureTests()
 }

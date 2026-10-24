@@ -48,6 +48,7 @@ struct ConsoleShell: View {
                 Rectangle().fill(p.border).frame(height: 1)
                 ScrollView {
                     if model.selectedPage == "settings" { SettingsView(model: model,p: p).padding(24) }
+                    else if model.selectedPage == "automation" { AutomationView(model: model,p: p).padding(24) }
                     else { WorkspaceView(model: model,p: p).padding(24) }
                 }
             }.background(p.background)
@@ -64,6 +65,7 @@ struct ConsoleShell: View {
             }.padding(.bottom,36)
             Text("WORKSPACE").font(.system(size: 9,weight: .medium,design: .monospaced)).tracking(1.5).foregroundStyle(p.muted).padding(.leading,10).padding(.bottom,12)
             nav("布局控制台",icon: "square.grid.2x2",page: "workspace")
+            nav("启动与快捷键",icon: "keyboard",page: "automation")
             nav("设置",icon: "slider.horizontal.3",page: "settings").keyboardShortcut(",",modifiers: .command)
             Spacer(minLength: 30)
             VStack(alignment: .leading,spacing: 15) {
@@ -77,7 +79,7 @@ struct ConsoleShell: View {
                 }.foregroundStyle(p.muted)
                 Rectangle().fill(p.border).frame(height: 1)
                 HStack {
-                    Text("LOCAL / v1.1").font(.system(size: 9,design: .monospaced)).foregroundStyle(p.muted)
+                    Text("LOCAL / v1.2").font(.system(size: 9,design: .monospaced)).foregroundStyle(p.muted)
                     Spacer()
                     Button { NSApp.terminate(nil) } label: { Image(systemName: "rectangle.portrait.and.arrow.right").font(.system(size: 12)) }
                         .buttonStyle(.plain).help("退出窗口记忆").accessibilityLabel("退出窗口记忆")
@@ -100,9 +102,9 @@ struct ConsoleShell: View {
     private var header: some View {
         HStack {
             VStack(alignment: .leading,spacing: 5) {
-                Text(model.selectedPage == "settings" ? "PREFERENCES / PERSONAL" : "WORKSPACE / CONTROL")
+                Text(model.selectedPage == "settings" ? "PREFERENCES / PERSONAL" : (model.selectedPage == "automation" ? "AUTOMATION / SHORTCUTS" : "WORKSPACE / CONTROL"))
                     .font(.system(size: 9,weight: .medium,design: .monospaced)).tracking(1.6).foregroundStyle(p.muted)
-                Text(model.selectedPage == "settings" ? "设置" : "布局控制台").font(.system(size: 23,weight: .semibold))
+                Text(model.selectedPage == "settings" ? "设置" : (model.selectedPage == "automation" ? "启动与快捷键" : "布局控制台")).font(.system(size: 23,weight: .semibold))
             }
             Spacer()
             Button { model.setPreference(\.automatic,!model.state.preferences.automatic) } label: {
@@ -133,6 +135,7 @@ struct WorkspaceView: View {
                     Button("开启权限") { WindowAccess.requestPermission() }.controlSize(.small)
                 }.padding(14).consolePanel(p)
             }
+            SceneSelector(model: model,p: p)
             HStack(spacing: 12) {
                 MetricCard(title: "显示器",label: "DISPLAYS",value: model.monitors.count,icon: "display.2",p: p)
                 MetricCard(title: "布局 App",label: "APPLICATIONS",value: model.targets.count,icon: "app.dashed",p: p)
@@ -166,7 +169,9 @@ struct WorkspaceView: View {
                     Button("撤销上次手动恢复") { model.undo() }.disabled(!model.canUndo)
                     Button("打开布局文件夹") { NSWorkspace.shared.open(model.folder) }
                     Divider()
-                    Button("忘记当前布局…",role: .destructive) { model.deleteCurrent() }.disabled(model.current == nil)
+                    Button("重命名当前场景…") { model.renameScene() }.disabled(model.current == nil)
+                    Button("导出当前场景…") { model.exportLayouts(currentOnly: true) }.disabled(model.current == nil)
+                    Button("删除当前场景…",role: .destructive) { model.deleteCurrent() }.disabled(model.current == nil)
                 } label: { Image(systemName: "ellipsis").frame(width: 24,height: 28) }.menuStyle(.borderlessButton).fixedSize().foregroundStyle(p.muted)
             }
             HStack(alignment: .top,spacing: 8) {
@@ -321,9 +326,15 @@ struct SettingsView: View {
                     Button("系统权限设置") { WindowAccess.requestPermission() }.controlSize(.small)
                     Button("布局文件夹") { NSWorkspace.shared.open(model.folder) }.controlSize(.small)
                 }
+                HStack {
+                    Button("导出全部场景…") { model.exportLayouts() }.disabled(model.state.layouts.isEmpty)
+                    Button("导入场景…") { model.importLayouts() }
+                    Spacer()
+                    Text("跨 Mac 导入时可重新匹配屏幕").font(.system(size: 10)).foregroundStyle(p.muted)
+                }
             }.padding(18).consolePanel(p)
             HStack {
-                Text("WINDOW MEMORY / 1.1.0").font(.system(size: 9,design: .monospaced)).tracking(1)
+                Text("WINDOW MEMORY / 1.2.0").font(.system(size: 9,design: .monospaced)).tracking(1)
                 Spacer()
                 Text(model.message).font(.system(size: 10)).lineLimit(2)
             }.foregroundStyle(model.messageIsError ? .orange : p.muted)
