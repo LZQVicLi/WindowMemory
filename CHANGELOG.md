@@ -1,16 +1,30 @@
-# 更新记录
+# Changelog
 
-## 1.1.0
+This project uses semantic versioning. Existing version tags and released binary assets are not overwritten.
 
-- 新增当前布局 App 一键启动与恢复，按应用去重，支持超时、取消和逐项启动失败提示。
-- 新增独立设置页：跟随系统、浅色、深色；登录时显示界面；可选登录时打开布局 App。
-- 原有登录项目状态继续使用，默认登录时显示控制台。
-- 重做极客风控制台、屏幕预览与窗口列表。
-- 兼容 1.0 的布局与设置，新增迁移与启动策略自检。
-- 源码迁至 `/Users/vic_li/WindowMemory`，建立本地 Git。
+## [1.2.0] — 2026-10-24
 
-## 1.0.0
+- Add multiple named workspace scenes for each display combination.
+- Add configurable global shortcuts for launching, restoring and saving the selected scene, including duplicate/conflict feedback.
+- Add layout JSON export/import, validation, legacy backup import and explicit cross-Mac display mapping. Imports add scenes without overwriting existing layouts.
+- Add per-app launch ordering, launch intervals and configurable window retry timeouts up to 120 seconds.
+- Preserve existing 1.0/1.1 layouts and settings; add active-scene persistence and read-only protection for unreadable configuration files.
+- Ship universal Apple Silicon + Intel builds, versioned ZIP/DMG assets and SHA-256 checksums.
+- Add MIT licensing, bilingual README, synthetic-data screenshots, contribution guidance and automated CI/tag releases.
+- Expand validation to 53 self-tests.
 
-- 多屏窗口布局保存、手动恢复、按屏幕组合存储。
-- App 启动、新窗口、屏幕重连和唤醒时自动恢复。
-- 菜单栏、登录启动和手动恢复撤销。
+## [1.1.0] — 2026-10-24
+
+- Add one-action workspace application launch with bounded retries, cancellation and launch-failure feedback.
+- Add login window behavior and optional workspace launch at login.
+- Add dedicated preferences, system/light/dark appearance and a console-style UI.
+- Preserve existing window geometry and login item state; add migration tests.
+- Historical binary: Apple Silicon, locally signed, not notarized.
+
+## [1.0.0] — 2026-10-24
+
+- Initial native menu-bar window layout manager.
+- Save window display assignments, positions and sizes per display combination.
+- Restore on app/window/display/wake events; provide manual restore and undo.
+- Login startup, per-window exclusion and local JSON storage.
+- Historical binary: Apple Silicon, locally signed, not notarized.

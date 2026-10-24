@@ -4,3 +4,8 @@ build/
 *.zip
 *.dSYM/
 .swiftpm/
+dist/
+*.p12
+*.p8
+*.mobileprovision
+.env

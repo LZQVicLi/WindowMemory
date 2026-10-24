@@ -1,16 +1,18 @@
-# 后续功能建议
+# Roadmap
 
-以下是建议，尚未实现。
+## Shipped in 1.2.0
 
-| 优先级 | 功能 | 用途 |
-|---|---|---|
-| 1 | 同屏幕组合下的多套场景 | 为工作、会议、专注保存不同 App 清单和窗口布局，一键切换。 |
-| 1 | 全局快捷键 | 在任何 App 中启动工作区、保存或恢复布局。提供冲突检测与自定义。 |
-| 1 | 布局导入、导出与历史回退 | 导出备份，在另一台 Mac 导入后重新绑定显示器；误保存时回到历史版本。 |
-| 2 | 每个 App 的启动顺序和等待时间 | 对慢启动 App 增加等待，为有依赖的软件设置先后顺序，提供逐项结果。 |
-| 2 | 可编辑屏幕预览 | 拖动和缩放预览中的窗口，或直接输入宽高、坐标；应用前先预览。 |
-| 2 | 多窗口识别规则 | 为标题经常变化的浏览器、编辑器配置匹配规则，减少窗口位置互换。 |
-| 3 | 指定项目、文档与网页 | 通过软件支持的原生打开方式恢复指定上下文。应让用户明确选择要重新打开的内容。 |
-| 3 | 自动恢复诊断 | 显示哪些窗口受最小尺寸、全屏或系统权限影响，提供重试单个 App 的操作。 |
+- Multiple named scenes per display setup.
+- Configurable global shortcuts.
+- Layout export/import and monitor remapping.
+- Per-app launch order, intervals and window retry timeouts.
 
-建议先做多场景和全局快捷键，收益直接；导入导出适合在配置逐渐增多之后加入。
+## Candidates for future releases
+
+- Editable screen previews with direct window geometry input.
+- Per-app window matching rules for applications with changing titles.
+- Focused restoration diagnostics and retry for one app.
+- Optional supported document/project/browser reopening workflows.
+- Developer ID signing and notarized distribution when signing credentials are available.
+
+These candidates are not implemented commitments. Please discuss concrete workflows in an issue before starting substantial work.

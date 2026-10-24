@@ -1,0 +1,32 @@
+name: Publish release
+on:
+  push:
+    tags: ['v[0-9]*']
+permissions:
+  contents: read
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: macos-15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify tag and changelog
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          test "$RELEASE_TAG" = "v$(cat VERSION)"
+          python3 scripts/release-notes.py "$(cat VERSION)" > "$RUNNER_TEMP/release-notes.md"
+      - name: Build and test
+        run: zsh build.sh
+      - name: Package universal ZIP, DMG and checksums
+        run: zsh scripts/package.sh
+      - name: Publish immutable version assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/* --verify-tag --title "WindowMemory $RELEASE_TAG" --notes-file "$RUNNER_TEMP/release-notes.md"

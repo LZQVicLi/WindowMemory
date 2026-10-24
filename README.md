@@ -1,75 +1,97 @@
-# 窗口记忆 1.1
+# WindowMemory · 窗口记忆
 
-原生 macOS 菜单栏工具：保存每个窗口所在的显示器、位置和大小，自动恢复，并一键打开布局中的 App。中文极客风界面，支持跟随系统、浅色与深色。无账户、无网络请求。
+[![Release](https://img.shields.io/github/v/release/LZQVicLi/WindowMemory)](https://github.com/LZQVicLi/WindowMemory/releases/latest)
+[![Build](https://github.com/LZQVicLi/WindowMemory/actions/workflows/ci.yml/badge.svg)](https://github.com/LZQVicLi/WindowMemory/actions/workflows/ci.yml)
+[![MIT](https://img.shields.io/badge/license-MIT-70efba)](LICENSE)
+![macOS](https://img.shields.io/badge/macOS-14%2B-informational)
 
-源码在 `/Users/vic_li/WindowMemory`，本地 Git 的 `main` 分支维护。运行版本安装在 `/Applications/窗口记忆.app`。
+**摆好一次，把整个工作区带回来。** 原生 Swift 菜单栏工具，记住每个 App 的显示器、位置和宽高；按工作、会议、专注等场景恢复。
 
-## 使用
+[English](README.en.md) · **[下载最新版本](https://github.com/LZQVicLi/WindowMemory/releases/latest)** · [使用说明](docs/USAGE.md) · [更新记录](CHANGELOG.md)
 
-1. 接好屏幕，打开常用 App，把窗口摆好，点 **记住布局**。
-2. 点 **恢复位置**，把当前打开的窗口恢复到记录的位置。
-3. 点 **启动 App 并恢复**，依次启动当前布局中勾选的 App，再等待窗口出现并归位。已经运行且有普通窗口的 App 不会重复启动；没有普通窗口的 App 会收到一次系统打开请求。启动中的任务可以取消。
-4. 在窗口列表取消勾选，可停止该窗口参与批量启动与自动恢复。只有同一 App 的所有窗口都取消勾选后，这个 App 才会从启动清单中排除。
-5. 重新布置后再点 **记住布局** 更新记录。每套显示器组合分别保存，未知组合保持当前窗口不变。
-6. 右上角 **AUTO ON / PAUSED** 可以暂停自动恢复。暂停时，手动恢复与一键启动仍可使用。更多菜单中可以撤销上一次手动恢复。
+![场景与屏幕布局](docs/images/workspace-dark.png)
 
-## 设置
+*截图使用内置示例数据，不包含真实用户的窗口标题或布局。图片随代码托管在 GitHub，无需外部图床。*
 
-左侧 **设置** 或 `⌘,` 打开设置页。
+## 功能
 
-- **外观**：跟随系统、浅色、深色，即时生效并持久保存。新版本默认使用深色。
-- **登录时启动窗口记忆**：通过 macOS 的登录项目服务设置；系统需要批准时会显示提示。
-- **登录启动后显示主界面**：开启时显示控制台，关闭时留在菜单栏。默认开启。手动打开 App 时始终显示主界面。
-- **登录时启动布局中的 App**：可选，默认关闭。开启后在登录启动约 4 秒后打开当前屏幕组合的 App；没有保存对应组合时不启动其他 App。
-- **自动恢复**：可独立选择 App 启动、新窗口出现、屏幕连接变化、电脑唤醒等触发时机。
+- **多屏、多场景**：每套屏幕组合可保存多个具名布局，并分别记住当前场景。
+- **一键启动与恢复**：按场景清单打开勾选的 App，同一软件只启动一个实例，再等待窗口归位。
+- **启动编排**：每个 App 可调整顺序、打开后的间隔，以及最长 120 秒的窗口等待时间。
+- **全局快捷键**：在其他软件中直接启动、恢复或保存当前场景，可修改组合并检测注册冲突。
+- **布局导入导出**：JSON 备份；跨 Mac 导入时可选择屏幕映射；新增导入不覆盖旧场景。
+- **自动归位**：App 启动、新窗口出现、屏幕连接变化、电脑唤醒时恢复，可独立开关。
+- **登录启动**：可显示控制台或静默运行，也可选择登录时启动场景 App。
+- **中文极客风界面**：跟随系统、浅色、深色；菜单栏常驻；可撤销上次手动恢复。
 
-关闭主窗口后仍在菜单栏运行，右键菜单栏图标可快速启动 App、保存或恢复布局、进入设置、暂停或退出。
+![快捷键与启动编排](docs/images/automation-dark.png)
 
-## 权限与版本更新
+## 下载与安装
 
-需要 macOS 的窗口控制权限。系统不同版本可能称其为“辅助功能”或“设备控制和数据访问”。首次使用时点界面的权限按钮，进入系统设置允许此 App。
+要求 **macOS 14 或更新版本**。1.2.0 起的下载包为 **Universal（Apple Silicon + Intel）**；历史 1.0/1.1 包为 Apple Silicon。
 
-本地构建使用 ad-hoc 签名，未进行 Developer ID 公证。重新编译后，旧版授权可能不再适用于新版，即使系统开关仍显示开启。遇到这种情况，请在权限列表移除旧记录，再添加 `/Applications/窗口记忆.app` 并允许。无需删除或重建布局。
+1. 在 [Releases](https://github.com/LZQVicLi/WindowMemory/releases) 下载对应版本的 `.dmg` 或 `.zip`。
+2. 将「窗口记忆.app」放入「应用程序」。
+3. 首次打开后，在系统设置中允许窗口控制权限（部分系统称为“辅助功能”或“设备控制和数据访问”）。
+4. 打开常用 App、摆好窗口，点击 **记住布局**。随后可 **恢复位置** 或 **启动 App 并恢复**。
 
-## 范围
+当前发布包使用 **ad-hoc 本地签名，未做 Apple Developer ID 公证**，下载后 macOS 可能阻止打开。可在检查来源后使用系统提供的“隐私与安全性 → 仍要打开”，或自行从源码构建。项目不要求关闭 Gatekeeper 或 SIP。重新编译更新后，如权限开关已开但程序仍显示未授权，需要移除旧授权记录，再添加安装路径中的新版。
 
-- 按显示器 UUID 识别物理屏幕，保存相对于可用区域的位置与宽高。分辨率变化时按比例适配，并尽量约束在屏幕内。
-- 按 App bundle ID 识别应用；同一 App 的多个窗口优先按标题一一匹配，然后尝试部分标题和顺序匹配。相同或频繁变化的标题可能导致窗口互换。
-- 启动清单按 App 去重；不会创建同一 App 的新实例。常规自动恢复在 0.5、1.5、4、9 秒重试，一键启动的窗口恢复最多等待到 30 秒；成功处理的窗口不再反复拉回。启动请求 20 秒无响应时会记录失败并继续下一个 App。
-- 不运行 Automator 工作流中的脚本。附件仅用于参考其“依次开启应用程序”的交互。
-- 不重建项目、文档或浏览器标签页，也不创建 App 未自行恢复的额外窗口。
-- 仅处理普通、未最小化、非全屏窗口。其他 Spaces 的窗口取决于系统是否提供访问。部分 App 的最小尺寸或窗口约束会导致恢复不完整，界面会说明结果。
-
-## 数据
-
-数据保存在 `~/Library/Application Support/WindowMemory/layouts.json`，包含布局、App 标识、窗口标题和设置。每次写入前保存上一版至 `layouts.previous.json`。数据不上传。
-
-1.0 布局可直接读取，原有窗口记录、排除状态和自动恢复设置保留。新增设置使用默认值；macOS 登录项目状态从系统读取。
-
-## 开发与验证
-
-需要 Xcode 或相应命令行工具；目前构建为 Apple Silicon，最低 macOS 14。
+每个 Release 保留带版本号的 ZIP、DMG（从 1.2.0 起）及 SHA-256 校验文件。将同一版本的下载包和校验文件放在同一目录，可运行：
 
 ```sh
-cd /Users/vic_li/WindowMemory
+shasum -a 256 -c SHA256SUMS.txt
+```
+
+## 默认快捷键
+
+| 操作 | 默认组合 |
+|---|---|
+| 启动当前场景并恢复 | `⌃⌥⌘ Return` |
+| 恢复当前场景 | `⌃⌥⌘ R` |
+| 记住当前布局 | `⌃⌥⌘ S` |
+| 打开设置（App 内） | `⌘ ,` |
+
+全局快捷键在「启动与快捷键」中配置。App 必须正在运行；关闭主窗口后仍在菜单栏运行。选择场景不会立即移动窗口，可先检查再恢复。
+
+## 数据与边界
+
+布局、窗口标题、App 标识和设置保存在：
+
+```text
+~/Library/Application Support/WindowMemory/layouts.json
+```
+
+写入前保留上一版 `layouts.previous.json`。程序没有网络请求、账号或遥测。导出的 JSON 包含窗口标题和软件清单，分享前请检查内容。导入文件只包含布局和启动配置，不会自动执行脚本、启动 App、注册登录项目或替换全局偏好设置。
+
+- 普通、未最小化、非全屏窗口可参与恢复。其他 Spaces 的窗口访问受 macOS 限制。
+- 相同 App 的多个窗口优先按标题匹配，标题相同或经常变化时可能互换。
+- 不重建文档、项目、标签页，也不创建 App 未自行恢复的额外窗口。
+- App 的最小尺寸或窗口控制限制可能导致恢复不完整，结果会在界面显示。
+- 窗口自动恢复基于系统事件与有限重试，不会持续锁住你手动拖动的位置。
+
+## 从源码构建
+
+需要 Xcode 或兼容的命令行工具，无第三方 Swift 依赖。
+
+```sh
+git clone https://github.com/LZQVicLi/WindowMemory.git
+cd WindowMemory
 zsh build.sh
 ```
 
-生成 `build/窗口记忆.app`，并运行 20 项自检；`build/` 已被 Git 忽略。可将目标输出目录作为脚本的第一个参数。脚本会覆盖该目标目录内同名的构建产物。
+生成 `build/窗口记忆.app`，默认同时构建 arm64 与 x86_64，并运行 **53 项自检**。可用 `ARCHS=arm64 zsh build.sh` 做本机开发构建；正式打包要求通用二进制。
 
 ```sh
-"build/窗口记忆.app/Contents/MacOS/WindowMemory" --self-test
-git log --oneline
+zsh scripts/package.sh   # dist/：ZIP、DMG、SHA256SUMS.txt
 ```
 
-- `Core.swift`：数据、旧版设置迁移、坐标换算、窗口匹配、启动去重与启动显示策略。
-- `Accessibility.swift`：窗口与显示器访问。
-- `Controller.swift`：事件监听、启动队列、恢复重试、保存、菜单栏、主题、登录项目。
-- `main.swift`：控制台、设置页及入口。
-- `ROADMAP.md`：可选后续功能建议。
-
-更新运行版前退出旧版；复制构建产物到原安装路径，保留 bundle ID。不要同时运行多个副本。
+[贡献指南](CONTRIBUTING.md) · [版本发布流程](docs/RELEASING.md) · [安全问题](SECURITY.md) · [后续计划](ROADMAP.md)
 
 ## 卸载
 
-先关闭“登录时启动窗口记忆”，退出程序，将应用移到废纸篓。需要一并移除布局时，再把上述 `WindowMemory` 数据文件夹移到废纸篓。
+在设置中关闭登录启动，退出程序，再将 App 移到废纸篓。需要清除布局时，另行移除上面的数据文件夹。
+
+## License
+
+[MIT](LICENSE) © 2026 [LZQVicLi](https://github.com/LZQVicLi)

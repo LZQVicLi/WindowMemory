@@ -1,0 +1,21 @@
+name: Build and test
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compile universal app and run self-tests
+        run: zsh build.sh
+      - name: Verify architecture and signature
+        run: |
+          xcrun lipo 'build/窗口记忆.app/Contents/MacOS/WindowMemory' -verify_arch arm64
+          xcrun lipo 'build/窗口记忆.app/Contents/MacOS/WindowMemory' -verify_arch x86_64
+          codesign --verify --deep --strict 'build/窗口记忆.app'
+      - name: Check whitespace
+        run: git diff --check
