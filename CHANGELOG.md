@@ -2,6 +2,11 @@
 
 This project uses semantic versioning. Existing version tags and released binary assets are not overwritten.
 
+## Unreleased
+
+- Default local builds to an isolated Preview bundle with synthetic data, a distinct bundle ID and display name. This prevents development copies with a different ad-hoc signature from competing with the installed release's macOS permission identity.
+- Require explicit release build mode in CI and packaging; document why a visible enabled permission switch or a trusted CLI subprocess does not prove that the installed GUI is authorized. Existing v1.3.0 binaries and tags are unchanged.
+
 ## [1.3.0] — 2026-10-24
 
 - Add a top-level layout library page alongside Settings, with 12 partition patterns across seven display families; match connected display count, primary role, orientation and usable dimensions by default, with manual catalog browsing. Configure installed apps per display, leave regions empty, and save into the existing scene/launch/restore/import/export workflow.

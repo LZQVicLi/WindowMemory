@@ -10,7 +10,7 @@
 ## Publish a new version
 
 1. Update `VERSION`, user-visible version strings and `CHANGELOG.md`. Update screenshots when behavior or appearance changes.
-2. Run `zsh build.sh`, relevant UI checks, and `git diff --check`.
+2. Run `BUILD_MODE=release zsh build.sh`, relevant UI checks, and `git diff --check`. Default builds are isolated Preview apps and cannot be packaged for release.
 3. Commit reviewed changes. The release script rejects a dirty working tree or an existing version tag.
 4. Run `zsh scripts/release.sh` from a machine with push access. It locally builds/packages, creates an annotated tag, pushes `main`, then the new tag.
 5. The tag workflow verifies the version, builds both architectures, runs tests, packages the ZIP/DMG and checksums, and publishes the Release.

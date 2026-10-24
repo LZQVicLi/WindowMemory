@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compile universal app and run self-tests
-        run: zsh build.sh
+        run: BUILD_MODE=release zsh build.sh
       - name: Verify architecture and signature
         run: |
           xcrun lipo 'build/窗口记忆.app/Contents/MacOS/WindowMemory' -verify_arch arm64

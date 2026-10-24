@@ -61,11 +61,12 @@ Xcode or compatible command-line tools are required. There are no third-party Sw
 ```sh
 git clone https://github.com/LZQVicLi/WindowMemory.git
 cd WindowMemory
-zsh build.sh                # universal binary + 53 checks
-zsh scripts/package.sh      # versioned ZIP, DMG, checksums
+zsh build.sh                           # isolated universal Preview + 166 checks
+BUILD_MODE=release zsh build.sh         # production bundle identity
+zsh scripts/package.sh                 # versioned ZIP, DMG, checksums
 ```
 
-The build is `build/窗口记忆.app`. See [Contributing](CONTRIBUTING.md) and [Releasing](docs/RELEASING.md). Screenshots use synthetic demo data.
+The default build is `build/WindowMemory Preview.app`, with a separate bundle ID and synthetic demo data; it does not read or write real layouts. Release mode creates `build/窗口记忆.app`. Avoid running production-identity development copies alongside a differently signed installed release: macOS can bind its permission record to the other copy. See [Contributing](CONTRIBUTING.md) and [Releasing](docs/RELEASING.md). Screenshots use synthetic demo data.
 
 [MIT License](LICENSE) © 2026 LZQVicLi.
 

@@ -2,7 +2,21 @@
 set -euo pipefail
 SOURCE_DIR="${0:A:h}"
 DEST_DIR="${1:-$SOURCE_DIR/build}"
-APP_PATH="$DEST_DIR/窗口记忆.app"
+BUILD_MODE="${BUILD_MODE:-preview}"
+case "$BUILD_MODE" in
+  preview)
+    APP_NAME="WindowMemory Preview"
+    BUNDLE_ID="local.vic.windowmemory.preview"
+    DEMO_MODE=true
+    ;;
+  release)
+    APP_NAME="窗口记忆"
+    BUNDLE_ID="local.vic.windowmemory"
+    DEMO_MODE=false
+    ;;
+  *) echo 'BUILD_MODE must be preview or release.' >&2; exit 1 ;;
+esac
+APP_PATH="$DEST_DIR/$APP_NAME.app"
 APP_VERSION="$(<"$SOURCE_DIR/VERSION")"
 BUILD_ARCHS="${ARCHS:-arm64 x86_64}"
 python3 "$SOURCE_DIR/scripts/validate-translations.py"
@@ -22,15 +36,16 @@ cat > "$APP_PATH/Contents/Info.plist" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
-<key>CFBundleIdentifier</key><string>local.vic.windowmemory</string>
-<key>CFBundleName</key><string>窗口记忆</string>
-<key>CFBundleDisplayName</key><string>窗口记忆</string>
+<key>CFBundleIdentifier</key><string>$BUNDLE_ID</string>
+<key>CFBundleName</key><string>$APP_NAME</string>
+<key>CFBundleDisplayName</key><string>$APP_NAME</string>
 <key>CFBundleExecutable</key><string>WindowMemory</string>
 <key>CFBundlePackageType</key><string>APPL</string>
 <key>CFBundleShortVersionString</key><string>$APP_VERSION</string>
 <key>CFBundleVersion</key><string>$APP_VERSION</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>LSUIElement</key><true/>
+<key>WindowMemoryDemo</key><$DEMO_MODE/>
 <key>CFBundleDevelopmentRegion</key><string>en</string>
 <key>CFBundleLocalizations</key><array><string>zh-Hans</string><string>en</string><string>fr</string><string>es</string><string>ru</string><string>ar</string></array>
 <key>NSHighResolutionCapable</key><true/>
@@ -40,7 +55,15 @@ cat > "$APP_PATH/Contents/Info.plist" <<PLIST
 PLIST
 cp "$SOURCE_DIR/AppIcon.icns" "$APP_PATH/Contents/Resources/AppIcon.icns"
 cp -R "$SOURCE_DIR/Resources/." "$APP_PATH/Contents/Resources/"
-codesign --force --sign - --identifier local.vic.windowmemory "$APP_PATH"
+if [[ "$BUILD_MODE" == preview ]]; then
+  for INFO_STRINGS in "$APP_PATH"/Contents/Resources/*.lproj/InfoPlist.strings(N); do
+    cat > "$INFO_STRINGS" <<'STRINGS'
+"CFBundleDisplayName" = "WindowMemory Preview";
+"CFBundleName" = "WindowMemory Preview";
+STRINGS
+  done
+fi
+codesign --force --sign - --identifier "$BUNDLE_ID" "$APP_PATH"
 codesign --verify --deep --strict "$APP_PATH"
 "$APP_PATH/Contents/MacOS/WindowMemory" --self-test
 echo "Built $APP_VERSION: $APP_PATH"

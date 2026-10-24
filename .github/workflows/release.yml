@@ -21,7 +21,7 @@ jobs:
           test "$RELEASE_TAG" = "v$(cat VERSION)"
           python3 scripts/release-notes.py "$(cat VERSION)" > "$RUNNER_TEMP/release-notes.md"
       - name: Build and test
-        run: zsh build.sh
+        run: BUILD_MODE=release zsh build.sh
       - name: Native appearance and language regression
         run: |
           'build/窗口记忆.app/Contents/MacOS/WindowMemory' --ui-self-test

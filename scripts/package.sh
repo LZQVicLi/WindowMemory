@@ -4,7 +4,11 @@ ROOT="${0:A:h:h}"
 VERSION="$(<"$ROOT/VERSION")"
 APP="$ROOT/build/窗口记忆.app"
 DIST="$ROOT/dist"
-[[ -d "$APP" ]] || { echo 'Run zsh build.sh first.' >&2; exit 1; }
+[[ -d "$APP" ]] || { echo 'Run BUILD_MODE=release zsh build.sh first.' >&2; exit 1; }
+IDENTIFIER=$(/usr/libexec/PlistBuddy -c 'Print CFBundleIdentifier' "$APP/Contents/Info.plist")
+[[ "$IDENTIFIER" == local.vic.windowmemory ]] || { echo 'Only the release bundle can be packaged.' >&2; exit 1; }
+DEMO=$(/usr/libexec/PlistBuddy -c 'Print WindowMemoryDemo' "$APP/Contents/Info.plist" 2>/dev/null || echo false)
+[[ "$DEMO" == false ]] || { echo 'Refusing to package a demo app.' >&2; exit 1; }
 ACTUAL=$(/usr/libexec/PlistBuddy -c 'Print CFBundleShortVersionString' "$APP/Contents/Info.plist")
 [[ "$ACTUAL" == "$VERSION" ]] || { echo 'App version does not match VERSION.' >&2; exit 1; }
 codesign --verify --deep --strict "$APP"

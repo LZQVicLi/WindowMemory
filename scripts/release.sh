@@ -7,7 +7,7 @@ VERSION="$(<VERSION)"
 [[ "$VERSION" =~ '^[0-9]+\.[0-9]+\.[0-9]+$' ]] || { echo 'VERSION must be x.y.z.' >&2; exit 1; }
 git rev-parse "v$VERSION" >/dev/null 2>&1 && { echo 'Version tag already exists. Bump VERSION and CHANGELOG first.' >&2; exit 1; }
 python3 scripts/release-notes.py "$VERSION" >/dev/null
-zsh build.sh
+BUILD_MODE=release zsh build.sh
 zsh scripts/package.sh
 git tag -a "v$VERSION" -m "WindowMemory $VERSION"
 git push origin main

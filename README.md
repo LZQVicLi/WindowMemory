@@ -91,11 +91,14 @@ cd WindowMemory
 zsh build.sh
 ```
 
-生成 `build/窗口记忆.app`，默认同时构建 arm64 与 x86_64，并运行 **53 项自检**。可用 `ARCHS=arm64 zsh build.sh` 做本机开发构建；正式打包要求通用二进制。
+默认生成 `build/WindowMemory Preview.app`，使用独立的 Bundle ID 和合成演示数据，避免开发副本与已安装版本争用系统授权记录，也不会读写真实布局。默认同时构建 arm64 与 x86_64，并运行 **166 项自检**。可用 `ARCHS=arm64 zsh build.sh` 加速本机开发构建。
 
 ```sh
-zsh scripts/package.sh   # dist/：ZIP、DMG、SHA256SUMS.txt
+BUILD_MODE=release zsh build.sh  # build/窗口记忆.app，正式版本身份
+zsh scripts/package.sh          # dist/：ZIP、DMG、SHA256SUMS.txt
 ```
+
+正式包需要两种架构。不要同时运行开发目录里的正式包和 `/Applications` 中签名不同的同名版本；测试界面请使用默认 Preview 构建。权限开关开启仍未授权时，请参照[权限排查](docs/USAGE.md#窗口控制权限)。
 
 [贡献指南](CONTRIBUTING.md) · [版本发布流程](docs/RELEASING.md) · [安全问题](SECURITY.md) · [后续计划](ROADMAP.md)
 
