@@ -17,5 +17,8 @@ jobs:
           xcrun lipo 'build/窗口记忆.app/Contents/MacOS/WindowMemory' -verify_arch arm64
           xcrun lipo 'build/窗口记忆.app/Contents/MacOS/WindowMemory' -verify_arch x86_64
           codesign --verify --deep --strict 'build/窗口记忆.app'
+      - name: Native appearance and language regression
+        run: |
+          'build/窗口记忆.app/Contents/MacOS/WindowMemory' --ui-self-test
       - name: Check whitespace
         run: git diff --check

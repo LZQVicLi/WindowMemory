@@ -25,6 +25,17 @@ struct Monitor: Codable, Identifiable {
     var name: String
     var bounds: Frame
     var visible: Frame
+    var isPrimary = false
+    init(id: String, name: String, bounds: Frame, visible: Frame, isPrimary: Bool = false) {
+        self.id = id; self.name = name; self.bounds = bounds; self.visible = visible; self.isPrimary = isPrimary
+    }
+    enum CodingKeys: String, CodingKey { case id, name, bounds, visible, isPrimary }
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self,forKey: .id); name = try c.decode(String.self,forKey: .name)
+        bounds = try c.decode(Frame.self,forKey: .bounds); visible = try c.decode(Frame.self,forKey: .visible)
+        isPrimary = try c.decodeIfPresent(Bool.self,forKey: .isPrimary) ?? false
+    }
 }
 
 struct WindowSlot: Codable, Identifiable {
@@ -68,7 +79,7 @@ struct LaunchRule: Codable, Equatable {
 enum ShortcutAction: String, Codable, CaseIterable, Identifiable {
     case launch, restore, save
     var id: String { rawValue }
-    var title: String { switch self { case .launch: return "启动当前场景"; case .restore: return "恢复当前场景"; case .save: return "记住当前布局" } }
+    var title: String { switch self { case .launch: return L("启动当前场景"); case .restore: return L("恢复当前场景"); case .save: return L("记住当前布局") } }
 }
 struct Shortcut: Codable, Equatable, Identifiable {
     var action: ShortcutAction
@@ -90,7 +101,7 @@ enum AppearanceMode: String, Codable, CaseIterable, Identifiable {
     case system, light, dark
     var id: String { rawValue }
     var title: String {
-        switch self { case .system: return "跟随系统"; case .light: return "浅色"; case .dark: return "深色" }
+        switch self { case .system: return L("跟随系统"); case .light: return L("浅色"); case .dark: return L("深色") }
     }
 }
 
@@ -103,12 +114,13 @@ struct Preferences: Codable {
     var showWindowOnLogin = true
     var launchAppsOnLogin = false
     var appearance: AppearanceMode = .dark
+    var language: AppLanguage = .system
     var shortcutsEnabled = true
     var shortcuts = Shortcut.defaults
 
     init() {}
     enum CodingKeys: String, CodingKey {
-        case automatic, onLaunch, onNewWindow, onDisplay, onWake, showWindowOnLogin, launchAppsOnLogin, appearance, shortcutsEnabled, shortcuts
+        case automatic, onLaunch, onNewWindow, onDisplay, onWake, showWindowOnLogin, launchAppsOnLogin, appearance, language, shortcutsEnabled, shortcuts
     }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
@@ -120,6 +132,8 @@ struct Preferences: Codable {
         showWindowOnLogin = try c.decodeIfPresent(Bool.self,forKey: .showWindowOnLogin) ?? true
         launchAppsOnLogin = try c.decodeIfPresent(Bool.self,forKey: .launchAppsOnLogin) ?? false
         appearance = try c.decodeIfPresent(AppearanceMode.self,forKey: .appearance) ?? .dark
+        let languageCode = try c.decodeIfPresent(String.self,forKey: .language) ?? "system"
+        language = AppLanguage(rawValue: languageCode) ?? .system
         shortcutsEnabled = try c.decodeIfPresent(Bool.self,forKey: .shortcutsEnabled) ?? true
         shortcuts = try c.decodeIfPresent([Shortcut].self,forKey: .shortcuts) ?? Shortcut.defaults
     }
@@ -130,16 +144,19 @@ struct SavedState: Codable {
     var preferences = Preferences()
     var layouts: [Layout] = []
     var activeLayouts: [String:String] = [:]
+    var userTemplates: [UserLayoutTemplate] = []
     init(version: Int = 3, preferences: Preferences = Preferences(), layouts: [Layout] = [], activeLayouts: [String:String] = [:]) {
         self.version = version; self.preferences = preferences; self.layouts = layouts; self.activeLayouts = activeLayouts
     }
-    enum CodingKeys: String, CodingKey { case version,preferences,layouts,activeLayouts }
+    enum CodingKeys: String, CodingKey { case version,preferences,layouts,activeLayouts,userTemplates }
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         version = try c.decodeIfPresent(Int.self,forKey: .version) ?? 1
         preferences = try c.decodeIfPresent(Preferences.self,forKey: .preferences) ?? Preferences()
         layouts = try c.decode([Layout].self,forKey: .layouts)
         activeLayouts = try c.decodeIfPresent([String:String].self,forKey: .activeLayouts) ?? [:]
+        userTemplates = try c.decodeIfPresent([UserLayoutTemplate].self,forKey: .userTemplates) ?? []
+        guard userTemplates.count <= 100, userTemplates.allSatisfy(validUserTemplate), Set(userTemplates.map(\.id)).count == userTemplates.count else { throw DecodingError.dataCorruptedError(forKey: .userTemplates,in: c,debugDescription: "Invalid user template library") }
     }
 }
 
@@ -237,7 +254,7 @@ func runSelfTests() {
     let m2 = Monitor(id: "a", name: "Left", bounds: left, visible: left)
     check(layoutKey([m1,m2]) == layoutKey([m2,m1]), "monitor ordering does not change profile")
     check(layoutKey([m1]) != layoutKey([m1,m2]), "different display combinations have separate profiles")
-    let state = SavedState(layouts: [Layout(id: "a|b", name: "双屏", updatedAt: Date(), monitors: [m1,m2], windows: [WindowSlot(bundleID: "test.app", appName: "Test", title: "", monitorID: "a", relative: window.relative(to: left))])])
+    let state = SavedState(layouts: [Layout(id: "a|b", name: L("双屏"), updatedAt: Date(), monitors: [m1,m2], windows: [WindowSlot(bundleID: "test.app", appName: "Test", title: "", monitorID: "a", relative: window.relative(to: left))])])
     let data = try! JSONEncoder().encode(state)
     let decoded = try! JSONDecoder().decode(SavedState.self, from: data)
     check(decoded.layouts.first?.windows.first?.bundleID == "test.app", "layout JSON round-trip")

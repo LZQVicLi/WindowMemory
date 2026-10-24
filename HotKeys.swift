@@ -11,7 +11,7 @@ final class GlobalHotKeys {
         for ref in references { UnregisterEventHotKey(ref) }
         references = []; actions = [:]
         guard enabled else { return [] }
-        guard validShortcuts(shortcuts) else { return ["快捷键重复或不受支持，请选择不同的组合。"] }
+        guard validShortcuts(shortcuts) else { return [L("快捷键重复或不受支持，请选择不同的组合。")] }
         if handler == nil {
             var type = EventTypeSpec(eventClass: OSType(kEventClassKeyboard),eventKind: UInt32(kEventHotKeyPressed))
             let result = InstallEventHandler(GetApplicationEventTarget(), { _,event,context in
@@ -22,7 +22,7 @@ final class GlobalHotKeys {
                 if status == noErr, let action = manager.actions[id.id] { manager.onAction?(action); return noErr }
                 return OSStatus(eventNotHandledErr)
             },1,&type,Unmanaged.passUnretained(self).toOpaque(),&handler)
-            if result != noErr { return ["无法建立全局快捷键监听（\(result)）。"] }
+            if result != noErr { return [L("无法建立全局快捷键监听（\(result)）。")] }
         }
         var failures: [String] = []
         for (index,shortcut) in shortcuts.enumerated() {
@@ -30,7 +30,7 @@ final class GlobalHotKeys {
             var reference: EventHotKeyRef?
             let status = RegisterEventHotKey(shortcut.keyCode,shortcut.modifiers,EventHotKeyID(signature: 0x574D454D,id: id),GetApplicationEventTarget(),0,&reference)
             if status == noErr, let reference { references.append(reference); actions[id] = shortcut.action }
-            else { failures.append("\(shortcut.label) 注册失败，可能被其他 App 占用（\(status)）。") }
+            else { failures.append(L("\(shortcut.label) 注册失败，可能被其他 App 占用（\(status)）。")) }
         }
         return failures
     }

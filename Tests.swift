@@ -69,5 +69,6 @@ func runFeatureTests() {
     check(selectedLayout(in: selection,screenKey: work.screenKey)?.id == work.id, "legacy layout remains selected without active-scene metadata")
     selection.activeLayouts[work.screenKey] = ""
     check(selectedLayout(in: selection,screenKey: work.screenKey) == nil, "newly imported screen groups can remain inactive until selected")
+    count += runInterfaceTests()
     print("All \(20+count) checks passed.")
 }

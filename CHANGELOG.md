@@ -2,6 +2,19 @@
 
 This project uses semantic versioning. Existing version tags and released binary assets are not overwritten.
 
+## [1.3.0] — 2026-10-24
+
+- Add a top-level layout library page alongside Settings, with 12 partition patterns across seven display families; match connected display count, primary role, orientation and usable dimensions by default, with manual catalog browsing. Configure installed apps per display, leave regions empty, and save into the existing scene/launch/restore/import/export workflow.
+- Add a persistent user template library with editable percentage-based regions, app assignment reuse, per-display conversion from existing scenes and template edit/delete/use actions.
+- Document the exact ad-hoc signing status, Gatekeeper first-launch steps and the Developer ID + notarization path for public distribution.
+- Fix dark-to-system appearance changes by removing the conflicting SwiftUI presentation override and synchronizing colors from AppKit effective appearance.
+- Replace duplicate accessibility prompts with one System Settings jump and a floating guide with a draggable app icon, manual recheck and stale-record recovery instructions.
+- Refresh permission state on activation and every second in common run-loop modes; remove obsolete accessibility observers when permission is revoked.
+- Add persistent, immediate language selection for the six UN official languages: Simplified Chinese, English, French, Spanish, Russian and Arabic, including right-to-left layout.
+- Localize app controls, menus, alerts, accessibility labels and dynamic status/error messages. Preserve user-supplied scene names and window titles.
+- Add user-triggered sharing through macOS, copy link, X, Facebook, LinkedIn, WhatsApp, Telegram, Reddit and email; provide copy-link support for WeChat and bundled offline brand icons for sharing channels. Sharing includes only the public project link and description.
+- Expand validation to 166 checks, including translation completeness/placeholders, migration, app discovery, preset geometry and sharing URL encoding; add 19 native appearance/language UI regression checks.
+
 ## [1.2.0] — 2026-10-24
 
 - Add multiple named workspace scenes for each display combination.

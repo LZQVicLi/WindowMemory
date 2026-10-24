@@ -1,5 +1,13 @@
 # Roadmap
 
+## Shipped in 1.3.0
+
+- Top-level adaptive per-display layout library, broad screen-family browsing and app placeholders.
+- Custom template creation, editable percentage-based areas and reuse from saved scenes.
+- Live system/light/dark appearance and refreshed floating permission guidance.
+- Six UN interface languages, including Arabic RTL.
+- User-triggered project sharing with offline brand icons.
+
 ## Shipped in 1.2.0
 
 - Multiple named scenes per display setup.

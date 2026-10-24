@@ -22,6 +22,9 @@ jobs:
           python3 scripts/release-notes.py "$(cat VERSION)" > "$RUNNER_TEMP/release-notes.md"
       - name: Build and test
         run: zsh build.sh
+      - name: Native appearance and language regression
+        run: |
+          'build/窗口记忆.app/Contents/MacOS/WindowMemory' --ui-self-test
       - name: Package universal ZIP, DMG and checksums
         run: zsh scripts/package.sh
       - name: Publish immutable version assets

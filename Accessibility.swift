@@ -12,8 +12,7 @@ struct LiveWindow {
 enum WindowAccess {
     static var trusted: Bool { AXIsProcessTrusted() }
     static func requestPermission() {
-        let options = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String: true] as CFDictionary
-        _ = AXIsProcessTrustedWithOptions(options)
+        // Open one destination. The asynchronous AX prompt would open another dialog.
         NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
     }
     static func value(_ element: AXUIElement, _ key: String) -> CFTypeRef? {
@@ -73,7 +72,7 @@ enum WindowAccess {
             let id = CFUUIDCreateString(nil,uuid) as String
             let v = screen.visibleFrame
             return Monitor(id: id, name: screen.localizedName, bounds: Frame(CGDisplayBounds(displayID)),
-                           visible: Frame(CGRect(x: v.minX, y: primaryTop-v.maxY, width: v.width, height: v.height)))
+                           visible: Frame(CGRect(x: v.minX, y: primaryTop-v.maxY, width: v.width, height: v.height)),isPrimary: displayID == CGMainDisplayID())
         }
     }
     static func monitor(for frame: Frame, in monitors: [Monitor]) -> Monitor? {

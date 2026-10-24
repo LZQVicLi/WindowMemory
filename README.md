@@ -7,7 +7,7 @@
 
 **摆好一次，把整个工作区带回来。** 原生 Swift 菜单栏工具，记住每个 App 的显示器、位置和宽高；按工作、会议、专注等场景恢复。
 
-[English](README.en.md) · **[下载最新版本](https://github.com/LZQVicLi/WindowMemory/releases/latest)** · [使用说明](docs/USAGE.md) · [更新记录](CHANGELOG.md)
+[English](README.en.md) · **[下载最新版本](https://github.com/LZQVicLi/WindowMemory/releases/latest)** · [使用说明](docs/USAGE.md) · [更新记录](CHANGELOG.md) · [签名与首次打开](docs/SIGNING.md)
 
 ![场景与屏幕布局](docs/images/workspace-dark.png)
 
@@ -15,6 +15,8 @@
 
 ## 功能
 
+- **智能布局库**：根据当前屏幕数量、主副屏、横竖方向与可用尺寸自动推荐；可浏览七类主流屏幕、12 种分区模板。逐屏选择本机 App 显示占位，可留空，保存后直接进入现有场景流程。
+- **我的模板**：自己设置区域位置与宽高，或将已有场景按屏幕加入库中；支持编辑、删除与复用。布局库为左侧一级入口，与设置平级。
 - **多屏、多场景**：每套屏幕组合可保存多个具名布局，并分别记住当前场景。
 - **一键启动与恢复**：按场景清单打开勾选的 App，同一软件只启动一个实例，再等待窗口归位。
 - **启动编排**：每个 App 可调整顺序、打开后的间隔，以及最长 120 秒的窗口等待时间。
@@ -22,9 +24,18 @@
 - **布局导入导出**：JSON 备份；跨 Mac 导入时可选择屏幕映射；新增导入不覆盖旧场景。
 - **自动归位**：App 启动、新窗口出现、屏幕连接变化、电脑唤醒时恢复，可独立开关。
 - **登录启动**：可显示控制台或静默运行，也可选择登录时启动场景 App。
-- **中文极客风界面**：跟随系统、浅色、深色；菜单栏常驻；可撤销上次手动恢复。
+- **外观与语言**：跟随系统、浅色、深色立即切换；支持中文、英语、法语、西班牙语、俄语和阿拉伯语（从右到左布局）。
+- **权限引导**：悬浮窗可拖动 App 图标到系统权限列表；返回 App 或等待时刷新授权状态。
+- **分享项目**：对应渠道品牌图标；macOS 系统分享、复制链接、X、Facebook、LinkedIn、WhatsApp、Telegram、Reddit 和邮件；微信可复制链接。由用户确认发送，只传递公开项目链接与介绍。
+- **菜单栏常驻**：可撤销上次手动恢复。
 
 ![快捷键与启动编排](docs/images/automation-dark.png)
+
+![浅色设置与国际化](docs/images/settings-light-en.png)
+
+![自动识别 MacBook 主屏与外接竖屏的布局库](docs/images/layout-library.png)
+
+![可视化布局预设](docs/images/layout-presets.png)
 
 ## 下载与安装
 
@@ -62,7 +73,7 @@ shasum -a 256 -c SHA256SUMS.txt
 ~/Library/Application Support/WindowMemory/layouts.json
 ```
 
-写入前保留上一版 `layouts.previous.json`。程序没有网络请求、账号或遥测。导出的 JSON 包含窗口标题和软件清单，分享前请检查内容。导入文件只包含布局和启动配置，不会自动执行脚本、启动 App、注册登录项目或替换全局偏好设置。
+写入前保留上一版 `layouts.previous.json`。布局管理离线运行，无账号或遥测。主动点击分享时才通过浏览器或系统分享打开渠道，只带公开项目链接及介绍。导出的 JSON 包含窗口标题和软件清单，分享前请检查内容。导入文件只包含布局和启动配置，不会自动执行脚本、启动 App、注册登录项目或替换全局偏好设置。
 
 - 普通、未最小化、非全屏窗口可参与恢复。其他 Spaces 的窗口访问受 macOS 限制。
 - 相同 App 的多个窗口优先按标题匹配，标题相同或经常变化时可能互换。
@@ -95,3 +106,5 @@ zsh scripts/package.sh   # dist/：ZIP、DMG、SHA256SUMS.txt
 ## License
 
 [MIT](LICENSE) © 2026 [LZQVicLi](https://github.com/LZQVicLi)
+
+分享渠道品牌图标来自 [Simple Icons](Assets/ShareIcons/NOTICE.md)，遵循 CC0-1.0；相关商标属于各自所有者。

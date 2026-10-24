@@ -1,8 +1,8 @@
 import Foundation
 
 func sampleState() -> SavedState {
-    let laptop = Monitor(id: "demo-laptop",name: "MacBook Pro",bounds: Frame(x: 0,y: 0,width: 1440,height: 900),visible: Frame(x: 0,y: 25,width: 1440,height: 850))
-    let display = Monitor(id: "demo-desktop",name: "Studio Display",bounds: Frame(x: 1440,y: -300,width: 2560,height: 1440),visible: Frame(x: 1440,y: -275,width: 2560,height: 1390))
+    let laptop = Monitor(id: "demo-laptop",name: "MacBook Pro",bounds: Frame(x: 0,y: 0,width: 1440,height: 900),visible: Frame(x: 0,y: 25,width: 1440,height: 850),isPrimary: true)
+    let display = Monitor(id: "demo-desktop",name: "Portrait Display",bounds: Frame(x: -1600,y: -900,width: 1600,height: 2560),visible: Frame(x: -1600,y: -875,width: 1600,height: 2510))
     let screens = [laptop,display]
     let apps = [("com.apple.Safari","Safari","Documentation",display.id,Frame(x: 0,y: 0,width: 0.5,height: 1)),
                 ("com.microsoft.VSCode","Visual Studio Code","WindowMemory — editor",display.id,Frame(x: 0.5,y: 0,width: 0.5,height: 0.7)),

@@ -1,0 +1,2004 @@
+{
+  "启动当前场景": {
+    "en": "Launch current scene",
+    "fr": "Lancer la scène actuelle",
+    "es": "Iniciar escena actual",
+    "ru": "Запустить текущую сцену",
+    "ar": "تشغيل المشهد الحالي"
+  },
+  "恢复当前场景": {
+    "en": "Restore current scene",
+    "fr": "Restaurer la scène actuelle",
+    "es": "Restaurar escena actual",
+    "ru": "Восстановить текущую сцену",
+    "ar": "استعادة المشهد الحالي"
+  },
+  "记住当前布局": {
+    "en": "Save current layout",
+    "fr": "Mémoriser la disposition",
+    "es": "Guardar disposición actual",
+    "ru": "Запомнить расположение",
+    "ar": "حفظ التخطيط الحالي"
+  },
+  "跟随系统": {
+    "en": "Follow system",
+    "fr": "Suivre le système",
+    "es": "Seguir el sistema",
+    "ru": "Как в системе",
+    "ar": "اتباع النظام"
+  },
+  "浅色": {
+    "en": "Light",
+    "fr": "Clair",
+    "es": "Claro",
+    "ru": "Светлый",
+    "ar": "فاتح"
+  },
+  "深色": {
+    "en": "Dark",
+    "fr": "Sombre",
+    "es": "Oscuro",
+    "ru": "Тёмный",
+    "ar": "داكن"
+  },
+  "双屏": {
+    "en": "Dual displays",
+    "fr": "Deux écrans",
+    "es": "Dos pantallas",
+    "ru": "Два экрана",
+    "ar": "شاشتان"
+  },
+  "先摆好窗口，再点“记住当前布局”。": {
+    "en": "Arrange your windows, then choose Save current layout.",
+    "fr": "Disposez vos fenêtres, puis mémorisez la disposition.",
+    "es": "Organiza las ventanas y guarda la disposición actual.",
+    "ru": "Расставьте окна и сохраните расположение.",
+    "ar": "رتّب النوافذ ثم احفظ التخطيط الحالي."
+  },
+  "不支持的配置版本。": {
+    "en": "Unsupported configuration version.",
+    "fr": "Version de configuration non prise en charge.",
+    "es": "Versión de configuración no compatible.",
+    "ru": "Неподдерживаемая версия настроек.",
+    "ar": "إصدار الإعدادات غير مدعوم."
+  },
+  "布局文件读取失败；原文件已保留。{0}": {
+    "en": "Could not read layouts; the original file is preserved. {0}",
+    "fr": "Lecture impossible ; le fichier original est conservé. {0}",
+    "es": "No se pudieron leer las disposiciones; se conserva el archivo original. {0}",
+    "ru": "Не удалось прочитать файл; оригинал сохранён. {0}",
+    "ar": "تعذرت قراءة التخطيطات؛ حُفظ الملف الأصلي. {0}"
+  },
+  "窗口记忆": {
+    "en": "WindowMemory",
+    "fr": "WindowMemory",
+    "es": "WindowMemory",
+    "ru": "WindowMemory",
+    "ar": "WindowMemory"
+  },
+  "原布局文件读取失败，已停止写入以保留原文件。请先备份并修复布局文件。": {
+    "en": "The layout file could not be read. Writing is disabled to preserve it. Back up and repair the file first.",
+    "fr": "Le fichier est illisible. L’écriture est désactivée pour le préserver. Sauvegardez-le et réparez-le d’abord.",
+    "es": "No se pudo leer el archivo. Se desactivó la escritura para conservarlo. Haz una copia y repáralo primero.",
+    "ru": "Файл не читается. Запись отключена для его сохранности. Сначала сделайте копию и исправьте файл.",
+    "ar": "تعذرت قراءة ملف التخطيط. أُوقف الحفظ لحمايته. انسخه احتياطيًا وأصلحه أولًا."
+  },
+  "无法保存布局：{0}": {
+    "en": "Could not save layouts: {0}",
+    "fr": "Enregistrement impossible : {0}",
+    "es": "No se pudo guardar: {0}",
+    "ru": "Не удалось сохранить: {0}",
+    "ar": "تعذر حفظ التخطيطات: {0}"
+  },
+  "语言设置已更新。": {
+    "en": "Language updated.",
+    "fr": "Langue mise à jour.",
+    "es": "Idioma actualizado.",
+    "ru": "Язык изменён.",
+    "ar": "تم تغيير اللغة."
+  },
+  "窗口控制权限": {
+    "en": "Window control permission",
+    "fr": "Autorisation de contrôle des fenêtres",
+    "es": "Permiso para controlar ventanas",
+    "ru": "Разрешение на управление окнами",
+    "ar": "إذن التحكم بالنوافذ"
+  },
+  "示例模式：不会打开或移动真实 App。": {
+    "en": "Demo mode: real apps will not be opened or moved.",
+    "fr": "Mode démo : aucune app réelle ne sera ouverte ou déplacée.",
+    "es": "Modo de demostración: no se abrirán ni moverán apps reales.",
+    "ru": "Деморежим: приложения не открываются и окна не перемещаются.",
+    "ar": "وضع العرض: لن تُفتح التطبيقات الحقيقية أو تُنقل نوافذها."
+  },
+  "请先保存当前屏幕组合的布局。": {
+    "en": "Save a layout for the current displays first.",
+    "fr": "Mémorisez d’abord une disposition pour ces écrans.",
+    "es": "Guarda primero una disposición para estas pantallas.",
+    "ru": "Сначала сохраните расположение для этих экранов.",
+    "ar": "احفظ تخطيطًا للشاشات الحالية أولًا."
+  },
+  "没有勾选需要启动的 App。": {
+    "en": "No apps are selected to launch.",
+    "fr": "Aucune app sélectionnée pour le lancement.",
+    "es": "No hay apps seleccionadas para iniciar.",
+    "ru": "Нет выбранных для запуска приложений.",
+    "ar": "لم تُحدَّد تطبيقات للتشغيل."
+  },
+  "正在启动布局中的 {0} 个 App…": {
+    "en": "Launching {0} apps in this layout…",
+    "fr": "Lancement de {0} apps de cette disposition…",
+    "es": "Iniciando {0} apps de esta disposición…",
+    "ru": "Запуск приложений: {0}…",
+    "ar": "جارٍ تشغيل {0} من تطبيقات التخطيط…"
+  },
+  "已取消后续启动与归位。已经打开的 App 会保留。": {
+    "en": "Remaining launches and restores canceled. Opened apps remain running.",
+    "fr": "Lancements et restaurations restants annulés. Les apps ouvertes restent actives.",
+    "es": "Se cancelaron los inicios y restauraciones pendientes. Las apps abiertas siguen ejecutándose.",
+    "ru": "Оставшиеся запуски и перемещения отменены. Открытые приложения продолжат работать.",
+    "ar": "أُلغي التشغيل والاستعادة المتبقيان. ستظل التطبيقات المفتوحة تعمل."
+  },
+  "已发起 {0} 个 App 的启动，{1} 个已在运行；部分 App 无法打开。": {
+    "en": "Launch requested for {0} apps; {1} already running. Some apps could not open.",
+    "fr": "Lancement demandé pour {0} apps ; {1} déjà actives. Certaines n’ont pas pu s’ouvrir.",
+    "es": "Se solicitó iniciar {0} apps; {1} ya estaban abiertas. Algunas no pudieron abrirse.",
+    "ru": "Запрошен запуск {0} приложений; уже работают: {1}. Некоторые не удалось открыть.",
+    "ar": "طُلب تشغيل {0} تطبيقات؛ ويعمل {1} مسبقًا. تعذر فتح بعضها."
+  },
+  "App 已打开。开启窗口控制权限后可恢复布局。": {
+    "en": "Apps opened. Enable window control to restore the layout.",
+    "fr": "Apps ouvertes. Autorisez le contrôle des fenêtres pour restaurer la disposition.",
+    "es": "Apps abiertas. Permite el control de ventanas para restaurar la disposición.",
+    "ru": "Приложения открыты. Разрешите управление окнами для восстановления.",
+    "ar": "فُتحت التطبيقات. فعّل التحكم بالنوافذ لاستعادة التخطيط."
+  },
+  "{0} 个 App 已打开，{1} 个已在运行；窗口出现后自动归位。": {
+    "en": "Opened: {0}. Already running: {1}. Windows will be restored as they appear.",
+    "fr": "Ouvertes : {0}. Déjà actives : {1}. Les fenêtres seront restaurées à leur apparition.",
+    "es": "Abiertas: {0}. Ya en ejecución: {1}. Las ventanas se restaurarán al aparecer.",
+    "ru": "Открыто: {0}. Уже работают: {1}. Окна будут расставлены по мере появления.",
+    "ar": "فُتح: {0}. يعمل مسبقًا: {1}. ستُستعاد النوافذ عند ظهورها."
+  },
+  "{0}：未找到已安装的 App": {
+    "en": "{0}: installed app not found",
+    "fr": "{0} : app installée introuvable",
+    "es": "{0}: app instalada no encontrada",
+    "ru": "{0}: приложение не найдено",
+    "ar": "{0}: لم يُعثر على التطبيق المثبت"
+  },
+  "{0}：启动响应超时，可稍后重试": {
+    "en": "{0}: launch timed out; try again later",
+    "fr": "{0} : délai de lancement dépassé ; réessayez plus tard",
+    "es": "{0}: se agotó el tiempo de inicio; inténtalo después",
+    "ru": "{0}: время запуска истекло; повторите позже",
+    "ar": "{0}: انتهت مهلة التشغيل؛ حاول لاحقًا"
+  },
+  "启动失败": {
+    "en": "Launch failed",
+    "fr": "Échec du lancement",
+    "es": "Error al iniciar",
+    "ru": "Ошибка запуска",
+    "ar": "فشل التشغيل"
+  },
+  "{0}：{1}": {
+    "en": "{0}: {1}",
+    "fr": "{0} : {1}",
+    "es": "{0}: {1}",
+    "ru": "{0}: {1}",
+    "ar": "{0}: {1}"
+  },
+  "示例模式：布局仅用于界面展示。": {
+    "en": "Demo mode: layouts are for display only.",
+    "fr": "Mode démo : dispositions à titre d’exemple.",
+    "es": "Modo de demostración: las disposiciones son ejemplos.",
+    "ru": "Деморежим: расположения служат только для показа.",
+    "ar": "وضع العرض: التخطيطات للعرض فقط."
+  },
+  "没有找到可保存的普通窗口。请先打开 App 窗口，并退出全屏或最小化。": {
+    "en": "No ordinary windows found. Open app windows and leave full screen or minimized mode.",
+    "fr": "Aucune fenêtre standard trouvée. Ouvrez des fenêtres et quittez le plein écran ou le mode réduit.",
+    "es": "No hay ventanas normales. Abre ventanas y sal del modo de pantalla completa o minimizado.",
+    "ru": "Обычные окна не найдены. Откройте окна, выйдите из полноэкранного режима и разверните свёрнутые окна.",
+    "ar": "لم يُعثر على نوافذ عادية. افتح نوافذ التطبيقات وأخرجها من ملء الشاشة أو التصغير."
+  },
+  "默认场景": {
+    "en": "Default scene",
+    "fr": "Scène par défaut",
+    "es": "Escena predeterminada",
+    "ru": "Сцена по умолчанию",
+    "ar": "المشهد الافتراضي"
+  },
+  "已记住 {0} 个 App、{1} 个窗口的位置。": {
+    "en": "Saved positions for {0} apps and {1} windows.",
+    "fr": "Positions mémorisées : {0} apps et {1} fenêtres.",
+    "es": "Posiciones guardadas: {0} apps y {1} ventanas.",
+    "ru": "Сохранено приложений: {0}, окон: {1}.",
+    "ar": "حُفظت مواضع {0} تطبيقات و{1} نوافذ."
+  },
+  "这套屏幕还没有保存布局。请先点“记住当前布局”。": {
+    "en": "No layout saved for these displays. Choose Save current layout first.",
+    "fr": "Aucune disposition pour ces écrans. Mémorisez d’abord la disposition.",
+    "es": "No hay disposición para estas pantallas. Guarda primero la disposición actual.",
+    "ru": "Для этих экранов нет сохранённого расположения. Сначала сохраните его.",
+    "ar": "لا يوجد تخطيط محفوظ لهذه الشاشات. احفظ التخطيط الحالي أولًا."
+  },
+  "已恢复 {0} 个窗口；{1} 个窗口受 App 尺寸限制或系统权限影响。": {
+    "en": "Restored {0} windows; {1} affected by app size limits or system permissions.",
+    "fr": "{0} fenêtres restaurées ; {1} limitées par l’app ou les autorisations système.",
+    "es": "Se restauraron {0} ventanas; {1} limitadas por la app o los permisos.",
+    "ru": "Восстановлено окон: {0}; ограничения размера или разрешений: {1}.",
+    "ar": "استُعيدت {0} نوافذ؛ وتأثرت {1} بقيود الحجم أو أذونات النظام."
+  },
+  "暂时没有可恢复的窗口。请打开已保存的 App，并退出全屏或最小化。": {
+    "en": "No windows to restore yet. Open the saved apps and leave full screen or minimized mode.",
+    "fr": "Aucune fenêtre à restaurer. Ouvrez les apps mémorisées et quittez le plein écran ou le mode réduit.",
+    "es": "Aún no hay ventanas que restaurar. Abre las apps guardadas y sal de pantalla completa o minimizado.",
+    "ru": "Нет окон для восстановления. Откройте сохранённые приложения, выйдите из полноэкранного режима и разверните окна.",
+    "ar": "لا توجد نوافذ لاستعادتها حاليًا. افتح التطبيقات المحفوظة وأخرجها من ملء الشاشة أو التصغير."
+  },
+  "已恢复 {0} 个窗口 · {1}": {
+    "en": "Restored {0} windows · {1}",
+    "fr": "{0} fenêtres restaurées · {1}",
+    "es": "{0} ventanas restauradas · {1}",
+    "ru": "Восстановлено окон: {0} · {1}",
+    "ar": "استُعيدت {0} نوافذ · {1}"
+  },
+  "还没有可撤销的手动恢复。": {
+    "en": "No manual restore to undo.",
+    "fr": "Aucune restauration manuelle à annuler.",
+    "es": "No hay restauración manual que deshacer.",
+    "ru": "Нет ручного восстановления для отмены.",
+    "ar": "لا توجد استعادة يدوية للتراجع عنها."
+  },
+  "已撤销，{0} 个窗口回到恢复前的位置。": {
+    "en": "Undone. {0} windows returned to their previous positions.",
+    "fr": "Annulé. {0} fenêtres ont retrouvé leur position précédente.",
+    "es": "Deshecho. {0} ventanas volvieron a sus posiciones anteriores.",
+    "ru": "Отменено. {0} окон возвращено на прежние места.",
+    "ar": "تم التراجع. عادت {0} نوافذ إلى مواضعها السابقة."
+  },
+  "删除当前场景“{0}”？": {
+    "en": "Delete scene “{0}”?",
+    "fr": "Supprimer la scène « {0} » ?",
+    "es": "¿Eliminar la escena «{0}»?",
+    "ru": "Удалить сцену «{0}»?",
+    "ar": "هل تريد حذف المشهد «{0}»؟"
+  },
+  "不会改变当前窗口位置。其他场景与屏幕组合的布局会保留。": {
+    "en": "Current windows will stay in place. Other scenes and display layouts are preserved.",
+    "fr": "Les fenêtres restent en place. Les autres scènes et dispositions sont conservées.",
+    "es": "Las ventanas no se moverán. Se conservan las otras escenas y disposiciones.",
+    "ru": "Окна останутся на месте. Другие сцены и расположения сохранятся.",
+    "ar": "ستبقى النوافذ في مواضعها. ستُحفظ المشاهد والتخطيطات الأخرى."
+  },
+  "忘记布局": {
+    "en": "Forget layout",
+    "fr": "Oublier la disposition",
+    "es": "Olvidar disposición",
+    "ru": "Забыть расположение",
+    "ar": "نسيان التخطيط"
+  },
+  "取消": {
+    "en": "Cancel",
+    "fr": "Annuler",
+    "es": "Cancelar",
+    "ru": "Отмена",
+    "ar": "إلغاء"
+  },
+  "已忘记当前布局。": {
+    "en": "Current layout forgotten.",
+    "fr": "Disposition actuelle oubliée.",
+    "es": "Disposición actual olvidada.",
+    "ru": "Текущее расположение удалено.",
+    "ar": "تم نسيان التخطيط الحالي."
+  },
+  "权限已开启。把窗口摆好后，点“记住当前布局”。": {
+    "en": "Permission enabled. Arrange your windows, then save the layout.",
+    "fr": "Autorisation accordée. Disposez les fenêtres, puis mémorisez la disposition.",
+    "es": "Permiso activado. Organiza las ventanas y guarda la disposición.",
+    "ru": "Разрешение получено. Расставьте окна и сохраните расположение.",
+    "ar": "تم منح الإذن. رتّب النوافذ ثم احفظ التخطيط."
+  },
+  "窗口控制权限已关闭，自动恢复已停止。": {
+    "en": "Window control permission disabled. Automatic restore stopped.",
+    "fr": "Contrôle des fenêtres désactivé. Restauration automatique arrêtée.",
+    "es": "Permiso de control desactivado. Restauración automática detenida.",
+    "ru": "Разрешение отозвано. Автовосстановление остановлено.",
+    "ar": "أُوقف إذن التحكم بالنوافذ والاستعادة التلقائية."
+  },
+  "请在系统设置中允许“窗口记忆”登录时打开。": {
+    "en": "Allow WindowMemory to open at login in System Settings.",
+    "fr": "Autorisez WindowMemory à s’ouvrir à la connexion dans Réglages Système.",
+    "es": "Permite abrir WindowMemory al iniciar sesión en Ajustes del Sistema.",
+    "ru": "Разрешите запуск WindowMemory при входе в системных настройках.",
+    "ar": "اسمح بفتح WindowMemory عند تسجيل الدخول في إعدادات النظام."
+  },
+  "登录启动设置失败：{0}": {
+    "en": "Login item update failed: {0}",
+    "fr": "Échec du réglage de connexion : {0}",
+    "es": "Error al configurar el inicio de sesión: {0}",
+    "ru": "Ошибка настройки автозапуска: {0}",
+    "ar": "فشل إعداد بدء التشغيل: {0}"
+  },
+  "打开窗口记忆": {
+    "en": "Open WindowMemory",
+    "fr": "Ouvrir WindowMemory",
+    "es": "Abrir WindowMemory",
+    "ru": "Открыть WindowMemory",
+    "ar": "فتح WindowMemory"
+  },
+  "启动布局 App 并恢复": {
+    "en": "Launch layout apps and restore",
+    "fr": "Lancer les apps et restaurer",
+    "es": "Iniciar apps y restaurar",
+    "ru": "Запустить приложения и восстановить",
+    "ar": "تشغيل تطبيقات التخطيط واستعادته"
+  },
+  "立即恢复": {
+    "en": "Restore now",
+    "fr": "Restaurer maintenant",
+    "es": "Restaurar ahora",
+    "ru": "Восстановить сейчас",
+    "ar": "استعادة الآن"
+  },
+  "设置…": {
+    "en": "Settings…",
+    "fr": "Réglages…",
+    "es": "Ajustes…",
+    "ru": "Настройки…",
+    "ar": "الإعدادات…"
+  },
+  "暂停自动恢复": {
+    "en": "Pause automatic restore",
+    "fr": "Suspendre la restauration",
+    "es": "Pausar restauración automática",
+    "ru": "Приостановить автовосстановление",
+    "ar": "إيقاف الاستعادة التلقائية مؤقتًا"
+  },
+  "继续自动恢复": {
+    "en": "Resume automatic restore",
+    "fr": "Reprendre la restauration",
+    "es": "Reanudar restauración automática",
+    "ru": "Продолжить автовосстановление",
+    "ar": "استئناف الاستعادة التلقائية"
+  },
+  "退出窗口记忆": {
+    "en": "Quit WindowMemory",
+    "fr": "Quitter WindowMemory",
+    "es": "Salir de WindowMemory",
+    "ru": "Выйти из WindowMemory",
+    "ar": "إنهاء WindowMemory"
+  },
+  "已选择“{0}”，可立即恢复或启动此场景。": {
+    "en": "Selected “{0}”. Restore or launch this scene when ready.",
+    "fr": "« {0} » sélectionnée. Restaurez ou lancez cette scène.",
+    "es": "Seleccionada «{0}». Ya puedes restaurar o iniciar esta escena.",
+    "ru": "Выбрана сцена «{0}». Можно восстановить или запустить её.",
+    "ar": "حُدِّد «{0}». يمكنك استعادة المشهد أو تشغيله."
+  },
+  "同一套屏幕可以保存多个工作场景。新场景以当前已保存的布局为起点。": {
+    "en": "Save multiple scenes for the same displays. New scenes start from the saved layout.",
+    "fr": "Créez plusieurs scènes pour les mêmes écrans. Les nouvelles reprennent la disposition mémorisée.",
+    "es": "Guarda varias escenas para las mismas pantallas. Las nuevas parten de la disposición guardada.",
+    "ru": "Для одних экранов можно сохранить несколько сцен. Новая сцена создаётся из сохранённого расположения.",
+    "ar": "احفظ عدة مشاهد للشاشات نفسها. يبدأ المشهد الجديد من التخطيط المحفوظ."
+  },
+  "保存": {
+    "en": "Save",
+    "fr": "Enregistrer",
+    "es": "Guardar",
+    "ru": "Сохранить",
+    "ar": "حفظ"
+  },
+  "场景名称应为 1–100 个字符。": {
+    "en": "Scene names must contain 1–100 characters.",
+    "fr": "Le nom doit contenir de 1 à 100 caractères.",
+    "es": "El nombre debe tener de 1 a 100 caracteres.",
+    "ru": "Имя сцены должно содержать от 1 до 100 символов.",
+    "ar": "يجب أن يتكون اسم المشهد من 1 إلى 100 حرف."
+  },
+  "新建场景": {
+    "en": "New scene",
+    "fr": "Créer une scène",
+    "es": "Crear escena",
+    "ru": "Создать сцену",
+    "ar": "إنشاء مشهد"
+  },
+  "新场景": {
+    "en": "New scene",
+    "fr": "Nouvelle scène",
+    "es": "Nueva escena",
+    "ru": "Новая сцена",
+    "ar": "مشهد جديد"
+  },
+  "重命名场景": {
+    "en": "Rename scene",
+    "fr": "Renommer la scène",
+    "es": "Renombrar escena",
+    "ru": "Переименовать сцену",
+    "ar": "إعادة تسمية المشهد"
+  },
+  "场景已重命名为“{0}”。": {
+    "en": "Scene renamed to “{0}”.",
+    "fr": "Scène renommée « {0} ».",
+    "es": "Escena renombrada como «{0}».",
+    "ru": "Сцена переименована в «{0}».",
+    "ar": "أُعيدت تسمية المشهد إلى «{0}»."
+  },
+  "快捷键重复，请给每个操作选择不同的组合。": {
+    "en": "Duplicate shortcut. Choose a different combination for each action.",
+    "fr": "Raccourci en double. Choisissez une combinaison distincte par action.",
+    "es": "Atajo duplicado. Elige una combinación distinta para cada acción.",
+    "ru": "Сочетание повторяется. Выберите разные сочетания для действий.",
+    "ar": "الاختصار مكرر. اختر تركيبة مختلفة لكل إجراء."
+  },
+  "没有可导出的场景。": {
+    "en": "No scenes to export.",
+    "fr": "Aucune scène à exporter.",
+    "es": "No hay escenas que exportar.",
+    "ru": "Нет сцен для экспорта.",
+    "ar": "لا توجد مشاهد للتصدير."
+  },
+  "导出布局与启动配置": {
+    "en": "Export layouts and launch settings",
+    "fr": "Exporter dispositions et réglages de lancement",
+    "es": "Exportar disposiciones y ajustes de inicio",
+    "ru": "Экспорт расположений и настроек запуска",
+    "ar": "تصدير التخطيطات وإعدادات التشغيل"
+  },
+  "文件包含窗口标题、App 清单与屏幕信息。请妥善保存。": {
+    "en": "This file contains window titles, app lists and display information. Store it securely.",
+    "fr": "Ce fichier contient les titres des fenêtres, les apps et les écrans. Conservez-le en lieu sûr.",
+    "es": "El archivo contiene títulos de ventanas, apps y pantallas. Guárdalo de forma segura.",
+    "ru": "Файл содержит заголовки окон, список приложений и данные экранов. Храните его безопасно.",
+    "ar": "يتضمن الملف عناوين النوافذ وقائمة التطبيقات ومعلومات الشاشات. احفظه بأمان."
+  },
+  "已导出 {0} 个场景。": {
+    "en": "Exported {0} scenes.",
+    "fr": "{0} scènes exportées.",
+    "es": "Se exportaron {0} escenas.",
+    "ru": "Экспортировано сцен: {0}.",
+    "ar": "صُدِّرت {0} مشاهد."
+  },
+  "导出失败：{0}": {
+    "en": "Export failed: {0}",
+    "fr": "Échec de l’export : {0}",
+    "es": "Error al exportar: {0}",
+    "ru": "Ошибка экспорта: {0}",
+    "ar": "فشل التصدير: {0}"
+  },
+  "导入场景": {
+    "en": "Import scenes",
+    "fr": "Importer des scènes",
+    "es": "Importar escenas",
+    "ru": "Импорт сцен",
+    "ar": "استيراد المشاهد"
+  },
+  "支持导出的布局文件或旧版 layouts.json；以新增方式导入，不覆盖已有场景。": {
+    "en": "Import an exported layout or an older layouts.json. Existing scenes are not overwritten.",
+    "fr": "Importez un export ou un ancien layouts.json. Les scènes existantes sont conservées.",
+    "es": "Importa una disposición exportada o un layouts.json anterior. No se sobrescriben escenas.",
+    "ru": "Импортируйте экспортированный файл или старый layouts.json. Существующие сцены сохранятся.",
+    "ar": "استورد ملف تخطيط مُصدَّرًا أو ملف layouts.json قديمًا. لن تُستبدل المشاهد الحالية."
+  },
+  "文件超过 5 MB。": {
+    "en": "File exceeds 5 MB.",
+    "fr": "Le fichier dépasse 5 Mo.",
+    "es": "El archivo supera los 5 MB.",
+    "ru": "Размер файла превышает 5 МБ.",
+    "ar": "يتجاوز حجم الملف 5 ميغابايت."
+  },
+  "为导入场景匹配屏幕": {
+    "en": "Map displays for imported scenes",
+    "fr": "Associer les écrans des scènes importées",
+    "es": "Asignar pantallas a escenas importadas",
+    "ru": "Сопоставление экранов для импорта",
+    "ar": "ربط شاشات المشاهد المستوردة"
+  },
+  "跨 Mac 导入时可将所有导入场景绑定到当前屏幕组合。请选择每个原屏幕对应的目标；也可以保留原绑定，待连接原屏幕后使用。": {
+    "en": "Map each original display to a connected display, or keep the original assignments for later use with those displays.",
+    "fr": "Associez chaque écran d’origine à un écran connecté, ou conservez les associations pour utiliser les écrans d’origine plus tard.",
+    "es": "Asigna cada pantalla original a una actual, o conserva las asignaciones para usarlas con las pantallas originales.",
+    "ru": "Сопоставьте исходные экраны с подключёнными или сохраните исходные привязки для дальнейшего использования.",
+    "ar": "اربط كل شاشة أصلية بشاشة متصلة، أو احتفظ بالروابط الأصلية لاستخدامها لاحقًا."
+  },
+  "原屏幕过多，请分批导入。": {
+    "en": "Too many original displays. Import in smaller batches.",
+    "fr": "Trop d’écrans d’origine. Importez en plusieurs fois.",
+    "es": "Demasiadas pantallas originales. Importa en grupos más pequeños.",
+    "ru": "Слишком много исходных экранов. Импортируйте частями.",
+    "ar": "عدد الشاشات الأصلية كبير جدًا. استورد على دفعات أصغر."
+  },
+  "映射到当前屏幕": {
+    "en": "Map to current displays",
+    "fr": "Associer aux écrans actuels",
+    "es": "Asignar a pantallas actuales",
+    "ru": "Привязать к текущим экранам",
+    "ar": "ربط بالشاشات الحالية"
+  },
+  "保留原绑定": {
+    "en": "Keep original assignments",
+    "fr": "Conserver les associations",
+    "es": "Conservar asignaciones originales",
+    "ru": "Сохранить исходные привязки",
+    "ar": "الاحتفاظ بالروابط الأصلية"
+  },
+  "没有可用的目标屏幕。": {
+    "en": "No target display available.",
+    "fr": "Aucun écran cible disponible.",
+    "es": "No hay pantalla de destino disponible.",
+    "ru": "Нет доступного целевого экрана.",
+    "ar": "لا توجد شاشة وجهة متاحة."
+  },
+  "（导入）": {
+    "en": " (imported)",
+    "fr": " (importée)",
+    "es": " (importada)",
+    "ru": " (импорт)",
+    "ar": " (مستورد)"
+  },
+  "已新增导入 {0} 个场景。请在场景选择器中选择；导入不会自动启动 App。": {
+    "en": "Added {0} imported scenes. Select one in the scene picker; importing does not launch apps.",
+    "fr": "{0} scènes ajoutées. Choisissez-en une dans le sélecteur ; l’import ne lance aucune app.",
+    "es": "Se añadieron {0} escenas. Selecciona una; importar no inicia apps.",
+    "ru": "Добавлено сцен: {0}. Выберите сцену в списке; импорт не запускает приложения.",
+    "ar": "أُضيفت {0} مشاهد. اختر مشهدًا من القائمة؛ الاستيراد لا يشغّل التطبيقات."
+  },
+  "导入失败：{0}": {
+    "en": "Import failed: {0}",
+    "fr": "Échec de l’import : {0}",
+    "es": "Error al importar: {0}",
+    "ru": "Ошибка импорта: {0}",
+    "ar": "فشل الاستيراد: {0}"
+  },
+  "布局控制台": {
+    "en": "Layout console",
+    "fr": "Console de disposition",
+    "es": "Consola de ventanas",
+    "ru": "Панель расположений",
+    "ar": "لوحة التخطيط"
+  },
+  "启动与快捷键": {
+    "en": "Launch & shortcuts",
+    "fr": "Lancement et raccourcis",
+    "es": "Inicio y atajos",
+    "ru": "Запуск и сочетания",
+    "ar": "التشغيل والاختصارات"
+  },
+  "设置": {
+    "en": "Settings",
+    "fr": "Réglages",
+    "es": "Ajustes",
+    "ru": "Настройки",
+    "ar": "الإعدادات"
+  },
+  "窗口控制已授权": {
+    "en": "Window control allowed",
+    "fr": "Contrôle autorisé",
+    "es": "Control de ventanas permitido",
+    "ru": "Управление разрешено",
+    "ar": "التحكم بالنوافذ مسموح"
+  },
+  "等待窗口控制权限": {
+    "en": "Window permission needed",
+    "fr": "Autorisation nécessaire",
+    "es": "Se requiere permiso",
+    "ru": "Требуется разрешение",
+    "ar": "يلزم إذن التحكم بالنوافذ"
+  },
+  "登录启动已开启": {
+    "en": "Launch at login enabled",
+    "fr": "Lancement à la connexion actif",
+    "es": "Inicio de sesión activado",
+    "ru": "Автозапуск включён",
+    "ar": "بدء التشغيل عند الدخول مفعّل"
+  },
+  "登录启动未开启": {
+    "en": "Launch at login disabled",
+    "fr": "Lancement à la connexion inactif",
+    "es": "Inicio de sesión desactivado",
+    "ru": "Автозапуск выключен",
+    "ar": "بدء التشغيل عند الدخول معطّل"
+  },
+  "暂停或继续自动恢复": {
+    "en": "Pause or resume automatic restore",
+    "fr": "Suspendre ou reprendre la restauration",
+    "es": "Pausar o reanudar la restauración",
+    "ru": "Приостановить или продолжить автовосстановление",
+    "ar": "إيقاف الاستعادة التلقائية أو استئنافها"
+  },
+  "允许控制窗口，才能恢复布局": {
+    "en": "Allow window control to restore layouts",
+    "fr": "Autorisez le contrôle pour restaurer les dispositions",
+    "es": "Permite controlar ventanas para restaurar disposiciones",
+    "ru": "Разрешите управление окнами для восстановления",
+    "ar": "اسمح بالتحكم بالنوافذ لاستعادة التخطيطات"
+  },
+  "在系统设置中开启“窗口记忆”的窗口控制权限。": {
+    "en": "Enable WindowMemory’s window control permission in System Settings.",
+    "fr": "Autorisez le contrôle des fenêtres pour WindowMemory dans Réglages Système.",
+    "es": "Activa el permiso de control de WindowMemory en Ajustes del Sistema.",
+    "ru": "Разрешите WindowMemory управлять окнами в системных настройках.",
+    "ar": "فعّل إذن التحكم بالنوافذ لتطبيق WindowMemory في إعدادات النظام."
+  },
+  "开启权限": {
+    "en": "Enable permission",
+    "fr": "Autoriser",
+    "es": "Activar permiso",
+    "ru": "Разрешить",
+    "ar": "منح الإذن"
+  },
+  "显示器": {
+    "en": "Displays",
+    "fr": "Écrans",
+    "es": "Pantallas",
+    "ru": "Экраны",
+    "ar": "الشاشات"
+  },
+  "布局 App": {
+    "en": "Layout apps",
+    "fr": "Apps de la disposition",
+    "es": "Apps de la disposición",
+    "ru": "Приложения сцены",
+    "ar": "تطبيقات التخطيط"
+  },
+  "已保存窗口": {
+    "en": "Saved windows",
+    "fr": "Fenêtres mémorisées",
+    "es": "Ventanas guardadas",
+    "ru": "Сохранённые окна",
+    "ar": "النوافذ المحفوظة"
+  },
+  "屏幕与窗口布局": {
+    "en": "Displays & window layout",
+    "fr": "Écrans et disposition des fenêtres",
+    "es": "Pantallas y disposición de ventanas",
+    "ru": "Экраны и расположение окон",
+    "ar": "الشاشات وتخطيط النوافذ"
+  },
+  "把窗口摆好，然后记住当前布局。": {
+    "en": "Arrange your windows, then save the layout.",
+    "fr": "Disposez vos fenêtres, puis mémorisez la disposition.",
+    "es": "Organiza las ventanas y guarda la disposición.",
+    "ru": "Расставьте окна, затем сохраните расположение.",
+    "ar": "رتّب النوافذ ثم احفظ التخطيط."
+  },
+  "当前屏幕组合已匹配": {
+    "en": "Current display combination matched",
+    "fr": "Écrans actuels reconnus",
+    "es": "Pantallas actuales reconocidas",
+    "ru": "Найдена текущая комбинация экранов",
+    "ar": "تمت مطابقة الشاشات الحالية"
+  },
+  "记住布局": {
+    "en": "Save layout",
+    "fr": "Mémoriser",
+    "es": "Guardar disposición",
+    "ru": "Запомнить",
+    "ar": "حفظ التخطيط"
+  },
+  "恢复位置": {
+    "en": "Restore positions",
+    "fr": "Restaurer",
+    "es": "Restaurar posiciones",
+    "ru": "Восстановить",
+    "ar": "استعادة المواضع"
+  },
+  "取消启动": {
+    "en": "Cancel launch",
+    "fr": "Annuler le lancement",
+    "es": "Cancelar inicio",
+    "ru": "Отменить запуск",
+    "ar": "إلغاء التشغيل"
+  },
+  "启动 App 并恢复": {
+    "en": "Launch & restore",
+    "fr": "Lancer et restaurer",
+    "es": "Iniciar y restaurar",
+    "ru": "Запустить и восстановить",
+    "ar": "تشغيل واستعادة"
+  },
+  "撤销上次手动恢复": {
+    "en": "Undo last manual restore",
+    "fr": "Annuler la restauration manuelle",
+    "es": "Deshacer última restauración manual",
+    "ru": "Отменить ручное восстановление",
+    "ar": "التراجع عن آخر استعادة يدوية"
+  },
+  "打开布局文件夹": {
+    "en": "Open layout folder",
+    "fr": "Ouvrir le dossier des dispositions",
+    "es": "Abrir carpeta de disposiciones",
+    "ru": "Открыть папку расположений",
+    "ar": "فتح مجلد التخطيطات"
+  },
+  "重命名当前场景…": {
+    "en": "Rename current scene…",
+    "fr": "Renommer la scène actuelle…",
+    "es": "Renombrar escena actual…",
+    "ru": "Переименовать сцену…",
+    "ar": "إعادة تسمية المشهد الحالي…"
+  },
+  "导出当前场景…": {
+    "en": "Export current scene…",
+    "fr": "Exporter la scène actuelle…",
+    "es": "Exportar escena actual…",
+    "ru": "Экспортировать сцену…",
+    "ar": "تصدير المشهد الحالي…"
+  },
+  "删除当前场景…": {
+    "en": "Delete current scene…",
+    "fr": "Supprimer la scène actuelle…",
+    "es": "Eliminar escena actual…",
+    "ru": "Удалить текущую сцену…",
+    "ar": "حذف المشهد الحالي…"
+  },
+  "布局保存在本机 · 全屏、最小化及其他空间中的窗口可能受系统限制。": {
+    "en": "Layouts stay on this Mac · Full-screen, minimized and other-Space windows may be limited by macOS.",
+    "fr": "Dispositions locales · macOS peut limiter les fenêtres en plein écran, réduites ou dans d’autres espaces.",
+    "es": "Datos locales · macOS puede limitar ventanas minimizadas, en pantalla completa o en otros espacios.",
+    "ru": "Данные хранятся на Mac · Полноэкранные, свёрнутые окна и другие рабочие столы могут быть ограничены macOS.",
+    "ar": "تُحفظ التخطيطات على هذا الجهاز · قد يقيّد macOS النوافذ المصغرة أو بملء الشاشة أو في مساحات أخرى."
+  },
+  "布局中的窗口": {
+    "en": "Windows in this layout",
+    "fr": "Fenêtres de la disposition",
+    "es": "Ventanas de la disposición",
+    "ru": "Окна в расположении",
+    "ar": "نوافذ هذا التخطيط"
+  },
+  "勾选参与启动与恢复": {
+    "en": "Select to launch and restore",
+    "fr": "Cocher pour lancer et restaurer",
+    "es": "Seleccionar para iniciar y restaurar",
+    "ru": "Выберите для запуска и восстановления",
+    "ar": "حدّد للتشغيل والاستعادة"
+  },
+  "还没有记录窗口": {
+    "en": "No windows saved yet",
+    "fr": "Aucune fenêtre mémorisée",
+    "es": "Aún no hay ventanas guardadas",
+    "ru": "Окна ещё не сохранены",
+    "ar": "لم تُحفظ نوافذ بعد"
+  },
+  "打开常用 App，摆好窗口后点击“记住布局”。": {
+    "en": "Open your apps, arrange their windows, then choose Save layout.",
+    "fr": "Ouvrez vos apps, disposez les fenêtres, puis mémorisez la disposition.",
+    "es": "Abre tus apps, organiza las ventanas y guarda la disposición.",
+    "ru": "Откройте приложения, расставьте окна и сохраните расположение.",
+    "ar": "افتح تطبيقاتك ورتّب النوافذ ثم احفظ التخطيط."
+  },
+  "参与启动与恢复：{0}": {
+    "en": "Launch and restore: {0}",
+    "fr": "Lancer et restaurer : {0}",
+    "es": "Iniciar y restaurar: {0}",
+    "ru": "Запуск и восстановление: {0}",
+    "ar": "تشغيل واستعادة: {0}"
+  },
+  "普通窗口": {
+    "en": "Standard window",
+    "fr": "Fenêtre standard",
+    "es": "Ventana normal",
+    "ru": "Обычное окно",
+    "ar": "نافذة عادية"
+  },
+  "外观": {
+    "en": "Appearance",
+    "fr": "Apparence",
+    "es": "Apariencia",
+    "ru": "Оформление",
+    "ar": "المظهر"
+  },
+  "外观设置只影响窗口记忆，切换后立即生效。": {
+    "en": "Appearance affects only WindowMemory and changes immediately.",
+    "fr": "L’apparence concerne uniquement WindowMemory et change immédiatement.",
+    "es": "La apariencia solo afecta a WindowMemory y cambia al instante.",
+    "ru": "Оформление меняется сразу и только в WindowMemory.",
+    "ar": "يتغير المظهر فورًا ويؤثر في WindowMemory فقط."
+  },
+  "语言": {
+    "en": "Language",
+    "fr": "Langue",
+    "es": "Idioma",
+    "ru": "Язык",
+    "ar": "اللغة"
+  },
+  "界面语言": {
+    "en": "Interface language",
+    "fr": "Langue de l’interface",
+    "es": "Idioma de la interfaz",
+    "ru": "Язык интерфейса",
+    "ar": "لغة الواجهة"
+  },
+  "支持联合国六种官方语言，切换后立即生效。阿拉伯语采用从右到左布局。": {
+    "en": "The six UN official languages are supported. Changes apply immediately; Arabic uses right-to-left layout.",
+    "fr": "Les six langues officielles de l’ONU sont disponibles. Changement immédiat ; l’arabe s’affiche de droite à gauche.",
+    "es": "Incluye los seis idiomas oficiales de la ONU. Cambio inmediato; el árabe usa diseño de derecha a izquierda.",
+    "ru": "Поддерживаются шесть официальных языков ООН. Язык меняется сразу; арабский интерфейс — справа налево.",
+    "ar": "يدعم التطبيق اللغات الرسمية الست للأمم المتحدة. يسري التغيير فورًا، وتُعرض العربية من اليمين إلى اليسار."
+  },
+  "开机与登录": {
+    "en": "Startup & login",
+    "fr": "Démarrage et connexion",
+    "es": "Inicio y sesión",
+    "ru": "Запуск и вход",
+    "ar": "بدء التشغيل والدخول"
+  },
+  "登录时启动窗口记忆": {
+    "en": "Open WindowMemory at login",
+    "fr": "Ouvrir WindowMemory à la connexion",
+    "es": "Abrir WindowMemory al iniciar sesión",
+    "ru": "Запускать WindowMemory при входе",
+    "ar": "فتح WindowMemory عند تسجيل الدخول"
+  },
+  "登录 Mac 后自动运行，菜单栏保持可用。": {
+    "en": "Run automatically after login and keep the menu bar available.",
+    "fr": "Démarre après la connexion et reste dans la barre des menus.",
+    "es": "Se ejecuta tras iniciar sesión y permanece en la barra de menús.",
+    "ru": "Автоматический запуск при входе со значком в строке меню.",
+    "ar": "يعمل تلقائيًا بعد الدخول ويظل متاحًا في شريط القوائم."
+  },
+  "登录启动后显示主界面": {
+    "en": "Show console after login",
+    "fr": "Afficher la console à la connexion",
+    "es": "Mostrar consola al iniciar sesión",
+    "ru": "Показывать панель при входе",
+    "ar": "إظهار اللوحة بعد تسجيل الدخول"
+  },
+  "开启后直接显示控制台；关闭后安静运行在菜单栏。": {
+    "en": "Show the console when enabled; otherwise stay quietly in the menu bar.",
+    "fr": "Affiche la console si activé ; sinon reste dans la barre des menus.",
+    "es": "Muestra la consola si está activo; de lo contrario, permanece en la barra de menús.",
+    "ru": "Показывает панель при включении; иначе работает в строке меню.",
+    "ar": "يُظهر اللوحة عند تفعيله؛ وإلا يعمل بهدوء في شريط القوائم."
+  },
+  "登录时启动布局中的 App": {
+    "en": "Launch layout apps at login",
+    "fr": "Lancer les apps de la disposition à la connexion",
+    "es": "Iniciar apps de la disposición al entrar",
+    "ru": "Запускать приложения сцены при входе",
+    "ar": "تشغيل تطبيقات التخطيط عند الدخول"
+  },
+  "自动打开当前屏幕布局勾选的 App，并等待窗口归位。": {
+    "en": "Open selected apps in the current display layout and restore their windows.",
+    "fr": "Ouvre les apps sélectionnées et restaure leurs fenêtres sur ces écrans.",
+    "es": "Abre las apps seleccionadas y restaura sus ventanas en estas pantallas.",
+    "ru": "Открывает выбранные приложения текущего расположения и расставляет окна.",
+    "ar": "يفتح التطبيقات المحددة في تخطيط الشاشات الحالي ويستعيد نوافذها."
+  },
+  "在系统设置中允许登录启动": {
+    "en": "Allow login launch in System Settings",
+    "fr": "Autoriser dans Réglages Système",
+    "es": "Permitir inicio en Ajustes del Sistema",
+    "ru": "Разрешить автозапуск в настройках",
+    "ar": "السماح ببدء التشغيل في إعدادات النظام"
+  },
+  "自动恢复": {
+    "en": "Automatic restore",
+    "fr": "Restauration automatique",
+    "es": "Restauración automática",
+    "ru": "Автовосстановление",
+    "ar": "الاستعادة التلقائية"
+  },
+  "启用自动恢复": {
+    "en": "Enable automatic restore",
+    "fr": "Activer la restauration automatique",
+    "es": "Activar restauración automática",
+    "ru": "Включить автовосстановление",
+    "ar": "تفعيل الاستعادة التلقائية"
+  },
+  "暂停后仍可手动恢复或一键启动工作区。": {
+    "en": "Manual restore and workspace launch remain available while paused.",
+    "fr": "La restauration manuelle et le lancement restent disponibles pendant la pause.",
+    "es": "Durante la pausa puedes restaurar o iniciar el espacio manualmente.",
+    "ru": "При паузе доступны ручное восстановление и запуск сцены.",
+    "ar": "تظل الاستعادة اليدوية وتشغيل مساحة العمل متاحين أثناء الإيقاف المؤقت."
+  },
+  "App 启动时": {
+    "en": "When an app launches",
+    "fr": "Au lancement d’une app",
+    "es": "Al iniciar una app",
+    "ru": "При запуске приложения",
+    "ar": "عند تشغيل تطبيق"
+  },
+  "软件打开后，恢复已记住的窗口位置。": {
+    "en": "Restore saved window positions after an app opens.",
+    "fr": "Restaure les positions mémorisées après l’ouverture d’une app.",
+    "es": "Restaura las posiciones guardadas al abrir una app.",
+    "ru": "Восстанавливает позиции окон после открытия приложения.",
+    "ar": "يستعيد مواضع النوافذ المحفوظة بعد فتح التطبيق."
+  },
+  "新窗口出现时": {
+    "en": "When a new window appears",
+    "fr": "À l’apparition d’une fenêtre",
+    "es": "Al aparecer una ventana",
+    "ru": "При появлении нового окна",
+    "ar": "عند ظهور نافذة جديدة"
+  },
+  "匹配保存的窗口记录；额外窗口保持当前位置。": {
+    "en": "Match saved windows; leave extra windows in place.",
+    "fr": "Associe les fenêtres mémorisées ; laisse les autres en place.",
+    "es": "Asocia las ventanas guardadas; deja las adicionales en su sitio.",
+    "ru": "Сопоставляет сохранённые окна; остальные остаются на месте.",
+    "ar": "يطابق النوافذ المحفوظة ويترك النوافذ الإضافية في مواضعها."
+  },
+  "屏幕连接变化时": {
+    "en": "When displays change",
+    "fr": "Au changement d’écrans",
+    "es": "Al cambiar las pantallas",
+    "ru": "При смене экранов",
+    "ar": "عند تغيّر الشاشات"
+  },
+  "按当前屏幕组合切换到对应布局。": {
+    "en": "Use the layout for the connected display combination.",
+    "fr": "Utilise la disposition correspondant aux écrans connectés.",
+    "es": "Usa la disposición de las pantallas conectadas.",
+    "ru": "Использует расположение для подключённой комбинации экранов.",
+    "ar": "يستخدم التخطيط المطابق للشاشات المتصلة."
+  },
+  "电脑唤醒时": {
+    "en": "When this Mac wakes",
+    "fr": "Au réveil du Mac",
+    "es": "Al activar el Mac",
+    "ru": "При пробуждении Mac",
+    "ar": "عند إيقاظ هذا الـ Mac"
+  },
+  "等待显示器就绪后恢复窗口。": {
+    "en": "Wait for displays to be ready, then restore windows.",
+    "fr": "Attend que les écrans soient prêts, puis restaure les fenêtres.",
+    "es": "Espera a que las pantallas estén listas y restaura las ventanas.",
+    "ru": "Ждёт готовности экранов, затем расставляет окна.",
+    "ar": "ينتظر جاهزية الشاشات ثم يستعيد النوافذ."
+  },
+  "数据与权限": {
+    "en": "Data & permissions",
+    "fr": "Données et autorisations",
+    "es": "Datos y permisos",
+    "ru": "Данные и разрешения",
+    "ar": "البيانات والأذونات"
+  },
+  "窗口控制权限已开启": {
+    "en": "Window control enabled",
+    "fr": "Contrôle des fenêtres autorisé",
+    "es": "Control de ventanas activado",
+    "ru": "Управление окнами разрешено",
+    "ar": "تم تفعيل التحكم بالنوافذ"
+  },
+  "需要开启窗口控制权限": {
+    "en": "Window control permission required",
+    "fr": "Autorisation de contrôle nécessaire",
+    "es": "Se requiere permiso de control",
+    "ru": "Требуется разрешение на управление",
+    "ar": "يلزم إذن التحكم بالنوافذ"
+  },
+  "{0} 套布局 · 数据仅保存在本机": {
+    "en": "Layouts: {0} · Stored only on this Mac",
+    "fr": "Dispositions : {0} · Données locales",
+    "es": "Disposiciones: {0} · Solo en este Mac",
+    "ru": "Расположений: {0} · Только на этом Mac",
+    "ar": "التخطيطات: {0} · محفوظة على هذا الجهاز فقط"
+  },
+  "系统权限设置": {
+    "en": "System permissions",
+    "fr": "Autorisations système",
+    "es": "Permisos del sistema",
+    "ru": "Разрешения системы",
+    "ar": "أذونات النظام"
+  },
+  "布局文件夹": {
+    "en": "Layout folder",
+    "fr": "Dossier des dispositions",
+    "es": "Carpeta de disposiciones",
+    "ru": "Папка расположений",
+    "ar": "مجلد التخطيطات"
+  },
+  "导出全部场景…": {
+    "en": "Export all scenes…",
+    "fr": "Exporter toutes les scènes…",
+    "es": "Exportar todas las escenas…",
+    "ru": "Экспортировать все сцены…",
+    "ar": "تصدير جميع المشاهد…"
+  },
+  "导入场景…": {
+    "en": "Import scenes…",
+    "fr": "Importer des scènes…",
+    "es": "Importar escenas…",
+    "ru": "Импортировать сцены…",
+    "ar": "استيراد المشاهد…"
+  },
+  "跨 Mac 导入时可重新匹配屏幕": {
+    "en": "Displays can be remapped when importing on another Mac",
+    "fr": "Écrans réassociables sur un autre Mac",
+    "es": "Puedes reasignar pantallas al importar en otro Mac",
+    "ru": "Экраны можно переназначить при импорте на другой Mac",
+    "ar": "يمكن إعادة ربط الشاشات عند الاستيراد إلى Mac آخر"
+  },
+  "外观：{0}": {
+    "en": "Appearance: {0}",
+    "fr": "Apparence : {0}",
+    "es": "Apariencia: {0}",
+    "ru": "Оформление: {0}",
+    "ar": "المظهر: {0}"
+  },
+  "已选择": {
+    "en": "Selected",
+    "fr": "Sélectionné",
+    "es": "Seleccionado",
+    "ru": "Выбрано",
+    "ar": "محدد"
+  },
+  "未选择": {
+    "en": "Not selected",
+    "fr": "Non sélectionné",
+    "es": "No seleccionado",
+    "ru": "Не выбрано",
+    "ar": "غير محدد"
+  },
+  "当前连接 {0} 个屏幕，已记录 {1} 个窗口": {
+    "en": "Connected displays: {0}. Saved windows: {1}.",
+    "fr": "Écrans connectés : {0}. Fenêtres mémorisées : {1}.",
+    "es": "Pantallas conectadas: {0}. Ventanas guardadas: {1}.",
+    "ru": "Подключено экранов: {0}. Сохранено окон: {1}.",
+    "ar": "الشاشات المتصلة: {0}. النوافذ المحفوظة: {1}."
+  },
+  "当前场景": {
+    "en": "Current scene",
+    "fr": "Scène actuelle",
+    "es": "Escena actual",
+    "ru": "Текущая сцена",
+    "ar": "المشهد الحالي"
+  },
+  "尚未保存场景": {
+    "en": "No scenes saved",
+    "fr": "Aucune scène mémorisée",
+    "es": "No hay escenas guardadas",
+    "ru": "Нет сохранённых сцен",
+    "ar": "لا توجد مشاهد محفوظة"
+  },
+  "请选择场景": {
+    "en": "Choose a scene",
+    "fr": "Choisir une scène",
+    "es": "Elige una escena",
+    "ru": "Выберите сцену",
+    "ar": "اختر مشهدًا"
+  },
+  "新建": {
+    "en": "New",
+    "fr": "Créer",
+    "es": "Nueva",
+    "ru": "Создать",
+    "ar": "جديد"
+  },
+  "重命名…": {
+    "en": "Rename…",
+    "fr": "Renommer…",
+    "es": "Renombrar…",
+    "ru": "Переименовать…",
+    "ar": "إعادة تسمية…"
+  },
+  "全局快捷键": {
+    "en": "Global shortcuts",
+    "fr": "Raccourcis globaux",
+    "es": "Atajos globales",
+    "ru": "Глобальные сочетания",
+    "ar": "اختصارات عامة"
+  },
+  "启用全局快捷键": {
+    "en": "Enable global shortcuts",
+    "fr": "Activer les raccourcis globaux",
+    "es": "Activar atajos globales",
+    "ru": "Включить глобальные сочетания",
+    "ar": "تفعيل الاختصارات العامة"
+  },
+  "在其他 App 中也可使用，作用于当前屏幕组合选中的场景。": {
+    "en": "Use these from any app. They control the selected scene for the current displays.",
+    "fr": "Utilisables depuis toute app pour la scène sélectionnée des écrans actuels.",
+    "es": "Úsalos desde cualquier app para la escena seleccionada de estas pantallas.",
+    "ru": "Работают из любого приложения для выбранной сцены текущих экранов.",
+    "ar": "تعمل من أي تطبيق وتتحكم في المشهد المحدد للشاشات الحالية."
+  },
+  "{0}修饰键": {
+    "en": "{0} modifiers",
+    "fr": "Modificateurs de {0}",
+    "es": "Modificadores de {0}",
+    "ru": "Модификаторы: {0}",
+    "ar": "مفاتيح التعديل لـ {0}"
+  },
+  "{0}按键": {
+    "en": "{0} key",
+    "fr": "Touche de {0}",
+    "es": "Tecla de {0}",
+    "ru": "Клавиша: {0}",
+    "ar": "مفتاح {0}"
+  },
+  "示例模式不注册真实快捷键。": {
+    "en": "Demo mode does not register real shortcuts.",
+    "fr": "Le mode démo n’enregistre aucun raccourci réel.",
+    "es": "El modo de demostración no registra atajos reales.",
+    "ru": "В деморежиме сочетания не регистрируются.",
+    "ar": "وضع العرض لا يسجّل اختصارات حقيقية."
+  },
+  "若组合已被系统或其他 App 占用，会保留原设置并提示。": {
+    "en": "If a combination is already used, the previous settings are kept and a warning is shown.",
+    "fr": "Si une combinaison est déjà utilisée, les réglages précédents sont conservés et un avertissement apparaît.",
+    "es": "Si una combinación está ocupada, se mantienen los ajustes anteriores y se muestra un aviso.",
+    "ru": "Если сочетание занято, прежние настройки сохранятся и появится предупреждение.",
+    "ar": "إذا كانت التركيبة مستخدمة، تُحفظ الإعدادات السابقة ويظهر تنبيه."
+  },
+  "启动顺序与等待时间": {
+    "en": "Launch order & timing",
+    "fr": "Ordre et délais de lancement",
+    "es": "Orden y tiempos de inicio",
+    "ru": "Порядок и время запуска",
+    "ar": "ترتيب التشغيل وتوقيته"
+  },
+  "“间隔”控制打开后等待多久再启动下一个 App；“窗口”等待用于持续尝试匹配和归位，最长 120 秒。已经成功归位的窗口不重复移动。": {
+    "en": "Interval waits before launching the next app. Window wait retries matching and restoring for up to 120 seconds. Successfully restored windows are not moved again.",
+    "fr": "L’intervalle précède l’app suivante. L’attente de fenêtre réessaie la restauration jusqu’à 120 s. Les fenêtres déjà restaurées ne sont plus déplacées.",
+    "es": "El intervalo precede a la siguiente app. La espera reintenta restaurar hasta 120 s. Las ventanas ya restauradas no se vuelven a mover.",
+    "ru": "Интервал задаёт задержку перед следующим приложением. Ожидание окна повторяет восстановление до 120 с. Успешно восстановленные окна больше не перемещаются.",
+    "ar": "الفاصل يحدد الانتظار قبل التطبيق التالي. تستمر محاولة استعادة النوافذ حتى 120 ثانية. لا تُنقل النوافذ التي استُعيدت بنجاح مجددًا."
+  },
+  "请先保存场景并勾选需要启动的 App。": {
+    "en": "Save a scene and select the apps to launch first.",
+    "fr": "Mémorisez une scène et sélectionnez les apps à lancer.",
+    "es": "Guarda una escena y selecciona las apps que quieres iniciar.",
+    "ru": "Сначала сохраните сцену и выберите приложения для запуска.",
+    "ar": "احفظ مشهدًا وحدّد التطبيقات التي تريد تشغيلها أولًا."
+  },
+  "提前启动 {0}": {
+    "en": "Launch {0} earlier",
+    "fr": "Lancer {0} plus tôt",
+    "es": "Iniciar {0} antes",
+    "ru": "Запускать {0} раньше",
+    "ar": "تشغيل {0} أبكر"
+  },
+  "推后启动 {0}": {
+    "en": "Launch {0} later",
+    "fr": "Lancer {0} plus tard",
+    "es": "Iniciar {0} después",
+    "ru": "Запускать {0} позже",
+    "ar": "تشغيل {0} لاحقًا"
+  },
+  "间隔 {0}s": {
+    "en": "Interval {0}s",
+    "fr": "Intervalle {0}s",
+    "es": "Intervalo {0}s",
+    "ru": "Интервал {0}с",
+    "ar": "الفاصل {0}ث"
+  },
+  "窗口 {0}s": {
+    "en": "Window {0}s",
+    "fr": "Fenêtre {0}s",
+    "es": "Ventana {0}s",
+    "ru": "Окно {0}с",
+    "ar": "النافذة {0}ث"
+  },
+  "快捷键重复或不受支持，请选择不同的组合。": {
+    "en": "Duplicate or unsupported shortcuts. Choose different combinations.",
+    "fr": "Raccourcis en double ou non pris en charge. Choisissez d’autres combinaisons.",
+    "es": "Atajos duplicados o no compatibles. Elige otras combinaciones.",
+    "ru": "Повторяющиеся или неподдерживаемые сочетания. Выберите другие.",
+    "ar": "الاختصارات مكررة أو غير مدعومة. اختر تركيبات أخرى."
+  },
+  "无法建立全局快捷键监听（{0}）。": {
+    "en": "Could not register global shortcut listener ({0}).",
+    "fr": "Impossible d’activer l’écoute des raccourcis ({0}).",
+    "es": "No se pudo registrar la escucha de atajos ({0}).",
+    "ru": "Не удалось включить обработчик сочетаний ({0}).",
+    "ar": "تعذر تسجيل مستمع الاختصارات العامة ({0})."
+  },
+  "{0} 注册失败，可能被其他 App 占用（{1}）。": {
+    "en": "Could not register {0}; another app may be using it ({1}).",
+    "fr": "Impossible d’enregistrer {0} ; une autre app l’utilise peut-être ({1}).",
+    "es": "No se pudo registrar {0}; otra app puede estar usándolo ({1}).",
+    "ru": "Не удалось зарегистрировать {0}; возможно, сочетание занято ({1}).",
+    "ar": "تعذر تسجيل {0}؛ ربما يستخدمه تطبيق آخر ({1})."
+  },
+  "文件超过 5 MB，无法导入。": {
+    "en": "Cannot import a file larger than 5 MB.",
+    "fr": "Impossible d’importer un fichier de plus de 5 Mo.",
+    "es": "No se puede importar un archivo de más de 5 MB.",
+    "ru": "Нельзя импортировать файл больше 5 МБ.",
+    "ar": "لا يمكن استيراد ملف يتجاوز 5 ميغابايت."
+  },
+  "不支持的布局文件格式或版本。": {
+    "en": "Unsupported layout format or version.",
+    "fr": "Format ou version de disposition non pris en charge.",
+    "es": "Formato o versión de disposición no compatible.",
+    "ru": "Неподдерживаемый формат или версия расположения.",
+    "ar": "تنسيق التخطيط أو إصداره غير مدعوم."
+  },
+  "场景数量或标识无效。": {
+    "en": "Invalid scene count or identifiers.",
+    "fr": "Nombre ou identifiants de scènes invalides.",
+    "es": "Número o identificadores de escenas no válidos.",
+    "ru": "Недопустимое число сцен или идентификаторы.",
+    "ar": "عدد المشاهد أو معرّفاتها غير صالح."
+  },
+  "场景或屏幕数据无效：{0}": {
+    "en": "Invalid scene or display data: {0}",
+    "fr": "Données de scène ou d’écran invalides : {0}",
+    "es": "Datos de escena o pantalla no válidos: {0}",
+    "ru": "Недопустимые данные сцены или экрана: {0}",
+    "ar": "بيانات المشهد أو الشاشة غير صالحة: {0}"
+  },
+  "窗口数据无效：{0}": {
+    "en": "Invalid window data: {0}",
+    "fr": "Données de fenêtre invalides : {0}",
+    "es": "Datos de ventana no válidos: {0}",
+    "ru": "Недопустимые данные окна: {0}",
+    "ar": "بيانات النافذة غير صالحة: {0}"
+  },
+  "启动顺序或等待时间无效。": {
+    "en": "Invalid launch order or timing.",
+    "fr": "Ordre ou délais de lancement invalides.",
+    "es": "Orden o tiempos de inicio no válidos.",
+    "ru": "Недопустимый порядок или время запуска.",
+    "ar": "ترتيب التشغيل أو توقيته غير صالح."
+  },
+  "缺少屏幕映射。": {
+    "en": "Display mapping missing.",
+    "fr": "Association d’écran manquante.",
+    "es": "Falta asignación de pantalla.",
+    "ru": "Отсутствует привязка экрана.",
+    "ar": "ربط الشاشة مفقود."
+  },
+  "将 App 图标拖到系统权限列表": {
+    "en": "Drag the app icon into the system permission list",
+    "fr": "Glissez l’icône dans la liste des autorisations",
+    "es": "Arrastra el icono a la lista de permisos",
+    "ru": "Перетащите значок в список разрешений",
+    "ar": "اسحب أيقونة التطبيق إلى قائمة الأذونات"
+  },
+  "拖入列表，开启窗口控制": {
+    "en": "Drag in, then allow window control",
+    "fr": "Glissez, puis autorisez le contrôle",
+    "es": "Arrastra y permite el control",
+    "ru": "Добавьте и разрешите управление",
+    "ar": "اسحب ثم اسمح بالتحكم بالنوافذ"
+  },
+  "将上方 App 图标拖入系统设置的权限列表，再开启“窗口记忆”旁的开关。也可以点列表中的“＋”添加应用。": {
+    "en": "Drag the app icon above into the System Settings permission list, then enable the switch next to WindowMemory. You can also use “+” to add the app.",
+    "fr": "Glissez l’icône ci-dessus dans la liste des autorisations de Réglages Système, puis activez WindowMemory. Vous pouvez aussi utiliser « + ».",
+    "es": "Arrastra el icono a la lista de permisos de Ajustes del Sistema y activa el interruptor de WindowMemory. También puedes añadirlo con «+».",
+    "ru": "Перетащите значок в список разрешений системных настроек и включите переключатель WindowMemory. Можно добавить приложение кнопкой «+».",
+    "ar": "اسحب الأيقونة أعلاه إلى قائمة الأذونات في إعدادات النظام ثم فعّل مفتاح WindowMemory. يمكنك أيضًا إضافته بالزر «+»."
+  },
+  "尚未获得系统授权": {
+    "en": "System permission not yet granted",
+    "fr": "Autorisation système non accordée",
+    "es": "Permiso del sistema aún no concedido",
+    "ru": "Разрешение системы ещё не получено",
+    "ar": "لم يُمنح إذن النظام بعد"
+  },
+  "若系统开关已开启，请移除列表中的旧记录，再拖入当前 App 并开启。必要时退出并重新打开 App。": {
+    "en": "If the switch is already on, remove the old entry, then drag in the current app and enable it. Quit and reopen the app if needed.",
+    "fr": "Si le bouton est déjà activé, supprimez l’ancienne entrée, puis ajoutez l’app actuelle et activez-la. Quittez et rouvrez l’app si nécessaire.",
+    "es": "Si el interruptor ya está activo, elimina la entrada antigua, añade la app actual y actívala. Si hace falta, cierra y vuelve a abrir la app.",
+    "ru": "Если переключатель включён, удалите старую запись, добавьте текущее приложение и разрешите доступ. При необходимости перезапустите приложение.",
+    "ar": "إذا كان المفتاح مفعّلًا، احذف السجل القديم ثم اسحب التطبيق الحالي وفعّله. أغلق التطبيق وأعد فتحه عند الحاجة."
+  },
+  "在 Finder 中显示 App": {
+    "en": "Show app in Finder",
+    "fr": "Afficher l’app dans le Finder",
+    "es": "Mostrar app en Finder",
+    "ru": "Показать приложение в Finder",
+    "ar": "إظهار التطبيق في Finder"
+  },
+  "完成": {
+    "en": "Done",
+    "fr": "Terminé",
+    "es": "Listo",
+    "ru": "Готово",
+    "ar": "تم"
+  },
+  "重新检查": {
+    "en": "Check again",
+    "fr": "Revérifier",
+    "es": "Comprobar de nuevo",
+    "ru": "Проверить снова",
+    "ar": "إعادة الفحص"
+  },
+  "系统分享": {
+    "en": "System share",
+    "fr": "Partager via macOS",
+    "es": "Compartir con macOS",
+    "ru": "Поделиться через macOS",
+    "ar": "مشاركة النظام"
+  },
+  "复制项目链接": {
+    "en": "Copy project link",
+    "fr": "Copier le lien du projet",
+    "es": "Copiar enlace del proyecto",
+    "ru": "Скопировать ссылку",
+    "ar": "نسخ رابط المشروع"
+  },
+  "电子邮件": {
+    "en": "Email",
+    "fr": "E-mail",
+    "es": "Correo electrónico",
+    "ru": "Электронная почта",
+    "ar": "البريد الإلكتروني"
+  },
+  "微信 / 其他": {
+    "en": "WeChat / other",
+    "fr": "WeChat / autres",
+    "es": "WeChat / otros",
+    "ru": "WeChat / другое",
+    "ar": "WeChat / غيره"
+  },
+  "WindowMemory：免费的开源 Mac 多屏窗口布局管理工具。": {
+    "en": "WindowMemory: a free, open-source Mac window layout manager for multiple displays.",
+    "fr": "WindowMemory : un gestionnaire gratuit et open source de fenêtres Mac pour plusieurs écrans.",
+    "es": "WindowMemory: gestor gratuito y de código abierto de ventanas Mac para varias pantallas.",
+    "ru": "WindowMemory: бесплатный менеджер окон Mac с открытым кодом для нескольких экранов.",
+    "ar": "WindowMemory: مدير مجاني ومفتوح المصدر لتخطيط نوافذ Mac على شاشات متعددة."
+  },
+  "项目链接已复制。": {
+    "en": "Project link copied.",
+    "fr": "Lien du projet copié.",
+    "es": "Enlace del proyecto copiado.",
+    "ru": "Ссылка на проект скопирована.",
+    "ar": "نُسخ رابط المشروع."
+  },
+  "项目链接已复制，可粘贴到微信或其他 App 中分享。": {
+    "en": "Project link copied. Paste it into WeChat or another app to share.",
+    "fr": "Lien copié. Collez-le dans WeChat ou une autre app pour le partager.",
+    "es": "Enlace copiado. Pégalo en WeChat u otra app para compartirlo.",
+    "ru": "Ссылка скопирована. Вставьте её в WeChat или другое приложение.",
+    "ar": "نُسخ الرابط. الصقه في WeChat أو تطبيق آخر لمشاركته."
+  },
+  "无法打开分享渠道，请检查浏览器或默认邮件 App。": {
+    "en": "Could not open this sharing channel. Check your browser or default mail app.",
+    "fr": "Impossible d’ouvrir ce canal. Vérifiez le navigateur ou l’app de messagerie par défaut.",
+    "es": "No se pudo abrir el canal. Comprueba el navegador o la app de correo predeterminada.",
+    "ru": "Не удалось открыть канал. Проверьте браузер или почтовое приложение по умолчанию.",
+    "ar": "تعذر فتح قناة المشاركة. تحقق من المتصفح أو تطبيق البريد الافتراضي."
+  },
+  "分享 WindowMemory": {
+    "en": "Share WindowMemory",
+    "fr": "Partager WindowMemory",
+    "es": "Compartir WindowMemory",
+    "ru": "Поделиться WindowMemory",
+    "ar": "مشاركة WindowMemory"
+  },
+  "分享免费的开源工具。仅传递项目链接与介绍文字，不包含你的布局或窗口信息。": {
+    "en": "Share this free, open-source tool. Only the project link and description are shared, without your layouts or window data.",
+    "fr": "Partagez cet outil gratuit et open source. Seuls le lien et la description sont transmis, sans vos dispositions ni données de fenêtres.",
+    "es": "Comparte esta herramienta gratuita y de código abierto. Solo se comparten el enlace y la descripción, sin tus disposiciones ni datos de ventanas.",
+    "ru": "Поделитесь бесплатным приложением с открытым кодом. Передаются только ссылка и описание, без ваших расположений и данных окон.",
+    "ar": "شارك هذه الأداة المجانية والمفتوحة المصدر. تُشارك فقط وصلة المشروع ووصفه، دون تخطيطاتك أو بيانات النوافذ."
+  },
+  "点击后进入对应渠道，由你确认发送；微信等渠道可使用复制链接或系统分享。": {
+    "en": "Opens the channel for you to confirm sharing. Use Copy link or System share for WeChat and other apps.",
+    "fr": "Ouvre le canal pour confirmer le partage. Utilisez Copier le lien ou le partage macOS pour WeChat et d’autres apps.",
+    "es": "Abre el canal para que confirmes el envío. Usa Copiar enlace o Compartir con macOS para WeChat y otras apps.",
+    "ru": "Открывает канал для подтверждения отправки. Для WeChat и других приложений используйте копирование ссылки или меню macOS.",
+    "ar": "تُفتح القناة لتؤكد المشاركة بنفسك. استخدم نسخ الرابط أو مشاركة النظام مع WeChat والتطبيقات الأخرى."
+  },
+  "顶部通讯 + 双工作区": {
+    "en": "Top chat + two work areas",
+    "fr": "Discussion en haut et deux zones",
+    "es": "Chat arriba y dos áreas de trabajo",
+    "ru": "Связь сверху и две рабочие области",
+    "ar": "تواصل في الأعلى ومساحتا عمل"
+  },
+  "左右双栏": {
+    "en": "Two columns",
+    "fr": "Deux colonnes",
+    "es": "Dos columnas",
+    "ru": "Две колонки",
+    "ar": "عمودان"
+  },
+  "四格工作区": {
+    "en": "Four-panel workspace",
+    "fr": "Espace à quatre zones",
+    "es": "Espacio de cuatro áreas",
+    "ru": "Четыре области",
+    "ar": "مساحة عمل بأربع مناطق"
+  },
+  "单窗专注": {
+    "en": "Single-window focus",
+    "fr": "Concentration sur une fenêtre",
+    "es": "Enfoque en una ventana",
+    "ru": "Фокус на одном окне",
+    "ar": "تركيز بنافذة واحدة"
+  },
+  "通讯": {
+    "en": "Communication",
+    "fr": "Communication",
+    "es": "Comunicación",
+    "ru": "Общение",
+    "ar": "التواصل"
+  },
+  "主工作区": {
+    "en": "Main work area",
+    "fr": "Zone principale",
+    "es": "Área principal",
+    "ru": "Основная область",
+    "ar": "مساحة العمل الرئيسية"
+  },
+  "辅助工作区": {
+    "en": "Secondary work area",
+    "fr": "Zone secondaire",
+    "es": "Área secundaria",
+    "ru": "Дополнительная область",
+    "ar": "مساحة العمل المساعدة"
+  },
+  "区域 {0}": {
+    "en": "Area {0}",
+    "fr": "Zone {0}",
+    "es": "Área {0}",
+    "ru": "Область {0}",
+    "ar": "المنطقة {0}"
+  },
+  "屏幕连接已变化，请重新打开预设编辑器。": {
+    "en": "Display connections changed. Reopen the preset editor.",
+    "fr": "Les écrans ont changé. Rouvrez l’éditeur de préréglages.",
+    "es": "Cambiaron las pantallas. Vuelve a abrir el editor.",
+    "ru": "Подключение экранов изменилось. Откройте редактор заново.",
+    "ar": "تغيّرت الشاشات المتصلة. أعد فتح محرر القوالب."
+  },
+  "预设已保存为场景，可启动 App 并恢复。留空的区域不会创建窗口。": {
+    "en": "Preset saved as a scene. Launch and restore when ready. Empty areas do not create windows.",
+    "fr": "Préréglage enregistré comme scène. Lancez et restaurez les apps. Les zones vides ne créent aucune fenêtre.",
+    "es": "Preajuste guardado como escena. Ya puedes iniciar y restaurar. Las áreas vacías no crean ventanas.",
+    "ru": "Шаблон сохранён как сцена. Можно запустить приложения и восстановить окна. Пустые области не создают окон.",
+    "ar": "حُفظ القالب كمشهد. يمكنك تشغيل التطبيقات واستعادتها. المناطق الفارغة لا تنشئ نوافذ."
+  },
+  "预设布局": {
+    "en": "Preset layout",
+    "fr": "Disposition prédéfinie",
+    "es": "Disposición predefinida",
+    "ru": "Расположение по шаблону",
+    "ar": "تخطيط جاهز"
+  },
+  "从预设创建布局": {
+    "en": "Create layout from preset",
+    "fr": "Créer depuis un préréglage",
+    "es": "Crear desde un preajuste",
+    "ru": "Создать из шаблона",
+    "ar": "إنشاء تخطيط من قالب"
+  },
+  "点区域中央选择本机 App，可只配置部分区域。每个屏幕可选不同预设。": {
+    "en": "Click an area to choose an installed app. Areas can stay empty. Each display can use a different preset.",
+    "fr": "Cliquez dans une zone pour choisir une app. Certaines zones peuvent rester vides. Chaque écran peut avoir son préréglage.",
+    "es": "Pulsa un área para elegir una app instalada. Puedes dejar áreas vacías y usar un preajuste por pantalla.",
+    "ru": "Нажмите на область и выберите приложение. Области можно оставить пустыми. Для каждого экрана доступен свой шаблон.",
+    "ar": "اضغط وسط المنطقة لاختيار تطبيق مثبت. يمكنك ترك مناطق فارغة واختيار قالب مختلف لكل شاشة."
+  },
+  "场景名称": {
+    "en": "Scene name",
+    "fr": "Nom de la scène",
+    "es": "Nombre de escena",
+    "ru": "Имя сцены",
+    "ar": "اسم المشهد"
+  },
+  "布局预设": {
+    "en": "Layout presets",
+    "fr": "Préréglages",
+    "es": "Preajustes",
+    "ru": "Шаблоны",
+    "ar": "قوالب التخطيط"
+  },
+  "占位仅保存位置和尺寸；真正启动后再移动已有窗口。不会创建文档、浏览器标签或同一 App 的额外窗口。": {
+    "en": "Placeholders save positions and sizes; existing windows move after launch. Documents, browser tabs and extra windows are not created.",
+    "fr": "Les espaces réservés mémorisent position et taille ; les fenêtres existantes sont déplacées après lancement. Aucun document, onglet ni fenêtre supplémentaire n’est créé.",
+    "es": "Los marcadores guardan posición y tamaño; las ventanas existentes se mueven tras iniciar. No crean documentos, pestañas ni ventanas adicionales.",
+    "ru": "Области сохраняют позиции и размеры; после запуска перемещаются существующие окна. Документы, вкладки и дополнительные окна не создаются.",
+    "ar": "تحفظ المواضع الرمزية الموقع والحجم؛ وتُنقل النوافذ الموجودة بعد التشغيل. لا تُنشأ مستندات أو علامات تبويب أو نوافذ إضافية."
+  },
+  "已配置 {0} 个区域": {
+    "en": "Configured areas: {0}",
+    "fr": "Zones configurées : {0}",
+    "es": "Áreas configuradas: {0}",
+    "ru": "Настроено областей: {0}",
+    "ar": "المناطق المُعدّة: {0}"
+  },
+  "保存为新场景": {
+    "en": "Save as new scene",
+    "fr": "Enregistrer comme nouvelle scène",
+    "es": "Guardar como nueva escena",
+    "ru": "Сохранить как новую сцену",
+    "ar": "حفظ كمشهد جديد"
+  },
+  "选择应用": {
+    "en": "Choose app",
+    "fr": "Choisir une app",
+    "es": "Elegir app",
+    "ru": "Выбрать приложение",
+    "ar": "اختيار تطبيق"
+  },
+  "选择已安装的应用": {
+    "en": "Choose an installed app",
+    "fr": "Choisir une app installée",
+    "es": "Elegir una app instalada",
+    "ru": "Выберите установленное приложение",
+    "ar": "اختيار تطبيق مثبت"
+  },
+  "搜索应用名称": {
+    "en": "Search app names",
+    "fr": "Rechercher une app",
+    "es": "Buscar apps",
+    "ru": "Поиск приложений",
+    "ar": "البحث عن تطبيق"
+  },
+  "留空此区域": {
+    "en": "Leave this area empty",
+    "fr": "Laisser cette zone vide",
+    "es": "Dejar esta área vacía",
+    "ru": "Оставить область пустой",
+    "ar": "ترك هذه المنطقة فارغة"
+  },
+  "没有找到应用": {
+    "en": "No apps found",
+    "fr": "Aucune app trouvée",
+    "es": "No se encontraron apps",
+    "ru": "Приложения не найдены",
+    "ar": "لم يُعثر على تطبيقات"
+  },
+  "{0} · {1} · 可用 {2} × {3} pt": {
+    "en": "{0} · {1} · Usable {2} × {3} pt",
+    "fr": "{0} · {1} · Utile {2} × {3} pt",
+    "es": "{0} · {1} · Útil {2} × {3} pt",
+    "ru": "{0} · {1} · Доступно {2} × {3} pt",
+    "ar": "{0} · {1} · المتاح {2} × {3} نقطة"
+  },
+  "为此屏配置": {
+    "en": "Configure this display",
+    "fr": "Configurer cet écran",
+    "es": "Configurar esta pantalla",
+    "ru": "Настроить этот экран",
+    "ar": "إعداد هذه الشاشة"
+  },
+  "主屏": {
+    "en": "Primary display",
+    "fr": "Écran principal",
+    "es": "Pantalla principal",
+    "ru": "Основной экран",
+    "ar": "الشاشة الرئيسية"
+  },
+  "主屏：工作 + 侧边工具": {
+    "en": "Primary: work + sidebar",
+    "fr": "Principal : travail et outils",
+    "es": "Principal: trabajo y herramientas",
+    "ru": "Основной: работа и инструменты",
+    "ar": "الرئيسية: عمل وأدوات جانبية"
+  },
+  "副屏": {
+    "en": "Secondary display",
+    "fr": "Écran secondaire",
+    "es": "Pantalla secundaria",
+    "ru": "Дополнительный экран",
+    "ar": "الشاشة الثانوية"
+  },
+  "可只配置一个屏幕，其他屏幕保持不参与。推荐依据可用尺寸与方向，不保证每个 App 的最小窗口尺寸都适配。": {
+    "en": "Configure just one display if desired. Recommendations use usable size and orientation; app minimum window sizes may still impose limits.",
+    "fr": "Vous pouvez ne configurer qu’un écran. Les recommandations utilisent sa taille utile et son orientation ; les tailles minimales des apps peuvent limiter le résultat.",
+    "es": "Puedes configurar solo una pantalla. Se recomienda según el tamaño útil y la orientación; las apps pueden tener tamaños mínimos.",
+    "ru": "Можно настроить только один экран. Рекомендации учитывают доступный размер и ориентацию; минимальные размеры окон приложений могут ограничить результат.",
+    "ar": "يمكن إعداد شاشة واحدة فقط. تعتمد التوصيات على الحجم المتاح والاتجاه؛ وقد تفرض التطبيقات حدودًا دنيا لأحجام نوافذها."
+  },
+  "大尺寸横屏可容纳更多窗口，主次工作区按可用尺寸分配。": {
+    "en": "Large landscape displays fit more windows, with work areas sized to the usable space.",
+    "fr": "Les grands écrans horizontaux accueillent plus de fenêtres, réparties selon l’espace utile.",
+    "es": "Las pantallas horizontales grandes admiten más ventanas, distribuidas según el espacio útil.",
+    "ru": "Большой горизонтальный экран вмещает больше окон с учётом доступной площади.",
+    "ar": "تستوعب الشاشات الأفقية الكبيرة نوافذ أكثر مع توزيع المساحات حسب الحجم المتاح."
+  },
+  "宽屏：三列协作": {
+    "en": "Wide: three columns",
+    "fr": "Large : trois colonnes",
+    "es": "Ancha: tres columnas",
+    "ru": "Широкий: три колонки",
+    "ar": "عريضة: ثلاثة أعمدة"
+  },
+  "布局库": {
+    "en": "Layout library",
+    "fr": "Bibliothèque de dispositions",
+    "es": "Biblioteca de disposiciones",
+    "ru": "Библиотека расположений",
+    "ar": "مكتبة التخطيطات"
+  },
+  "按屏幕选择推荐布局": {
+    "en": "Choose a layout for each display",
+    "fr": "Choisir par écran",
+    "es": "Elegir disposición por pantalla",
+    "ru": "Выберите расположение для экрана",
+    "ar": "اختيار تخطيط لكل شاشة"
+  },
+  "检测到 {0} 个屏幕，主屏由 macOS 自动识别。": {
+    "en": "Detected displays: {0}. The primary display is detected automatically from macOS.",
+    "fr": "Écrans détectés : {0}. L’écran principal est identifié automatiquement via macOS.",
+    "es": "Pantallas detectadas: {0}. La principal se identifica automáticamente desde macOS.",
+    "ru": "Обнаружено экранов: {0}. Основной экран определяется автоматически по macOS.",
+    "ar": "الشاشات المكتشفة: {0}. تُحدَّد الشاشة الرئيسية تلقائيًا من macOS."
+  },
+  "横屏": {
+    "en": "Landscape",
+    "fr": "Horizontal",
+    "es": "Horizontal",
+    "ru": "Горизонтальный",
+    "ar": "أفقية"
+  },
+  "竖屏": {
+    "en": "Portrait",
+    "fr": "Vertical",
+    "es": "Vertical",
+    "ru": "Вертикальный",
+    "ar": "عمودية"
+  },
+  "竖屏优先纵向分区，减少窄列；适合通讯、阅读和参考资料。": {
+    "en": "Portrait displays favor stacked areas instead of narrow columns, for chat, reading and references.",
+    "fr": "Les écrans verticaux privilégient des zones empilées, pour discuter, lire et consulter des références.",
+    "es": "Las pantallas verticales priorizan áreas apiladas para chat, lectura y referencias, evitando columnas estrechas.",
+    "ru": "Для вертикального экрана рекомендуются области друг над другом: общение, чтение и справочные материалы.",
+    "ar": "تُفضَّل المناطق المتراصة على الشاشات العمودية للتواصل والقراءة والمراجع بدل الأعمدة الضيقة."
+  },
+  "竖屏：三层工作区": {
+    "en": "Portrait: three stacked areas",
+    "fr": "Vertical : trois zones",
+    "es": "Vertical: tres áreas apiladas",
+    "ru": "Вертикальный: три области",
+    "ar": "عمودية: ثلاث مناطق متراصة"
+  },
+  "竖屏：通讯 / 阅读 / 参考": {
+    "en": "Portrait: chat / reading / reference",
+    "fr": "Vertical : discussion / lecture / références",
+    "es": "Vertical: chat / lectura / referencias",
+    "ru": "Вертикальный: общение / чтение / справка",
+    "ar": "عمودية: تواصل / قراءة / مراجع"
+  },
+  "竖屏：长文阅读 + 工具": {
+    "en": "Portrait: reading + tools",
+    "fr": "Vertical : lecture et outils",
+    "es": "Vertical: lectura y herramientas",
+    "ru": "Вертикальный: чтение и инструменты",
+    "ar": "عمودية: قراءة وأدوات"
+  },
+  "多屏主屏优先保留工作窗口，通讯和参考资料可放到副屏。": {
+    "en": "With multiple displays, prioritize work on the primary display and put chat or references on a secondary display.",
+    "fr": "En multi-écran, privilégiez le travail sur l’écran principal et les discussions ou références sur le secondaire.",
+    "es": "Con varias pantallas, prioriza el trabajo en la principal y el chat o las referencias en la secundaria.",
+    "ru": "При нескольких экранах основной предназначен для работы, а общение и справку можно вынести на дополнительный.",
+    "ar": "مع عدة شاشات، تُفضَّل نوافذ العمل على الرئيسية والتواصل والمراجع على الثانوية."
+  },
+  "单屏兼顾主要工作与侧边工具，也可选择双栏或专注布局。": {
+    "en": "On one display, balance the main task with sidebar tools, or choose two columns or focus.",
+    "fr": "Sur un seul écran, combinez travail et outils latéraux, ou choisissez deux colonnes ou la concentration.",
+    "es": "En una sola pantalla, combina trabajo y herramientas laterales, o elige dos columnas o enfoque.",
+    "ru": "На одном экране совместите работу и боковые инструменты либо выберите две колонки или фокус.",
+    "ar": "على شاشة واحدة، وازن بين العمل والأدوات الجانبية أو اختر عمودين أو وضع التركيز."
+  },
+  "紧凑副屏优先单窗或双栏，适合辅助任务。": {
+    "en": "Compact secondary displays favor one window or two columns for supporting tasks.",
+    "fr": "Les petits écrans secondaires privilégient une fenêtre ou deux colonnes pour les tâches annexes.",
+    "es": "Las pantallas secundarias compactas priorizan una ventana o dos columnas para tareas auxiliares.",
+    "ru": "Для небольшого дополнительного экрана рекомендуются одно окно или две колонки для вспомогательных задач.",
+    "ar": "تُفضَّل نافذة واحدة أو عمودان للمهام المساعدة على الشاشات الثانوية الصغيرة."
+  },
+  "超宽屏适合并排协作，保留足够的单窗宽度。": {
+    "en": "Ultrawide displays suit side-by-side work with enough width for each window.",
+    "fr": "Les écrans ultralarges favorisent le travail côte à côte avec une largeur suffisante par fenêtre.",
+    "es": "Las pantallas ultrapanorámicas permiten trabajar en paralelo con suficiente ancho por ventana.",
+    "ru": "Сверхширокий экран подходит для работы бок о бок с достаточной шириной каждого окна.",
+    "ar": "تناسب الشاشات فائقة العرض العمل المتجاور مع عرض كافٍ لكل نافذة."
+  },
+  "32:9 屏幕可使用四列或居中主工作区，避免窗口横跨整个屏幕。": {
+    "en": "32:9 displays can use four columns or a centered main area instead of stretching one window across the screen.",
+    "fr": "Les écrans 32:9 permettent quatre colonnes ou une zone centrale, sans étirer une fenêtre sur tout l’écran.",
+    "es": "Las pantallas 32:9 permiten cuatro columnas o un área central, sin estirar una ventana por toda la pantalla.",
+    "ru": "На экране 32:9 можно использовать четыре колонки или центральную область, не растягивая окно на всю ширину.",
+    "ar": "تتيح شاشات 32:9 أربعة أعمدة أو مساحة رئيسية وسطية دون تمديد نافذة عبر الشاشة كلها."
+  },
+  "上下双区": {
+    "en": "Top and bottom",
+    "fr": "Deux zones superposées",
+    "es": "Arriba y abajo",
+    "ru": "Верхняя и нижняя области",
+    "ar": "منطقتان علوية وسفلية"
+  },
+  "办公屏 · 4:3 / 3:2": {
+    "en": "Productivity · 4:3 / 3:2",
+    "fr": "Bureautique · 4:3 / 3:2",
+    "es": "Oficina · 4:3 / 3:2",
+    "ru": "Рабочий экран · 4:3 / 3:2",
+    "ar": "إنتاجية · 4:3 / 3:2"
+  },
+  "居中主工作区 + 两侧工具": {
+    "en": "Centered work + side tools",
+    "fr": "Travail central et outils latéraux",
+    "es": "Trabajo central y herramientas laterales",
+    "ru": "Работа в центре и инструменты по бокам",
+    "ar": "عمل في الوسط وأدوات على الجانبين"
+  },
+  "常规横屏 · 16:9": {
+    "en": "Landscape · 16:9",
+    "fr": "Horizontal · 16:9",
+    "es": "Horizontal · 16:9",
+    "ru": "Горизонтальный · 16:9",
+    "ar": "أفقية · 16:9"
+  },
+  "应用到屏幕": {
+    "en": "Use on display",
+    "fr": "Utiliser sur l’écran",
+    "es": "Usar en la pantalla",
+    "ru": "Применить к экрану",
+    "ar": "استخدام على الشاشة"
+  },
+  "手动选择的模板会按此屏可用尺寸缩放。": {
+    "en": "Manually chosen templates scale to this display’s usable space.",
+    "fr": "Les modèles choisis manuellement s’adaptent à l’espace utile de cet écran.",
+    "es": "Las plantillas elegidas manualmente se adaptan al espacio útil de esta pantalla.",
+    "ru": "Выбранные вручную шаблоны масштабируются по доступной площади экрана.",
+    "ar": "تتكيف القوالب المختارة يدويًا مع المساحة المتاحة لهذه الشاشة."
+  },
+  "方屏 · 1:1": {
+    "en": "Square · 1:1",
+    "fr": "Carré · 1:1",
+    "es": "Cuadrada · 1:1",
+    "ru": "Квадратный · 1:1",
+    "ar": "مربعة · 1:1"
+  },
+  "浏览其他屏幕类型不会改变现有布局。选择模板后，可在目标屏幕上预览并配置 App。": {
+    "en": "Browsing other display types does not change existing layouts. Choose a template to preview and configure apps on the target display.",
+    "fr": "Parcourir d’autres types d’écrans ne modifie aucune disposition. Choisissez un modèle pour le prévisualiser et configurer les apps.",
+    "es": "Explorar otros tipos de pantalla no cambia las disposiciones. Elige una plantilla para verla y configurar apps en la pantalla de destino.",
+    "ru": "Просмотр других типов экранов не меняет расположения. Выберите шаблон для просмотра и настройки приложений на нужном экране.",
+    "ar": "تصفح أنواع الشاشات الأخرى لا يغير التخطيطات الحالية. اختر قالبًا لمعاينته وإعداد التطبيقات على الشاشة المطلوبة."
+  },
+  "浏览模板": {
+    "en": "Browse templates",
+    "fr": "Parcourir les modèles",
+    "es": "Explorar plantillas",
+    "ru": "Обзор шаблонов",
+    "ar": "تصفح القوالب"
+  },
+  "竖屏 · 9:16 / 10:16": {
+    "en": "Portrait · 9:16 / 10:16",
+    "fr": "Vertical · 9:16 / 10:16",
+    "es": "Vertical · 9:16 / 10:16",
+    "ru": "Вертикальный · 9:16 / 10:16",
+    "ar": "عمودية · 9:16 / 10:16"
+  },
+  "笔记本 · 16:10": {
+    "en": "Laptop · 16:10",
+    "fr": "Portable · 16:10",
+    "es": "Portátil · 16:10",
+    "ru": "Ноутбук · 16:10",
+    "ar": "محمول · 16:10"
+  },
+  "自动匹配当前屏幕": {
+    "en": "Match connected displays",
+    "fr": "Adapter aux écrans connectés",
+    "es": "Adaptar a las pantallas conectadas",
+    "ru": "Подобрать для текущих экранов",
+    "ar": "مطابقة الشاشات المتصلة"
+  },
+  "超宽屏 · 21:9": {
+    "en": "Ultrawide · 21:9",
+    "fr": "Ultralarge · 21:9",
+    "es": "Ultrapanorámica · 21:9",
+    "ru": "Сверхширокий · 21:9",
+    "ar": "فائقة العرض · 21:9"
+  },
+  "超宽屏：四列工作区": {
+    "en": "Superwide: four columns",
+    "fr": "Superlarge : quatre colonnes",
+    "es": "Superpanorámica: cuatro columnas",
+    "ru": "Сверхширокий: четыре колонки",
+    "ar": "فائقة العرض: أربعة أعمدة"
+  },
+  "超宽带鱼屏 · 32:9": {
+    "en": "Superwide · 32:9",
+    "fr": "Superlarge · 32:9",
+    "es": "Superpanorámica · 32:9",
+    "ru": "Сверхширокий · 32:9",
+    "ar": "عريضة جدًا · 32:9"
+  },
+  "{0} 个区域": {
+    "en": "Regions: {0}",
+    "fr": "Zones : {0}",
+    "es": "Áreas: {0}",
+    "ru": "Областей: {0}",
+    "ar": "المناطق: {0}"
+  },
+  "上": {
+    "en": "Top",
+    "fr": "Haut",
+    "es": "Arriba",
+    "ru": "Сверху",
+    "ar": "أعلى"
+  },
+  "从当前场景添加": {
+    "en": "Add current scene",
+    "fr": "Ajouter la scène actuelle",
+    "es": "Añadir escena actual",
+    "ru": "Добавить текущую сцену",
+    "ar": "إضافة المشهد الحالي"
+  },
+  "以百分比设置区域。位置与尺寸按目标屏幕缩放；区域可重叠。": {
+    "en": "Set areas in percentages. Position and size scale to the target display; areas may overlap.",
+    "fr": "Réglez les zones en pourcentage. Elles s’adaptent à l’écran cible et peuvent se chevaucher.",
+    "es": "Define áreas en porcentajes. Se adaptan a la pantalla de destino y pueden superponerse.",
+    "ru": "Задайте области в процентах. Они масштабируются под экран и могут перекрываться.",
+    "ar": "حدّد المناطق بالنسب المئوية. تتكيف مع الشاشة المستهدفة ويمكن أن تتداخل."
+  },
+  "使用": {
+    "en": "Use",
+    "fr": "Utiliser",
+    "es": "Usar",
+    "ru": "Использовать",
+    "ar": "استخدام"
+  },
+  "保存模板": {
+    "en": "Save template",
+    "fr": "Enregistrer le modèle",
+    "es": "Guardar plantilla",
+    "ru": "Сохранить шаблон",
+    "ar": "حفظ القالب"
+  },
+  "删除": {
+    "en": "Delete",
+    "fr": "Supprimer",
+    "es": "Eliminar",
+    "ru": "Удалить",
+    "ar": "حذف"
+  },
+  "删除模板“{0}”？": {
+    "en": "Delete template “{0}”?",
+    "fr": "Supprimer le modèle « {0} » ?",
+    "es": "¿Eliminar la plantilla «{0}»?",
+    "ru": "Удалить шаблон «{0}»?",
+    "ar": "حذف القالب «{0}»؟"
+  },
+  "区域名称": {
+    "en": "Area name",
+    "fr": "Nom de la zone",
+    "es": "Nombre del área",
+    "ru": "Название области",
+    "ar": "اسم المنطقة"
+  },
+  "宽": {
+    "en": "Width",
+    "fr": "Largeur",
+    "es": "Ancho",
+    "ru": "Ширина",
+    "ar": "عرض"
+  },
+  "左": {
+    "en": "Left",
+    "fr": "Gauche",
+    "es": "Izquierda",
+    "ru": "Слева",
+    "ar": "يسار"
+  },
+  "已保存的场景与当前窗口不会改变。": {
+    "en": "Saved scenes and current windows will not change.",
+    "fr": "Les scènes mémorisées et les fenêtres actuelles restent inchangées.",
+    "es": "Las escenas guardadas y las ventanas actuales no cambian.",
+    "ru": "Сохранённые сцены и текущие окна не изменятся.",
+    "ar": "لن تتغير المشاهد المحفوظة أو النوافذ الحالية."
+  },
+  "已将场景按屏幕添加到我的模板。": {
+    "en": "Scene added to My templates, one template per display.",
+    "fr": "Scène ajoutée à Mes modèles, un modèle par écran.",
+    "es": "Escena añadida a Mis plantillas, una por pantalla.",
+    "ru": "Сцена добавлена в Мои шаблоны, по одному на экран.",
+    "ar": "أُضيف المشهد إلى قوالبي، قالب لكل شاشة."
+  },
+  "我的新模板": {
+    "en": "My new template",
+    "fr": "Mon nouveau modèle",
+    "es": "Mi nueva plantilla",
+    "ru": "Мой новый шаблон",
+    "ar": "قالبي الجديد"
+  },
+  "我的模板": {
+    "en": "My templates",
+    "fr": "Mes modèles",
+    "es": "Mis plantillas",
+    "ru": "Мои шаблоны",
+    "ar": "قوالبي"
+  },
+  "新建模板": {
+    "en": "New template",
+    "fr": "Nouveau modèle",
+    "es": "Nueva plantilla",
+    "ru": "Новый шаблон",
+    "ar": "قالب جديد"
+  },
+  "模板保存后，在布局库选择使用，再为各区域选择 App。": {
+    "en": "After saving, choose Use in the library and assign apps to each area.",
+    "fr": "Après l’enregistrement, choisissez Utiliser dans la bibliothèque et associez les apps aux zones.",
+    "es": "Tras guardar, elige Usar en la biblioteca y asigna apps a las áreas.",
+    "ru": "После сохранения выберите Использовать в библиотеке и назначьте приложения.",
+    "ar": "بعد الحفظ، اختر استخدام من المكتبة ثم عيّن التطبيقات للمناطق."
+  },
+  "模板名称": {
+    "en": "Template name",
+    "fr": "Nom du modèle",
+    "es": "Nombre de plantilla",
+    "ru": "Название шаблона",
+    "ar": "اسم القالب"
+  },
+  "模板已保存到布局库。": {
+    "en": "Template saved to the layout library.",
+    "fr": "Modèle enregistré dans la bibliothèque.",
+    "es": "Plantilla guardada en la biblioteca.",
+    "ru": "Шаблон сохранён в библиотеке.",
+    "ar": "حُفظ القالب في مكتبة التخطيطات."
+  },
+  "模板无效：请检查名称、区域边界和数量。": {
+    "en": "Invalid template: check the name, area boundaries and count.",
+    "fr": "Modèle invalide : vérifiez le nom, les limites et le nombre de zones.",
+    "es": "Plantilla no válida: revisa el nombre, los límites y el número de áreas.",
+    "ru": "Недопустимый шаблон: проверьте имя, границы и количество областей.",
+    "ar": "القالب غير صالح: تحقق من الاسم وحدود المناطق وعددها."
+  },
+  "每个屏幕最多支持 32 个模板区域，请先减少窗口数量。": {
+    "en": "Each display supports up to 32 template areas. Reduce the window count first.",
+    "fr": "Chaque écran accepte 32 zones au maximum. Réduisez d’abord le nombre de fenêtres.",
+    "es": "Cada pantalla admite hasta 32 áreas. Reduce primero el número de ventanas.",
+    "ru": "На экране допускается до 32 областей. Сначала уменьшите число окон.",
+    "ar": "تدعم كل شاشة حتى 32 منطقة. قلّل عدد النوافذ أولًا."
+  },
+  "没有可添加的区域，或模板库已达到 100 个模板。": {
+    "en": "No areas to add, or the library has reached its 100-template limit.",
+    "fr": "Aucune zone à ajouter, ou la limite de 100 modèles est atteinte.",
+    "es": "No hay áreas que añadir o se alcanzó el límite de 100 plantillas.",
+    "ru": "Нет областей для добавления или достигнут предел в 100 шаблонов.",
+    "ar": "لا توجد مناطق لإضافتها أو بلغت المكتبة حد 100 قالب."
+  },
+  "添加到布局库": {
+    "en": "Add to layout library",
+    "fr": "Ajouter à la bibliothèque",
+    "es": "Añadir a la biblioteca",
+    "ru": "Добавить в библиотеку",
+    "ar": "إضافة إلى مكتبة التخطيطات"
+  },
+  "添加区域": {
+    "en": "Add area",
+    "fr": "Ajouter une zone",
+    "es": "Añadir área",
+    "ru": "Добавить область",
+    "ar": "إضافة منطقة"
+  },
+  "移除区域": {
+    "en": "Remove area",
+    "fr": "Retirer la zone",
+    "es": "Quitar área",
+    "ru": "Убрать область",
+    "ar": "إزالة المنطقة"
+  },
+  "编辑": {
+    "en": "Edit",
+    "fr": "Modifier",
+    "es": "Editar",
+    "ru": "Изменить",
+    "ar": "تحرير"
+  },
+  "自定义模板": {
+    "en": "Custom template",
+    "fr": "Modèle personnalisé",
+    "es": "Plantilla personalizada",
+    "ru": "Свой шаблон",
+    "ar": "قالب مخصص"
+  },
+  "还没有自定义模板。可新建分区，也可把已保存的场景添加到这里。": {
+    "en": "No custom templates yet. Create areas or add a saved scene here.",
+    "fr": "Aucun modèle personnalisé. Créez des zones ou ajoutez une scène mémorisée.",
+    "es": "Aún no hay plantillas propias. Crea áreas o añade una escena guardada.",
+    "ru": "Своих шаблонов пока нет. Создайте области или добавьте сохранённую сцену.",
+    "ar": "لا توجد قوالب مخصصة بعد. أنشئ مناطق أو أضف مشهدًا محفوظًا."
+  },
+  "高": {
+    "en": "Height",
+    "fr": "Hauteur",
+    "es": "Alto",
+    "ru": "Высота",
+    "ar": "ارتفاع"
+  }
+}

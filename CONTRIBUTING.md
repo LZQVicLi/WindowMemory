@@ -18,3 +18,11 @@ Tests cover pure logic. Accessibility, hotkey conflicts, actual display reconnec
 Public screenshots are captured from the isolated demo mode (`--demo`, or the `WindowMemoryDemo` bundle flag), which uses synthetic data and does not register shortcuts, move windows, launch apps or write normal settings. Keep documentation screenshots free of private information.
 
 See [release maintenance](docs/RELEASING.md). Contributions are provided under the project's MIT license.
+
+## Translations and appearance regression
+
+`Resources/Translations.json` uses the Simplified Chinese source text as a key, with `en`, `fr`, `es`, `ru` and `ar` translations. Preserve every numbered `{0}` placeholder. Swift interpolation is captured separately by `LocalizedText` so user content is never interpreted as a format string. Use `L("text with \(value)")` for user-facing app strings; keep user-provided scene names, app names and window titles untouched. `AppLanguage` provides an explicit system option and right-to-left layout for Arabic. Native OS panels may retain the OS language.
+
+`zsh build.sh` validates all localized source keys and translations, interpolation safety, preference migration and share URL encoding along with the layout tests. On a Mac with a WindowServer, run `build/窗口记忆.app/Contents/MacOS/WindowMemory --ui-self-test` to exercise dark/light/system transitions through actual AppKit hosting and live language changes using synthetic data. This mode does not read or write the user's layouts, launch real apps or register shortcuts.
+
+Preset geometry and partially configured scenes are tested through the normal archive/launch planner. App discovery tests use temporary synthetic bundles and a symlink fixture, without launching apps.

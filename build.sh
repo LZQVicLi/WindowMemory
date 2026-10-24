@@ -5,6 +5,7 @@ DEST_DIR="${1:-$SOURCE_DIR/build}"
 APP_PATH="$DEST_DIR/窗口记忆.app"
 APP_VERSION="$(<"$SOURCE_DIR/VERSION")"
 BUILD_ARCHS="${ARCHS:-arm64 x86_64}"
+python3 "$SOURCE_DIR/scripts/validate-translations.py"
 mkdir -p "$APP_PATH/Contents/MacOS" "$APP_PATH/Contents/Resources" "$DEST_DIR/intermediates"
 SOURCES=("$SOURCE_DIR"/*.swift(N))
 BINARIES=()
@@ -30,12 +31,15 @@ cat > "$APP_PATH/Contents/Info.plist" <<PLIST
 <key>CFBundleVersion</key><string>$APP_VERSION</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>LSUIElement</key><true/>
+<key>CFBundleDevelopmentRegion</key><string>en</string>
+<key>CFBundleLocalizations</key><array><string>zh-Hans</string><string>en</string><string>fr</string><string>es</string><string>ru</string><string>ar</string></array>
 <key>NSHighResolutionCapable</key><true/>
 <key>CFBundleIconFile</key><string>AppIcon</string>
 <key>NSHumanReadableCopyright</key><string>Copyright © 2026 LZQVicLi. MIT License.</string>
 </dict></plist>
 PLIST
 cp "$SOURCE_DIR/AppIcon.icns" "$APP_PATH/Contents/Resources/AppIcon.icns"
+cp -R "$SOURCE_DIR/Resources/." "$APP_PATH/Contents/Resources/"
 codesign --force --sign - --identifier local.vic.windowmemory "$APP_PATH"
 codesign --verify --deep --strict "$APP_PATH"
 "$APP_PATH/Contents/MacOS/WindowMemory" --self-test
