@@ -2,10 +2,13 @@
 
 This project uses semantic versioning. Existing version tags and released binary assets are not overwritten.
 
-## Unreleased
+## [1.3.1] — 2026-10-24
 
 - Default local builds to an isolated Preview bundle with synthetic data, a distinct bundle ID and display name. This prevents development copies with a different ad-hoc signature from competing with the installed release's macOS permission identity.
 - Require explicit release build mode in CI and packaging; document why a visible enabled permission switch or a trusted CLI subprocess does not prove that the installed GUI is authorized. Existing v1.3.0 binaries and tags are unchanged.
+- Maintenance release: the installed app retains its normal workspace behavior. Existing stale macOS permission records still require the user to re-add the installed app; this release does not automatically change system security permissions.
+
+本次维护版将默认开发构建改为独立身份的 Preview，避免开发副本与正式版争用系统授权记录；完善正式打包检查和权限排查说明。已存在的失配授权仍需用户在系统设置中重新添加已安装 App，更新不会自动重置或授予系统权限。历史版本及下载产物继续保留。
 
 ## [1.3.0] — 2026-10-24
 
