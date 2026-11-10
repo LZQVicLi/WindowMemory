@@ -2455,5 +2455,117 @@
     "es": "Buscando actualizaciones…",
     "ru": "Поиск обновлений…",
     "ar": "جارٍ التحقق من التحديثات…"
+  },
+  "macOS 未提供这条连接的硬件控制接口。可试 USB-C 转 DisplayPort 直连，或使用软件调暗。": {
+    "en": "macOS exposes no hardware control for this connection. Try a direct USB-C to DisplayPort cable or use software dimming.",
+    "fr": "macOS ne fournit aucun contrôle matériel pour cette connexion. Essayez un câble USB-C vers DisplayPort direct ou l’atténuation logicielle.",
+    "es": "macOS no ofrece control de hardware para esta conexión. Prueba un cable USB-C a DisplayPort directo o la atenuación por software.",
+    "ru": "macOS не предоставляет управление монитором через это подключение. Попробуйте прямой кабель USB-C — DisplayPort или программное затемнение.",
+    "ar": "لا يوفر macOS تحكمًا بالأجهزة لهذا الاتصال. جرّب كبل USB-C إلى DisplayPort مباشرًا أو استخدم التعتيم البرمجي."
+  },
+  "仅调暗画面，不改变背光或输入源。退出应用后恢复。": {
+    "en": "Dims the image only. Backlight and input stay unchanged. Quitting restores the image.",
+    "fr": "Assombrit seulement l’image. Le rétroéclairage et l’entrée restent inchangés. Quitter restaure l’image.",
+    "es": "Solo oscurece la imagen. No cambia la retroiluminación ni la entrada. Al salir se restaura la imagen.",
+    "ru": "Затемняет только изображение. Подсветка и вход не меняются. При выходе изображение восстанавливается.",
+    "ar": "يعتّم الصورة فقط ولا يغيّر الإضاءة الخلفية أو مصدر الإدخال. تعود الصورة عند إنهاء التطبيق."
+  },
+  "仅适用于提供兼容遥控接口的澎湃 OS 显示器。请在显示器网络设置中查看 IP，并与 Mac 连到同一局域网。": {
+    "en": "For HyperOS displays with a compatible remote API. Find the display’s IP in its network settings and connect it to the same LAN as the Mac.",
+    "fr": "Pour les écrans HyperOS avec une télécommande compatible. Relevez l’IP dans les réglages réseau de l’écran et utilisez le même réseau local que le Mac.",
+    "es": "Para pantallas HyperOS con control remoto compatible. Busca la IP en los ajustes de red de la pantalla y conéctala a la misma red local que el Mac.",
+    "ru": "Для экранов HyperOS с совместимым пультом. Найдите IP в настройках сети экрана и подключите его к той же локальной сети, что и Mac.",
+    "ar": "لشاشات HyperOS ذات واجهة تحكم متوافقة. ابحث عن عنوان IP في إعدادات شبكة الشاشة ووصلها بالشبكة المحلية نفسها التي يتصل بها Mac."
+  },
+  "局域网遥控 · 澎湃 OS": {
+    "en": "LAN remote · HyperOS",
+    "fr": "Télécommande réseau · HyperOS",
+    "es": "Control por red local · HyperOS",
+    "ru": "Пульт по локальной сети · HyperOS",
+    "ar": "التحكم عبر الشبكة المحلية · HyperOS"
+  },
+  "恢复原样": {
+    "en": "Reset dimming",
+    "fr": "Rétablir l’image",
+    "es": "Restablecer imagen",
+    "ru": "Сбросить затемнение",
+    "ar": "إعادة الصورة الأصلية"
+  },
+  "找到了控制接口，但显示器没有返回可调项目。可检查 OSD 的 DDC/CI 开关，或绕过扩展坞直连。": {
+    "en": "A control interface was found, but the display returned no adjustable features. Check DDC/CI in its menu or try connecting without the dock.",
+    "fr": "Une interface a été trouvée, mais l’écran n’a renvoyé aucun réglage. Vérifiez DDC/CI dans son menu ou essayez une connexion directe.",
+    "es": "Se encontró una interfaz, pero la pantalla no devolvió ajustes. Comprueba DDC/CI en su menú o prueba una conexión sin la base.",
+    "ru": "Интерфейс найден, но монитор не вернул доступных настроек. Проверьте DDC/CI в меню монитора или подключите его без док-станции.",
+    "ar": "عُثر على واجهة تحكم، لكن الشاشة لم ترجع إعدادات قابلة للتعديل. تحقق من DDC/CI في قائمتها أو جرّب الاتصال دون قاعدة الإرساء."
+  },
+  "提高音量": {
+    "en": "Increase volume",
+    "fr": "Augmenter le volume",
+    "es": "Subir volumen",
+    "ru": "Увеличить громкость",
+    "ar": "رفع الصوت"
+  },
+  "断开遥控": {
+    "en": "Disconnect remote",
+    "fr": "Déconnecter la télécommande",
+    "es": "Desconectar control remoto",
+    "ru": "Отключить пульт",
+    "ar": "قطع اتصال التحكم"
+  },
+  "显示器局域网 IP": {
+    "en": "Display LAN IP",
+    "fr": "Adresse IP locale de l’écran",
+    "es": "IP local de la pantalla",
+    "ru": "Локальный IP экрана",
+    "ar": "عنوان IP المحلي للشاشة"
+  },
+  "未连接到兼容显示器。请检查 IP、显示器网络及 macOS 的本地网络权限。": {
+    "en": "No compatible display connected. Check its IP, network connection and macOS Local Network permission.",
+    "fr": "Aucun écran compatible connecté. Vérifiez son IP, sa connexion et l’autorisation Réseau local de macOS.",
+    "es": "No se conectó ninguna pantalla compatible. Comprueba su IP, su red y el permiso de red local de macOS.",
+    "ru": "Совместимый экран не подключён. Проверьте IP, подключение к сети и разрешение macOS на доступ к локальной сети.",
+    "ar": "لم تتصل شاشة متوافقة. تحقق من عنوان IP واتصال الشاشة بالشبكة وإذن الشبكة المحلية في macOS."
+  },
+  "测试连接": {
+    "en": "Test connection",
+    "fr": "Tester la connexion",
+    "es": "Probar conexión",
+    "ru": "Проверить подключение",
+    "ar": "اختبار الاتصال"
+  },
+  "硬件控制、软件调暗和局域网遥控可分别使用。分辨率、刷新率和排列在系统显示设置中调整。": {
+    "en": "Use hardware controls, software dimming or a LAN remote separately. Adjust resolution, refresh rate and arrangement in macOS Display Settings.",
+    "fr": "Le contrôle matériel, l’atténuation logicielle et la télécommande réseau sont indépendants. Réglez la résolution, la fréquence et la disposition dans macOS.",
+    "es": "Usa por separado el control de hardware, la atenuación por software y el control por red. Ajusta resolución, frecuencia y disposición en macOS.",
+    "ru": "Аппаратные настройки, программное затемнение и сетевой пульт работают отдельно. Разрешение, частоту и расположение настройте в macOS.",
+    "ar": "يمكن استخدام تحكم الأجهزة والتعتيم البرمجي والتحكم عبر الشبكة كلٌ على حدة. اضبط الدقة ومعدل التحديث والترتيب في إعدادات macOS."
+  },
+  "请输入显示器的私有 IPv4 地址，例如 192.168.1.20。": {
+    "en": "Enter the display’s private IPv4 address, such as 192.168.1.20.",
+    "fr": "Saisissez l’adresse IPv4 privée de l’écran, par exemple 192.168.1.20.",
+    "es": "Introduce la dirección IPv4 privada de la pantalla, por ejemplo 192.168.1.20.",
+    "ru": "Введите частный IPv4-адрес экрана, например 192.168.1.20.",
+    "ar": "أدخل عنوان IPv4 الخاص بالشاشة، مثل 192.168.1.20."
+  },
+  "软件调暗": {
+    "en": "Software dimming",
+    "fr": "Atténuation logicielle",
+    "es": "Atenuación por software",
+    "ru": "Программное затемнение",
+    "ar": "تعتيم برمجي"
+  },
+  "选择输入源": {
+    "en": "Choose input",
+    "fr": "Choisir l’entrée",
+    "es": "Elegir entrada",
+    "ru": "Выбрать вход",
+    "ar": "اختيار مصدر الإدخال"
+  },
+  "降低音量": {
+    "en": "Decrease volume",
+    "fr": "Baisser le volume",
+    "es": "Bajar volumen",
+    "ru": "Уменьшить громкость",
+    "ar": "خفض الصوت"
   }
 }

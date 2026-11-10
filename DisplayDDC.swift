@@ -25,6 +25,17 @@ enum DDCWire {
         return Array(payload.dropFirst(3))
     }
 
+    static func matches(_ request: [UInt8], _ reply: [UInt8]) -> Bool {
+        guard request.count >= 5, let data = payload(reply) else { return false }
+        switch request[2] {
+        case 0x01: return data.count == 8 && data[0] == 0x02 && data[2] == request[3]
+        case 0xF3:
+            guard request.count == 6 else { return false }
+            return capabilityChunk(data, offset: word(request[3], request[4])) != nil
+        default: return false
+        }
+    }
+
     private static func word(_ hi: UInt8, _ lo: UInt8) -> UInt16 { UInt16(hi) << 8 | UInt16(lo) }
 }
 
@@ -92,8 +103,42 @@ protocol DDCTransport: AnyObject {
     func transfer(_ request: [UInt8], replyLength: Int, wait: UInt32) -> [UInt8]?
 }
 
+/// Try alternate transports for the same display, never an unpaired display.
+/// A setting is only sent on the route that just read that feature correctly.
+final class DDCFallbackBus: DDCTransport {
+    private let routes: [(name: String, bus: DDCTransport)]
+    private var preferred: Int?
+    private var verified: (index: Int, code: UInt8)?
+    var routeName: String? { preferred.map { routes[$0].name } }
+
+    init(_ routes: [(String, DDCTransport)]) { self.routes = routes }
+
+    func transfer(_ request: [UInt8], replyLength: Int, wait: UInt32) -> [UInt8]? {
+        if replyLength == 0 {
+            guard request.count == 7, request[2] == 0x03, let verified, verified.code == request[3] else { return nil }
+            self.verified = nil
+            return routes[verified.index].bus.transfer(request, replyLength: 0, wait: wait)
+        }
+        verified = nil
+        let order = (preferred.map { [$0] } ?? []) + routes.indices.filter { $0 != preferred }
+        var unsupported: [UInt8]?
+        for index in order {
+            guard let reply = routes[index].bus.transfer(request, replyLength: replyLength, wait: wait),
+                  DDCWire.matches(request, reply) else { continue }
+            if request[2] == 0x01 {
+                guard DDCWire.payload(reply)?.dropFirst().first == 0 else { unsupported = reply; continue }
+                verified = (index, request[3])
+            }
+            preferred = index
+            return reply
+        }
+        return unsupported
+    }
+}
+
 struct DDCMonitor {
     let bus: DDCTransport
+    var routeName: String? { (bus as? DDCFallbackBus)?.routeName }
 
     func get(_ code: UInt8) -> DDCReading? {
         let request = DDCWire.request([0x01, code])
@@ -119,9 +164,13 @@ struct DDCMonitor {
             guard !isCancelled() else { return nil }
             let offset = UInt16(bytes.count)
             let packet = DDCWire.request([0xF3, UInt8(offset >> 8), UInt8(offset & 0xFF)])
-            guard let reply = bus.transfer(packet, replyLength: 38, wait: 55_000),
-                  let payload = DDCWire.payload(reply),
-                  let chunk = DDCWire.capabilityChunk(payload, offset: offset) else { return nil }
+            var response: [UInt8]?
+            for _ in 0..<2 {
+                guard !isCancelled() else { return nil }
+                if let reply = bus.transfer(packet, replyLength: 38, wait: 55_000), let payload = DDCWire.payload(reply),
+                   let chunk = DDCWire.capabilityChunk(payload, offset: offset) { response = chunk; break }
+            }
+            guard let chunk = response else { return nil }
             if let zero = chunk.firstIndex(of: 0) { bytes += chunk[..<zero]; break }
             if chunk.isEmpty { break }
             bytes += chunk

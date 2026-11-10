@@ -9,7 +9,7 @@ A native macOS menu-bar app that remembers which display each window belongs to,
 ## Features
 
 - Adaptive layout library: recommendations use display count, primary role, orientation and usable size. Browse seven display families and 12 partition patterns, configure installed apps independently on each display, leave areas empty, and save into the existing scene workflow.
-- [Display management](docs/DISPLAYS.md) lists all online monitors and exposes their supported hardware brightness, contrast, inputs, color and other DDC/CI settings, plus native brightness and a macOS Display Settings shortcut.
+- [Display management](docs/DISPLAYS.md) lists online monitors and their supported DDC/CI controls, with software dimming, a LAN remote for compatible HyperOS monitors, and a macOS Display Settings shortcut.
 - [App updates](docs/UPDATES.md) check the stable GitHub release at startup and offer a verified update and restart from the sidebar footer.
 - A top-level layout library with custom percentage-based regions. Add existing scenes as per-display templates, preserve app assignments, and edit, delete or reuse your templates.
 - Multiple named scenes per display combination, with an active scene remembered for each setup.

@@ -10,3 +10,8 @@ reference the display-control implementations of:
 
 Their license notices are included in this directory. WindowMemory does not
 install either utility, invoke external helpers or require Homebrew.
+
+The HyperOS LAN remote protocol implementation is adapted from MonitorBar
+by Binaryify and contributors (MIT), revision 814a29ecc751598df51d56c6d949e1dee35cc573:
+https://github.com/Binaryify/MonitorBar/tree/814a29ecc751598df51d56c6d949e1dee35cc573/internal/mitv
+See MonitorBar-LICENSE.txt.

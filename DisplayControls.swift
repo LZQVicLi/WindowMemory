@@ -124,10 +124,14 @@ struct MonitorProfile {
     var ddcResponded = false
     var version: String?
     var otherCodes: [UInt8] = []
+    var signalTransport: String?
+    var ddcRoute: String?
+    var hasDDCTransport = false
 
     static func probe(_ display: ConnectedDisplay, isCancelled: () -> Bool = { false }) -> MonitorProfile {
-        var result = MonitorProfile()
+        var result = MonitorProfile(signalTransport: DisplayHardware.signalTransport(display))
         if let monitor = DisplayHardware.ddc(display) {
+            result.hasDDCTransport = true
             let capabilities = monitor.capabilities(isCancelled: isCancelled)
             result.version = capabilities?.version
             result.ddcResponded = capabilities != nil
@@ -141,6 +145,7 @@ struct MonitorProfile {
                 result.controls.append(MonitorAdjustment(code: code, reading: reading,
                     advertised: capabilities?.features[code.rawValue] ?? []))
             }
+            result.ddcRoute = monitor.routeName
         }
         if !isCancelled(), !result.controls.contains(where: { $0.code == .brightness }),
            let brightness = DisplayHardware.nativeBrightness(display) {

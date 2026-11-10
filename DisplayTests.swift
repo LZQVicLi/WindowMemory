@@ -64,5 +64,56 @@ func runDisplayTests() -> Int {
           "inconsistent firmware ranges stay read-only and normal ranges reject overflow")
     let mute = MonitorAdjustment(code: .mute, reading: .init(current: 0x0102, maximum: 2), advertised: [1,2])
     check(mute.style == .readOnly && !mute.accepts(1), "ambiguous mute encodings cannot blank the screen")
+
+    let firstRoute = TestDDCBus([wrongFeature, nil])
+    let secondRoute = TestDDCBus([brightnessReply, []])
+    let fallback = DDCMonitor(bus: DDCFallbackBus([("first", firstRoute), ("second", secondRoute)]))
+    check(!fallback.set(0x10, value: 100) && firstRoute.requests.isEmpty && secondRoute.requests.isEmpty,
+          "DDC fallback never writes before a verified feature read")
+    check(fallback.get(0x10) == parsed && fallback.routeName == "second" && !fallback.set(0x12, value: 100) &&
+          fallback.set(0x10, value: 100) && firstRoute.requests.count == 1 && secondRoute.requests.count == 2,
+          "DDC fallback rejects stale replies and writes only the verified feature on its working route")
+    check(LANMonitorAddress(" 192.168.1.20 ")?.host == "192.168.1.20" && LANMonitorAddress("172.31.0.8") != nil &&
+          ["172.32.0.8", "127.0.0.1", "8.8.8.8", "192.168.1.20:6095", "192.168.01.20", "[::1]"].allSatisfy { LANMonitorAddress($0) == nil },
+          "LAN pairing only accepts literal private IPv4 addresses")
+    check(testLANRemote(), "LAN remote discovers firmware ports and rejects unpaired or unlisted writes")
     return count
+}
+
+private func testLANRemote() -> Bool {
+    actor Fixture {
+        var writes: [String] = []
+        func response(_ url: URL) throws -> Data {
+            guard url.host == "192.168.1.20", url.port == 6095 else { throw LANMonitor.Failure.noResponse }
+            let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
+            let get = { (key: String) in query.first(where: { $0.name == key })?.value }
+            switch get("action") {
+            case "isalive": return Data(#"{"msg":"success","data":{"devicename":"Test Panel"}}"#.utf8)
+            case "getsources": return Data(#"{"msg":"success","data":{"sourceList":[{"sourceId":29,"sourceName":"DVI"},{"sourceId":30,"sourceName":"Type-C"}]}}"#.utf8)
+            case "getvolume": return Data(#"{"msg":"success","data":{"volume":6,"maxVolume":20}}"#.utf8)
+            case "changesource2":
+                writes.append(get("sourceid") ?? "missing")
+                return Data(#"{"msg":"success"}"#.utf8)
+            default: throw LANMonitor.Failure.unsupported
+            }
+        }
+    }
+    final class ResultBox: @unchecked Sendable {
+        let done = DispatchSemaphore(value: 0)
+        var passed = false
+    }
+    let result = ResultBox()
+    let job = Task.detached {
+        defer { result.done.signal() }
+        let fixture = Fixture()
+        let monitor = LANMonitor(address: LANMonitorAddress("192.168.1.20")!, request: { try await fixture.response($0) })
+        guard let found = try? await monitor.snapshot(), found.volume == 30, found.name == "Test Panel",
+              found.inputs.map(\.sourceName) == ["DP", "USB-C"],
+              (try? await monitor.select(found.inputs[0], pairedName: "different device")) == nil,
+              (try? await monitor.select(LANInput(sourceId: 99, sourceName: "invalid"), pairedName: found.name)) == nil,
+              (try? await monitor.select(found.inputs[1], pairedName: found.name)) != nil else { return }
+        result.passed = await fixture.writes == ["30"]
+    }
+    guard result.done.wait(timeout: .now() + 5) == .success else { job.cancel(); return false }
+    return result.passed
 }

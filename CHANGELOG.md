@@ -2,6 +2,13 @@
 
 This project uses semantic versioning. Existing version tags and released binary assets are not overwritten.
 
+## [1.5.0] — 2026-11-10
+
+- Broaden hardware control discovery with unique EDID matching, alternate AV reads and Framebuffer I²C fallback on compatible systems. Report the detected signal and responsive control route separately.
+- Add per-display software dimming and optional manual LAN pairing for input and volume on compatible HyperOS monitors.
+
+扩展显示器连接兼容性：DDC/CI 增加备用 I²C 路径，并显示信号协议与控制接口的诊断结果。支持独立屏幕的软件调暗，以及兼容澎湃 OS 显示器的手动 IP 遥控。软件调暗只改变画面，不改变背光或输入源；局域网遥控不扫描网段。
+
 ## [1.4.0] — 2026-11-10
 
 - Add Display management to the sidebar and menu-bar menu. List all online displays, use native brightness where available, and discover and adjust supported monitor features over DDC/CI. Confirm changes that can disconnect the active image and verify settings with readback when possible.

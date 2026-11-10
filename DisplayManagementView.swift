@@ -104,6 +104,7 @@ struct DisplayManagementView: View {
     let demo: Bool
     let p: ConsolePalette
     @StateObject private var state = DisplayManagementState()
+    @ObservedObject private var dimmer = DisplayDimming.shared
     @State private var pending: Change?
 
     private struct Change: Identifiable {
@@ -127,13 +128,14 @@ struct DisplayManagementView: View {
                 } label: { Label(L("系统显示设置"), systemImage: "gearshape") }
                 .disabled(demo)
             }
-            Text(L("直接调整显示器硬件。分辨率、刷新率、排列、旋转和 HDR 在系统显示设置中调整。"))
+            Text(L("硬件控制、软件调暗和局域网遥控可分别使用。分辨率、刷新率和排列在系统显示设置中调整。"))
                 .font(.system(size: 12)).foregroundStyle(p.muted)
             if state.displays.isEmpty {
                 Text(L("未检测到在线显示器。")).foregroundStyle(p.muted)
                     .frame(maxWidth: .infinity, minHeight: 72).consolePanel(p)
             }
             ForEach(state.displays) { screen in card(screen) }
+            if !demo { DisplayLANView(p: p) }
         }
         .onAppear { if state.displays.isEmpty { state.reload(demo: demo) } }
         .onReceive(NotificationCenter.default.publisher(for: NSApplication.didChangeScreenParametersNotification)) { _ in state.topologyChanged(demo: demo) }
@@ -158,7 +160,7 @@ struct DisplayManagementView: View {
                     .foregroundStyle(p.accent).frame(width: 32)
                 VStack(alignment: .leading, spacing: 3) {
                     Text(screen.name).font(.system(size: 15, weight: .semibold))
-                    Text(summary(screen)).font(.system(size: 11, design: .monospaced)).foregroundStyle(p.muted)
+                    Text(summary(screen, signal: profile?.signalTransport)).font(.system(size: 11, design: .monospaced)).foregroundStyle(p.muted)
                 }
                 Spacer()
                 if checking || busy {
@@ -176,7 +178,9 @@ struct DisplayManagementView: View {
                 Text(L("正在读取显示器")).font(.system(size: 12)).foregroundStyle(p.muted)
             } else if controls.isEmpty {
                 Text(screen.builtIn ? L("当前系统未提供可读取的硬件亮度。")
-                                    : L("未检测到可调硬件项目。请检查显示器菜单中的 DDC/CI 和线缆或扩展坞。"))
+                                    : profile?.hasDDCTransport == true
+                                        ? L("找到了控制接口，但显示器没有返回可调项目。可检查 OSD 的 DDC/CI 开关，或绕过扩展坞直连。")
+                                        : L("macOS 未提供这条连接的硬件控制接口。可试 USB-C 转 DisplayPort 直连，或使用软件调暗。"))
                     .font(.system(size: 12)).foregroundStyle(p.muted)
             }
             if !controls.isEmpty {
@@ -198,6 +202,10 @@ struct DisplayManagementView: View {
                     }
                 }.disabled(checking || busy)
             }
+            if !demo, DisplayDimming.target(screen) != nil {
+                Divider()
+                softwareRow(screen)
+            }
             if let outcome = state.outcomes[screen.id] {
                 Text(message(outcome)).font(.system(size: 11))
                     .foregroundStyle(outcome == .failed ? Color.orange : p.muted)
@@ -217,12 +225,29 @@ struct DisplayManagementView: View {
         state.apply(change.value, change.control, screen: change.screen, demo: demo)
     }
 
-    private func summary(_ screen: ConnectedDisplay) -> String {
+    private func softwareRow(_ screen: ConnectedDisplay) -> some View {
+        let level = dimmer.levels[screen.id] ?? 100
+        return VStack(alignment: .leading, spacing: 5) {
+            HStack(spacing: 10) {
+                Text(L("软件调暗")).font(.system(size: 12, weight: .medium))
+                    .frame(minWidth: 104, alignment: .leading)
+                Slider(value: Binding(get: { Double(level) }, set: { dimmer.set(Int($0), display: screen) }), in: 25...100, step: 1)
+                    .accessibilityLabel(L("软件调暗"))
+                Text("\(level)%").font(.system(size: 11, design: .monospaced)).monospacedDigit()
+                Button(L("恢复原样")) { dimmer.set(100, display: screen) }.disabled(level == 100)
+            }
+            Text(L("仅调暗画面，不改变背光或输入源。退出应用后恢复。"))
+                .font(.system(size: 10)).foregroundStyle(p.muted)
+        }
+    }
+
+    private func summary(_ screen: ConnectedDisplay, signal: String?) -> String {
         var components = [screen.primary ? L("主屏") : L("副屏"), screen.builtIn ? L("内建显示器") : L("外接")]
         components.append("\(screen.width) × \(screen.height)")
         if screen.refresh > 0 { components.append(screen.refresh.formatted(.number.precision(.fractionLength(0...2))) + " Hz") }
         if screen.rotation != 0 { components.append("\(screen.rotation)°") }
         if screen.mirrored { components.append(L("镜像")) }
+        if let signal { components.append(signal) }
         return components.joined(separator: " · ")
     }
 

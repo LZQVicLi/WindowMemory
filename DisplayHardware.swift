@@ -81,10 +81,68 @@ private enum DisplaySymbols {
         createInfo?(id)?.takeRetainedValue() as? [String: Any]
     }
     static func framebuffer(_ id: CGDirectDisplayID) -> io_service_t? {
-        guard let path = info(id)?["IODisplayLocation"] as? String else { return nil }
-        let entry = IORegistryEntryCopyFromPath(kIOMainPortDefault, path as CFString)
-        return entry == 0 ? nil : entry
+        if let path = info(id)?["IODisplayLocation"] as? String {
+            let entry = IORegistryEntryCopyFromPath(kIOMainPortDefault, path as CFString)
+            if entry != 0 { return entry }
+        }
+        return framebufferByIdentity(id)
     }
+
+    static func property(_ entry: io_registry_entry_t, _ key: String) -> CFTypeRef? {
+        IORegistryEntryCreateCFProperty(entry, key as CFString, kCFAllocatorDefault, 0)?.takeRetainedValue()
+    }
+
+    private static func framebufferByIdentity(_ id: CGDirectDisplayID) -> io_service_t? {
+        let want = EDIDIdentity(id)
+        guard want.vendor != 0, want.product != 0 else { return nil }
+        var count: UInt32 = 0
+        guard CGGetOnlineDisplayList(0, nil, &count) == .success, count > 0 else { return nil }
+        var online = [CGDirectDisplayID](repeating: 0, count: Int(count))
+        guard CGGetOnlineDisplayList(count, &online, &count) == .success,
+              online.prefix(Int(count)).filter({ EDIDIdentity($0) == want }).count == 1 else { return nil }
+        let root = IORegistryGetRootEntry(kIOMainPortDefault)
+        guard root != 0 else { return nil }
+        defer { IOObjectRelease(root) }
+        var iter: io_iterator_t = 0
+        guard IORegistryEntryCreateIterator(root, kIOServicePlane, IOOptionBits(kIORegistryIterateRecursively), &iter) == KERN_SUCCESS else { return nil }
+        defer { IOObjectRelease(iter) }
+        var match: io_service_t?
+        var registryIDs = Set<UInt64>()
+        while case let entry = IOIteratorNext(iter), entry != 0 {
+            let identity: EDIDIdentity?
+            if IOObjectConformsTo(entry, "IOMobileFramebuffer") != 0,
+               let attributes = property(entry, "DisplayAttributes") as? [String: Any],
+               let product = attributes["ProductAttributes"] as? [String: Any] {
+                identity = EDIDIdentity(product, vendorKey: "LegacyManufacturerID", productKey: "ProductID", serialKey: "SerialNumber")
+            } else if IOObjectConformsTo(entry, "IOFramebuffer") != 0,
+                      let attributes = IODisplayCreateInfoDictionary(entry, 0)?.takeRetainedValue() as? [String: Any] {
+                identity = EDIDIdentity(attributes, vendorKey: "DisplayVendorID", productKey: "DisplayProductID", serialKey: "DisplaySerialNumber")
+            } else { identity = nil }
+            var registryID: UInt64 = 0
+            guard identity == want, IORegistryEntryGetRegistryEntryID(entry, &registryID) == KERN_SUCCESS,
+                  registryIDs.insert(registryID).inserted else { IOObjectRelease(entry); continue }
+            if let match {
+                IOObjectRelease(match)
+                IOObjectRelease(entry)
+                return nil
+            }
+            match = entry
+        }
+        return match
+    }
+
+    private struct EDIDIdentity: Equatable {
+        let vendor: UInt32, product: UInt32, serial: UInt32
+        init(_ id: CGDirectDisplayID) {
+            vendor = CGDisplayVendorNumber(id); product = CGDisplayModelNumber(id); serial = CGDisplaySerialNumber(id)
+        }
+        init(_ info: [String: Any], vendorKey: String, productKey: String, serialKey: String) {
+            vendor = (info[vendorKey] as? NSNumber)?.uint32Value ?? 0
+            product = (info[productKey] as? NSNumber)?.uint32Value ?? 0
+            serial = (info[serialKey] as? NSNumber)?.uint32Value ?? 0
+        }
+    }
+
 }
 
 #if arch(arm64)
@@ -93,6 +151,7 @@ private final class AVDisplayBus: DDCTransport {
     private let chip: UInt32
     private let read: DisplaySymbols.I2C
     private let write: DisplaySymbols.I2C
+    private var readOffset: UInt32 = 0
 
     init?(_ display: ConnectedDisplay) {
         guard let create = DisplaySymbols.createAV, let read = DisplaySymbols.readAV, let write = DisplaySymbols.writeAV,
@@ -150,17 +209,22 @@ private final class AVDisplayBus: DDCTransport {
     func transfer(_ request: [UInt8], replyLength: Int, wait: UInt32) -> [UInt8]? {
         var frame = Array(request.dropFirst())
         let length = UInt32(frame.count)
-        let result = frame.withUnsafeMutableBytes { write(av, chip, UInt32(request[0]), $0.baseAddress!, length) }
-        guard result == KERN_SUCCESS else { return nil }
-        usleep(wait)
-        guard replyLength > 0 else { return [] }
-        var reply = [UInt8](repeating: 0, count: replyLength)
-        let status = reply.withUnsafeMutableBytes { read(av, chip, 0, $0.baseAddress!, UInt32(replyLength)) }
-        return status == KERN_SUCCESS ? reply : nil
+        let offsets: [UInt32] = replyLength > 0 ? [readOffset, readOffset == 0 ? 0x51 : 0] : [readOffset]
+        for offset in offsets {
+            let result = frame.withUnsafeMutableBytes { write(av, chip, UInt32(request[0]), $0.baseAddress!, length) }
+            guard result == KERN_SUCCESS else { continue }
+            usleep(wait)
+            guard replyLength > 0 else { return [] }
+            var reply = [UInt8](repeating: 0, count: replyLength)
+            let status = reply.withUnsafeMutableBytes { read(av, chip, offset, $0.baseAddress!, UInt32(replyLength)) }
+            if status == KERN_SUCCESS, DDCWire.matches(request, reply) { readOffset = offset; return reply }
+        }
+        return nil
     }
 }
-#elseif arch(x86_64)
-private final class IntelDisplayBus: DDCTransport {
+#endif
+
+private final class FramebufferDisplayBus: DDCTransport {
     private let framebuffer: io_service_t
     private let busCount: UInt32
     private var workingBus: UInt32?
@@ -220,7 +284,7 @@ private final class IntelDisplayBus: DDCTransport {
                 }
             }
             guard status == KERN_SUCCESS, request.result == KERN_SUCCESS else { continue }
-            if replyLength > 0, DDCWire.payload(response) == nil { continue }
+            if replyLength > 0, !DDCWire.matches(frame, response) { continue }
             workingBus = bus
             usleep(30_000)
             return response
@@ -228,20 +292,27 @@ private final class IntelDisplayBus: DDCTransport {
         return nil
     }
 }
-#endif
 
 enum DisplayHardware {
     static let queue = DispatchQueue(label: "local.vic.windowmemory.display-hardware", qos: .userInitiated)
 
+    static func signalTransport(_ display: ConnectedDisplay) -> String? {
+        guard let framebuffer = DisplaySymbols.framebuffer(display.number) else { return nil }
+        defer { IOObjectRelease(framebuffer) }
+        let transport = DisplaySymbols.property(framebuffer, "Transport") as? [String: String]
+        guard let downstream = transport?["Downstream"], !downstream.isEmpty else { return nil }
+        if let upstream = transport?["Upstream"], upstream != downstream { return "\(upstream) → \(downstream)" }
+        return downstream
+    }
+
     static func ddc(_ display: ConnectedDisplay) -> DDCMonitor? {
         guard !display.builtIn, display.isStillConnected() else { return nil }
+        var routes: [(String, DDCTransport)] = []
         #if arch(arm64)
-        return AVDisplayBus(display).map { DDCMonitor(bus: $0) }
-        #elseif arch(x86_64)
-        return IntelDisplayBus(display).map { DDCMonitor(bus: $0) }
-        #else
-        return nil
+        if let bus = AVDisplayBus(display) { routes.append(("IOAVService", bus)) }
         #endif
+        if let bus = FramebufferDisplayBus(display) { routes.append(("Framebuffer I²C", bus)) }
+        return routes.isEmpty ? nil : DDCMonitor(bus: DDCFallbackBus(routes))
     }
 
     static func nativeBrightness(_ display: ConnectedDisplay) -> UInt16? {

@@ -488,7 +488,7 @@ else if CommandLine.arguments.count == 4, CommandLine.arguments[1] == "--verify-
 else if CommandLine.arguments.contains("--display-diagnostics") {
     for display in ConnectedDisplay.online() {
         let profile = MonitorProfile.probe(display)
-        print("\(display.name): \(display.width)×\(display.height) @ \(display.refresh) Hz · DDC/CI: \(profile.ddcResponded)")
+        print("\(display.name): \(display.width)×\(display.height) @ \(display.refresh) Hz · signal: \(profile.signalTransport ?? "unknown") · DDC/CI: \(profile.ddcResponded) · route: \(profile.ddcRoute ?? (profile.hasDDCTransport ? "no valid reply" : "unavailable"))")
         for control in profile.controls {
             print("  \(control.code.title) [\(String(format: "0x%02X", control.id))] = \(control.current) · \(control.style)")
         }

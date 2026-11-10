@@ -52,6 +52,8 @@ cat > "$APP_PATH/Contents/Info.plist" <<PLIST
 <key>CFBundleVersion</key><string>$APP_VERSION</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>LSUIElement</key><true/>
+<key>NSLocalNetworkUsageDescription</key><string>Connect to a compatible monitor at the local IP address you enter to change its input or volume.</string>
+<key>NSAppTransportSecurity</key><dict><key>NSAllowsLocalNetworking</key><true/></dict>
 <key>WindowMemoryDemo</key><$DEMO_MODE/>
 <key>WindowMemoryLiveDisplayPreview</key><$LIVE_DISPLAY_PREVIEW/>
 <key>CFBundleDevelopmentRegion</key><string>en</string>
