@@ -3,18 +3,25 @@ set -euo pipefail
 SOURCE_DIR="${0:A:h}"
 DEST_DIR="${1:-$SOURCE_DIR/build}"
 BUILD_MODE="${BUILD_MODE:-preview}"
+LIVE_DISPLAY_PREVIEW=false
 case "$BUILD_MODE" in
   preview)
     APP_NAME="WindowMemory Preview"
     BUNDLE_ID="local.vic.windowmemory.preview"
     DEMO_MODE=true
     ;;
+  display-preview)
+    APP_NAME="WindowMemory Display Preview"
+    BUNDLE_ID="local.vic.windowmemory.preview.displays"
+    DEMO_MODE=true
+    LIVE_DISPLAY_PREVIEW=true
+    ;;
   release)
     APP_NAME="窗口记忆"
     BUNDLE_ID="local.vic.windowmemory"
     DEMO_MODE=false
     ;;
-  *) echo 'BUILD_MODE must be preview or release.' >&2; exit 1 ;;
+  *) echo 'BUILD_MODE must be preview, display-preview or release.' >&2; exit 1 ;;
 esac
 APP_PATH="$DEST_DIR/$APP_NAME.app"
 APP_VERSION="$(<"$SOURCE_DIR/VERSION")"
@@ -28,7 +35,7 @@ for BUILD_ARCH in ${=BUILD_ARCHS}; do
   BINARY="$DEST_DIR/intermediates/WindowMemory-$BUILD_ARCH"
   xcrun swiftc -swift-version 5 -O -whole-module-optimization -target "$BUILD_ARCH-apple-macosx14.0" \
     "${SOURCES[@]}" -o "$BINARY" -framework AppKit -framework SwiftUI \
-    -framework ApplicationServices -framework ServiceManagement -framework Carbon
+    -framework ApplicationServices -framework ServiceManagement -framework Carbon -framework IOKit -framework Security
   BINARIES+=("$BINARY")
 done
 xcrun lipo -create "${BINARIES[@]}" -output "$APP_PATH/Contents/MacOS/WindowMemory"
@@ -46,6 +53,7 @@ cat > "$APP_PATH/Contents/Info.plist" <<PLIST
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>LSUIElement</key><true/>
 <key>WindowMemoryDemo</key><$DEMO_MODE/>
+<key>WindowMemoryLiveDisplayPreview</key><$LIVE_DISPLAY_PREVIEW/>
 <key>CFBundleDevelopmentRegion</key><string>en</string>
 <key>CFBundleLocalizations</key><array><string>zh-Hans</string><string>en</string><string>fr</string><string>es</string><string>ru</string><string>ar</string></array>
 <key>NSHighResolutionCapable</key><true/>
@@ -55,11 +63,11 @@ cat > "$APP_PATH/Contents/Info.plist" <<PLIST
 PLIST
 cp "$SOURCE_DIR/AppIcon.icns" "$APP_PATH/Contents/Resources/AppIcon.icns"
 cp -R "$SOURCE_DIR/Resources/." "$APP_PATH/Contents/Resources/"
-if [[ "$BUILD_MODE" == preview ]]; then
+if [[ "$DEMO_MODE" == true ]]; then
   for INFO_STRINGS in "$APP_PATH"/Contents/Resources/*.lproj/InfoPlist.strings(N); do
-    cat > "$INFO_STRINGS" <<'STRINGS'
-"CFBundleDisplayName" = "WindowMemory Preview";
-"CFBundleName" = "WindowMemory Preview";
+    cat > "$INFO_STRINGS" <<STRINGS
+"CFBundleDisplayName" = "$APP_NAME";
+"CFBundleName" = "$APP_NAME";
 STRINGS
   done
 fi

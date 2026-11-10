@@ -17,6 +17,7 @@ xcrun lipo "$APP/Contents/MacOS/WindowMemory" -verify_arch x86_64
 mkdir -p "$DIST" "$ROOT/build/dmg-stage"
 NAME="WindowMemory-v$VERSION-universal"
 ditto -c -k --sequesterRsrc --keepParent "$APP" "$DIST/$NAME.zip"
+"$APP/Contents/MacOS/WindowMemory" --verify-update-archive "$DIST/$NAME.zip" "$VERSION"
 ditto "$APP" "$ROOT/build/dmg-stage/窗口记忆.app"
 ln -sfn /Applications "$ROOT/build/dmg-stage/Applications"
 hdiutil create -volname "WindowMemory $VERSION" -srcfolder "$ROOT/build/dmg-stage" -ov -format UDZO "$DIST/$NAME.dmg"

@@ -9,6 +9,8 @@ A native macOS menu-bar app that remembers which display each window belongs to,
 ## Features
 
 - Adaptive layout library: recommendations use display count, primary role, orientation and usable size. Browse seven display families and 12 partition patterns, configure installed apps independently on each display, leave areas empty, and save into the existing scene workflow.
+- [Display management](docs/DISPLAYS.md) lists all online monitors and exposes their supported hardware brightness, contrast, inputs, color and other DDC/CI settings, plus native brightness and a macOS Display Settings shortcut.
+- [App updates](docs/UPDATES.md) check the stable GitHub release at startup and offer a verified update and restart from the sidebar footer.
 - A top-level layout library with custom percentage-based regions. Add existing scenes as per-display templates, preserve app assignments, and edit, delete or reuse your templates.
 - Multiple named scenes per display combination, with an active scene remembered for each setup.
 - Launch enabled workspace apps without creating duplicate application instances.
@@ -61,7 +63,7 @@ Xcode or compatible command-line tools are required. There are no third-party Sw
 ```sh
 git clone https://github.com/LZQVicLi/WindowMemory.git
 cd WindowMemory
-zsh build.sh                           # isolated universal Preview + 166 checks
+zsh build.sh                           # isolated universal Preview + self-tests
 BUILD_MODE=release zsh build.sh         # production bundle identity
 zsh scripts/package.sh                 # versioned ZIP, DMG, checksums
 ```

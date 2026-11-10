@@ -2,6 +2,15 @@
 
 This project uses semantic versioning. Existing version tags and released binary assets are not overwritten.
 
+## [1.4.0] — 2026-11-10
+
+- Add Display management to the sidebar and menu-bar menu. List all online displays, use native brightness where available, and discover and adjust supported monitor features over DDC/CI. Confirm changes that can disconnect the active image and verify settings with readback when possible.
+- Check the official GitHub release at startup. Show an update notice in the sidebar footer; install a newer verified release on demand and restart, with a manual download fallback.
+- Verify the release asset digest, ZIP boundaries, version, bundle identity and code signature before replacing the app. Retain the previous build and attempt rollback if the new app fails to open.
+- Validate every release ZIP against the updater before publishing. Add a separate live Display Preview for hardware testing without affecting an installed copy or its layouts.
+
+新增「显示管理」和启动时自动检查更新。外接屏按 DDC/CI 能力展示亮度、对比度、输入源、色彩与音量等项目，兼容内建屏显示原生亮度。侧栏底部提示新版，点击「一键更新」后先校验再替换、重启。旧版首次升级到 1.4.0 仍需手动下载；签名变化后 macOS 可能要求重新授予窗口控制权限。
+
 ## [1.3.1] — 2026-10-24
 
 - Default local builds to an isolated Preview bundle with synthetic data, a distinct bundle ID and display name. This prevents development copies with a different ad-hoc signature from competing with the installed release's macOS permission identity.

@@ -1,0 +1,12 @@
+WindowMemory display hardware control
+
+The optional Apple Silicon IOAVService and Intel IOKit I2C transports
+reference the display-control implementations of:
+
+- m1ddc by waydabber and contributors (MIT):
+  https://github.com/waydabber/m1ddc
+- MonitorControl by the MonitorControl contributors (MIT):
+  https://github.com/MonitorControl/MonitorControl
+
+Their license notices are included in this directory. WindowMemory does not
+install either utility, invoke external helpers or require Homebrew.

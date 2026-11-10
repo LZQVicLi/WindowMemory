@@ -2000,5 +2000,460 @@
     "es": "Alto",
     "ru": "Высота",
     "ar": "ارتفاع"
+  },
+  "亮度": {
+    "en": "Brightness",
+    "fr": "Luminosité",
+    "es": "Brillo",
+    "ru": "Яркость",
+    "ar": "السطوع"
+  },
+  "仅可读取": {
+    "en": "Read only",
+    "fr": "Lecture seule",
+    "es": "Solo lectura",
+    "ru": "Только чтение",
+    "ar": "للقراءة فقط"
+  },
+  "关闭": {
+    "en": "Off",
+    "fr": "Éteint",
+    "es": "Apagado",
+    "ru": "Выключено",
+    "ar": "إيقاف"
+  },
+  "内建显示器": {
+    "en": "Built-in display",
+    "fr": "Écran intégré",
+    "es": "Pantalla integrada",
+    "ru": "Встроенный дисплей",
+    "ar": "الشاشة المدمجة"
+  },
+  "切换后这台显示器可能失去本机画面。若无信号，可用显示器实体菜单切回。": {
+    "en": "This display may lose the Mac’s signal. Use the monitor’s physical menu to switch back if needed.",
+    "fr": "Cet écran peut perdre le signal du Mac. Utilisez son menu physique pour revenir en arrière.",
+    "es": "La pantalla puede perder la señal del Mac. Usa el menú físico del monitor para volver atrás.",
+    "ru": "Экран может потерять сигнал Mac. При необходимости вернитесь через меню самого монитора.",
+    "ar": "قد تفقد الشاشة إشارة Mac. استخدم القائمة الفعلية للشاشة للعودة عند الحاجة."
+  },
+  "刷新显示器": {
+    "en": "Refresh displays",
+    "fr": "Actualiser les écrans",
+    "es": "Actualizar pantallas",
+    "ru": "Обновить список экранов",
+    "ar": "تحديث الشاشات"
+  },
+  "原生亮度": {
+    "en": "Native brightness",
+    "fr": "Luminosité native",
+    "es": "Brillo nativo",
+    "ru": "Системная яркость",
+    "ar": "السطوع الأصلي"
+  },
+  "原生色彩": {
+    "en": "Native color",
+    "fr": "Couleurs natives",
+    "es": "Color nativo",
+    "ru": "Исходные цвета",
+    "ar": "الألوان الأصلية"
+  },
+  "固件报告的其他代码（仅供诊断）：{0}": {
+    "en": "Other firmware codes (diagnostic only): {0}",
+    "fr": "Autres codes du micrologiciel (diagnostic) : {0}",
+    "es": "Otros códigos del firmware (solo diagnóstico): {0}",
+    "ru": "Другие коды прошивки (диагностика): {0}",
+    "ar": "رموز أخرى من البرنامج الثابت (للتشخيص فقط): {0}"
+  },
+  "外接": {
+    "en": "External",
+    "fr": "Externe",
+    "es": "Externa",
+    "ru": "Внешний",
+    "ar": "خارجية"
+  },
+  "外接显示器 {0}": {
+    "en": "External display {0}",
+    "fr": "Écran externe {0}",
+    "es": "Pantalla externa {0}",
+    "ru": "Внешний дисплей {0}",
+    "ar": "شاشة خارجية {0}"
+  },
+  "对比度": {
+    "en": "Contrast",
+    "fr": "Contraste",
+    "es": "Contraste",
+    "ru": "Контрастность",
+    "ar": "التباين"
+  },
+  "已发送指令，暂未读回确认；可刷新查看。": {
+    "en": "Command sent; the result is not yet verified. Refresh to check.",
+    "fr": "Commande envoyée sans confirmation. Actualisez pour vérifier.",
+    "es": "Comando enviado sin confirmación. Actualiza para comprobarlo.",
+    "ru": "Команда отправлена, результат не подтверждён. Обновите данные.",
+    "ar": "أُرسل الأمر ولم تُؤكَّد النتيجة بعد. حدّث للتحقق."
+  },
+  "已应用并读回确认。": {
+    "en": "Applied and verified.",
+    "fr": "Réglage appliqué et vérifié.",
+    "es": "Ajuste aplicado y verificado.",
+    "ru": "Настройка применена и проверена.",
+    "ar": "تم تطبيق الإعداد والتحقق منه."
+  },
+  "已连接 {0} 台显示器": {
+    "en": "Connected displays: {0}",
+    "fr": "Écrans connectés : {0}",
+    "es": "Pantallas conectadas: {0}",
+    "ru": "Подключённые дисплеи: {0}",
+    "ar": "الشاشات المتصلة: {0}"
+  },
+  "已静音": {
+    "en": "Muted",
+    "fr": "Muet",
+    "es": "Silenciado",
+    "ru": "Звук выключен",
+    "ar": "مكتوم"
+  },
+  "应用": {
+    "en": "Apply",
+    "fr": "Appliquer",
+    "es": "Aplicar",
+    "ru": "Применить",
+    "ar": "تطبيق"
+  },
+  "开启": {
+    "en": "On",
+    "fr": "Allumé",
+    "es": "Encendido",
+    "ru": "Включено",
+    "ar": "تشغيل"
+  },
+  "当前系统未提供可读取的硬件亮度。": {
+    "en": "The system did not report a readable hardware brightness value.",
+    "fr": "Le système n’a pas fourni de valeur de luminosité matérielle lisible.",
+    "es": "El sistema no proporcionó un valor de brillo de hardware legible.",
+    "ru": "Система не сообщила доступное значение аппаратной яркости.",
+    "ar": "لم يوفّر النظام قيمة سطوع للأجهزة يمكن قراءتها."
+  },
+  "待机": {
+    "en": "Standby",
+    "fr": "Veille",
+    "es": "En espera",
+    "ru": "Ожидание",
+    "ar": "استعداد"
+  },
+  "挂起": {
+    "en": "Suspend",
+    "fr": "Suspendu",
+    "es": "Suspendido",
+    "ru": "Приостановка",
+    "ar": "تعليق"
+  },
+  "显示器电源": {
+    "en": "Display power",
+    "fr": "Alimentation de l’écran",
+    "es": "Encendido del monitor",
+    "ru": "Питание дисплея",
+    "ar": "طاقة الشاشة"
+  },
+  "显示器菜单语言": {
+    "en": "Monitor menu language",
+    "fr": "Langue du menu de l’écran",
+    "es": "Idioma del menú del monitor",
+    "ru": "Язык меню монитора",
+    "ar": "لغة قائمة الشاشة"
+  },
+  "显示器返回了不同的值，已显示实际读数。": {
+    "en": "The monitor returned a different value. The actual reading is shown.",
+    "fr": "L’écran a renvoyé une autre valeur. La valeur mesurée est affichée.",
+    "es": "El monitor devolvió otro valor. Se muestra la lectura real.",
+    "ru": "Монитор вернул другое значение. Показано фактическое значение.",
+    "ar": "أعادت الشاشة قيمة مختلفة. تُعرض القراءة الفعلية."
+  },
+  "显示器静音": {
+    "en": "Monitor mute",
+    "fr": "Sourdine de l’écran",
+    "es": "Silencio del monitor",
+    "ru": "Отключение звука монитора",
+    "ar": "كتم صوت الشاشة"
+  },
+  "显示器音量": {
+    "en": "Monitor volume",
+    "fr": "Volume de l’écran",
+    "es": "Volumen del monitor",
+    "ru": "Громкость монитора",
+    "ar": "مستوى صوت الشاشة"
+  },
+  "显示管理": {
+    "en": "Display management",
+    "fr": "Gestion des écrans",
+    "es": "Gestión de pantallas",
+    "ru": "Управление дисплеями",
+    "ar": "إدارة الشاشات"
+  },
+  "更多硬件项目": {
+    "en": "More hardware controls",
+    "fr": "Autres réglages matériels",
+    "es": "Más ajustes de hardware",
+    "ru": "Другие настройки монитора",
+    "ar": "المزيد من إعدادات الأجهزة"
+  },
+  "未公布可切换端口": {
+    "en": "Switchable inputs not reported",
+    "fr": "Entrées sélectionnables non indiquées",
+    "es": "Entradas seleccionables no indicadas",
+    "ru": "Доступные входы не указаны",
+    "ar": "لم تُعلن المداخل القابلة للتبديل"
+  },
+  "未检测到可调硬件项目。请检查显示器菜单中的 DDC/CI 和线缆或扩展坞。": {
+    "en": "No adjustable hardware controls found. Check DDC/CI in the monitor menu and check your cable or dock.",
+    "fr": "Aucun réglage matériel détecté. Vérifiez DDC/CI dans le menu de l’écran ainsi que le câble ou la station d’accueil.",
+    "es": "No se detectaron ajustes de hardware. Comprueba DDC/CI en el menú del monitor y revisa el cable o la base.",
+    "ru": "Настройки монитора не найдены. Проверьте DDC/CI в меню, кабель или док-станцию.",
+    "ar": "لم يُعثر على إعدادات قابلة للضبط. تحقق من DDC/CI في قائمة الشاشة ومن الكبل أو قاعدة الإرساء."
+  },
+  "未检测到在线显示器。": {
+    "en": "No online displays detected.",
+    "fr": "Aucun écran en ligne détecté.",
+    "es": "No se detectaron pantallas conectadas.",
+    "ru": "Активные дисплеи не обнаружены.",
+    "ar": "لم يُكتشف أي شاشة متصلة."
+  },
+  "未能应用设置。请检查连接或显示器当前模式后重试。": {
+    "en": "Could not apply the setting. Check the connection or monitor mode and try again.",
+    "fr": "Impossible d’appliquer le réglage. Vérifiez la connexion ou le mode de l’écran, puis réessayez.",
+    "es": "No se pudo aplicar el ajuste. Comprueba la conexión o el modo del monitor y vuelve a intentarlo.",
+    "ru": "Не удалось применить настройку. Проверьте подключение или режим монитора и повторите попытку.",
+    "ar": "تعذّر تطبيق الإعداد. تحقق من الاتصال أو وضع الشاشة ثم أعد المحاولة."
+  },
+  "未静音": {
+    "en": "Unmuted",
+    "fr": "Son activé",
+    "es": "Con sonido",
+    "ru": "Звук включён",
+    "ar": "غير مكتوم"
+  },
+  "正在应用显示设置": {
+    "en": "Applying display setting",
+    "fr": "Application du réglage",
+    "es": "Aplicando ajuste de pantalla",
+    "ru": "Применение настройки дисплея",
+    "ar": "جارٍ تطبيق إعداد الشاشة"
+  },
+  "正在读取显示器": {
+    "en": "Reading display controls",
+    "fr": "Lecture des réglages de l’écran",
+    "es": "Leyendo ajustes del monitor",
+    "ru": "Чтение настроек дисплея",
+    "ar": "جارٍ قراءة إعدادات الشاشة"
+  },
+  "画面模式": {
+    "en": "Picture mode",
+    "fr": "Mode d’image",
+    "es": "Modo de imagen",
+    "ru": "Режим изображения",
+    "ar": "وضع الصورة"
+  },
+  "画面缩放": {
+    "en": "Image scaling",
+    "fr": "Mise à l’échelle de l’image",
+    "es": "Escalado de imagen",
+    "ru": "Масштабирование изображения",
+    "ar": "تحجيم الصورة"
+  },
+  "直接调整显示器硬件。分辨率、刷新率、排列、旋转和 HDR 在系统显示设置中调整。": {
+    "en": "Adjust monitor hardware here. Use macOS Display Settings for resolution, refresh rate, arrangement, rotation and HDR.",
+    "fr": "Réglez ici le matériel de l’écran. Les réglages de macOS gèrent résolution, fréquence, disposition, rotation et HDR.",
+    "es": "Ajusta aquí el hardware del monitor. Usa los ajustes de macOS para resolución, frecuencia, disposición, rotación y HDR.",
+    "ru": "Здесь можно настроить монитор. Разрешение, частота, расположение, поворот и HDR настраиваются в macOS.",
+    "ar": "اضبط أجهزة الشاشة هنا. استخدم إعدادات macOS للدقة ومعدل التحديث والترتيب والتدوير وHDR."
+  },
+  "确认切换": {
+    "en": "Confirm change",
+    "fr": "Confirmer le changement",
+    "es": "Confirmar cambio",
+    "ru": "Подтвердить изменение",
+    "ar": "تأكيد التبديل"
+  },
+  "系统显示设置": {
+    "en": "macOS Display Settings",
+    "fr": "Réglages d’affichage de macOS",
+    "es": "Ajustes de pantalla de macOS",
+    "ru": "Настройки дисплеев macOS",
+    "ar": "إعدادات شاشات macOS"
+  },
+  "红色增益": {
+    "en": "Red gain",
+    "fr": "Gain du rouge",
+    "es": "Ganancia de rojo",
+    "ru": "Усиление красного",
+    "ar": "كسب الأحمر"
+  },
+  "红色黑电平": {
+    "en": "Red black level",
+    "fr": "Niveau de noir du rouge",
+    "es": "Nivel de negro del rojo",
+    "ru": "Уровень чёрного красного канала",
+    "ar": "مستوى الأسود للأحمر"
+  },
+  "绿色增益": {
+    "en": "Green gain",
+    "fr": "Gain du vert",
+    "es": "Ganancia de verde",
+    "ru": "Усиление зелёного",
+    "ar": "كسب الأخضر"
+  },
+  "绿色黑电平": {
+    "en": "Green black level",
+    "fr": "Niveau de noir du vert",
+    "es": "Nivel de negro del verde",
+    "ru": "Уровень чёрного зелёного канала",
+    "ar": "مستوى الأسود للأخضر"
+  },
+  "背光强度": {
+    "en": "Backlight level",
+    "fr": "Niveau de rétroéclairage",
+    "es": "Nivel de retroiluminación",
+    "ru": "Уровень подсветки",
+    "ar": "مستوى الإضاءة الخلفية"
+  },
+  "自定义 {0}": {
+    "en": "Custom {0}",
+    "fr": "Personnalisé {0}",
+    "es": "Personalizado {0}",
+    "ru": "Пользовательский {0}",
+    "ar": "مخصص {0}"
+  },
+  "色彩预设": {
+    "en": "Color preset",
+    "fr": "Préréglage de couleurs",
+    "es": "Preajuste de color",
+    "ru": "Цветовой профиль монитора",
+    "ar": "إعداد الألوان المسبق"
+  },
+  "蓝色增益": {
+    "en": "Blue gain",
+    "fr": "Gain du bleu",
+    "es": "Ganancia de azul",
+    "ru": "Усиление синего",
+    "ar": "كسب الأزرق"
+  },
+  "蓝色黑电平": {
+    "en": "Blue black level",
+    "fr": "Niveau de noir du bleu",
+    "es": "Nivel de negro del azul",
+    "ru": "Уровень чёрного синего канала",
+    "ar": "مستوى الأسود للأزرق"
+  },
+  "输入源": {
+    "en": "Input source",
+    "fr": "Source d’entrée",
+    "es": "Fuente de entrada",
+    "ru": "Источник сигнала",
+    "ar": "مصدر الإدخال"
+  },
+  "锐度": {
+    "en": "Sharpness",
+    "fr": "Netteté",
+    "es": "Nitidez",
+    "ru": "Резкость",
+    "ar": "الحدّة"
+  },
+  "镜像": {
+    "en": "Mirrored",
+    "fr": "Recopie",
+    "es": "Duplicada",
+    "ru": "Дублирование",
+    "ar": "انعكاس"
+  },
+  "饱和度": {
+    "en": "Saturation",
+    "fr": "Saturation",
+    "es": "Saturación",
+    "ru": "Насыщенность",
+    "ar": "التشبّع"
+  },
+  "一键更新": {
+    "en": "Update and restart",
+    "fr": "Mettre à jour",
+    "es": "Actualizar y reiniciar",
+    "ru": "Обновить и перезапустить",
+    "ar": "التحديث وإعادة التشغيل"
+  },
+  "发现新版本 v{0}": {
+    "en": "Version v{0} is available",
+    "fr": "Version v{0} disponible",
+    "es": "Versión v{0} disponible",
+    "ru": "Доступна версия v{0}",
+    "ar": "الإصدار v{0} متاح"
+  },
+  "已是最新版本": {
+    "en": "Up to date",
+    "fr": "À jour",
+    "es": "Al día",
+    "ru": "Установлена последняя версия",
+    "ar": "أحدث إصدار مثبت"
+  },
+  "打开下载页": {
+    "en": "Open downloads",
+    "fr": "Ouvrir les téléchargements",
+    "es": "Abrir descargas",
+    "ru": "Открыть загрузки",
+    "ar": "فتح التنزيلات"
+  },
+  "无法恢复旧版本；备份位于：{0}": {
+    "en": "Could not restore the previous version. Backup: {0}",
+    "fr": "Impossible de restaurer la version précédente. Sauvegarde : {0}",
+    "es": "No se pudo restaurar la versión anterior. Copia: {0}",
+    "ru": "Не удалось вернуть предыдущую версию. Резервная копия: {0}",
+    "ar": "تعذرت استعادة الإصدار السابق. النسخة الاحتياطية: {0}"
+  },
+  "暂时无法检查更新": {
+    "en": "Could not check for updates",
+    "fr": "Impossible de vérifier les mises à jour",
+    "es": "No se pudo buscar actualizaciones",
+    "ru": "Не удалось проверить обновления",
+    "ar": "تعذّر التحقق من التحديثات"
+  },
+  "更新未完成，可重试或手动下载。": {
+    "en": "Update did not finish. Retry or download manually.",
+    "fr": "La mise à jour a échoué. Réessayez ou téléchargez-la manuellement.",
+    "es": "La actualización no terminó. Reintenta o descárgala manualmente.",
+    "ru": "Обновление не завершено. Повторите попытку или скачайте вручную.",
+    "ar": "لم يكتمل التحديث. أعد المحاولة أو نزّله يدويًا."
+  },
+  "校验后替换并重启；可能需要重新开启窗口控制权限。": {
+    "en": "Verify, replace, and restart. Window-control permission may need to be granted again.",
+    "fr": "Vérifier, remplacer et redémarrer. L’autorisation de contrôle des fenêtres peut être redemandée.",
+    "es": "Verificar, reemplazar y reiniciar. Puede ser necesario volver a autorizar el control de ventanas.",
+    "ru": "Проверка, замена и перезапуск. Возможно, нужно снова разрешить управление окнами.",
+    "ar": "التحقق والاستبدال وإعادة التشغيل. قد يلزم منح إذن التحكم في النوافذ مجددًا."
+  },
+  "检查更新": {
+    "en": "Check for updates",
+    "fr": "Rechercher des mises à jour",
+    "es": "Buscar actualizaciones",
+    "ru": "Проверить обновления",
+    "ar": "التحقق من التحديثات"
+  },
+  "正在下载并校验…": {
+    "en": "Downloading and verifying…",
+    "fr": "Téléchargement et vérification…",
+    "es": "Descargando y verificando…",
+    "ru": "Загрузка и проверка…",
+    "ar": "جارٍ التنزيل والتحقق…"
+  },
+  "正在安装并重启…": {
+    "en": "Installing and restarting…",
+    "fr": "Installation et redémarrage…",
+    "es": "Instalando y reiniciando…",
+    "ru": "Установка и перезапуск…",
+    "ar": "جارٍ التثبيت وإعادة التشغيل…"
+  },
+  "正在检查更新…": {
+    "en": "Checking for updates…",
+    "fr": "Recherche de mises à jour…",
+    "es": "Buscando actualizaciones…",
+    "ru": "Поиск обновлений…",
+    "ar": "جارٍ التحقق من التحديثات…"
   }
 }

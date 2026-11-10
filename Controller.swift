@@ -21,6 +21,7 @@ final class Controller: NSObject, ObservableObject {
     @Published var loginEnabled = false
     @Published var loginNeedsApproval = false
     @Published var selectedPage = "workspace"
+    let updates = UpdateState()
     @Published var launching = false
     @Published var launchProgress = ""
     @Published var launchFailures: [String] = []
@@ -36,6 +37,10 @@ final class Controller: NSObject, ObservableObject {
     @Published var permissionChecks = 0
     var permissionPanel: NSPanel?
     let demoMode = CommandLine.arguments.contains("--demo") || CommandLine.arguments.contains("--ui-self-test") || (Bundle.main.object(forInfoDictionaryKey: "WindowMemoryDemo") as? Bool == true)
+    var liveDisplayPreview: Bool {
+        demoMode && !CommandLine.arguments.contains("--ui-self-test") &&
+        (Bundle.main.object(forInfoDictionaryKey: "WindowMemoryLiveDisplayPreview") as? Bool == true)
+    }
     private var hotKeys = GlobalHotKeys()
     var scenes: [Layout] { state.layouts.filter { $0.screenKey == layoutKey(monitors) } }
     var current: Layout? {
@@ -84,7 +89,11 @@ final class Controller: NSObject, ObservableObject {
         applyAppearance()
     }
     func start() {
-        if demoMode { showWindow(); return }
+        if demoMode {
+            if liveDisplayPreview { selectedPage = "displays" }
+            showWindow(); return
+        }
+        updates.check()
         hotKeys.onAction = { [weak self] action in
             guard let self else { return }
             switch action { case .launch: self.launchAndRestore(); case .restore: _ = self.restore(manual: true); case .save: self.saveLayout() }
@@ -459,7 +468,7 @@ final class Controller: NSObject, ObservableObject {
     @objc private func statusClick() {
         if NSApp.currentEvent?.type == .rightMouseUp {
             let menu = NSMenu()
-            for (title,action) in [(L("打开窗口记忆"),#selector(openPanel)),(L("启动布局 App 并恢复"),#selector(launchFromMenu)),(L("记住当前布局"),#selector(saveFromMenu)),(L("立即恢复"),#selector(restoreFromMenu)),(L("设置…"),#selector(settingsFromMenu)),(state.preferences.automatic ? L("暂停自动恢复") : L("继续自动恢复"),#selector(toggleAutomatic)),(L("退出窗口记忆"),#selector(quit))] {
+            for (title,action) in [(L("打开窗口记忆"),#selector(openPanel)),(L("启动布局 App 并恢复"),#selector(launchFromMenu)),(L("记住当前布局"),#selector(saveFromMenu)),(L("立即恢复"),#selector(restoreFromMenu)),(L("显示管理"),#selector(displaysFromMenu)),(L("设置…"),#selector(settingsFromMenu)),(state.preferences.automatic ? L("暂停自动恢复") : L("继续自动恢复"),#selector(toggleAutomatic)),(L("退出窗口记忆"),#selector(quit))] {
                 let item = NSMenuItem(title: title,action: action,keyEquivalent: ""); item.target = self; menu.addItem(item)
             }
             statusItem.menu = menu; statusItem.button?.performClick(nil); statusItem.menu = nil
@@ -470,6 +479,7 @@ final class Controller: NSObject, ObservableObject {
     @objc private func restoreFromMenu() { _ = restore(manual: true) }
     @objc private func launchFromMenu() { launchAndRestore() }
     @objc private func settingsFromMenu() { selectedPage = "settings"; showWindow() }
+    @objc private func displaysFromMenu() { selectedPage = "displays"; showWindow() }
     @objc private func toggleAutomatic() { setPreference(\.automatic,!state.preferences.automatic) }
     @objc private func quit() { NSApp.terminate(nil) }
 }

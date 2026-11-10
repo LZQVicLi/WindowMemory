@@ -70,5 +70,7 @@ func runFeatureTests() {
     selection.activeLayouts[work.screenKey] = ""
     check(selectedLayout(in: selection,screenKey: work.screenKey) == nil, "newly imported screen groups can remain inactive until selected")
     count += runInterfaceTests()
+    count += runDisplayTests()
+    count += runUpdateTests()
     print("All \(20+count) checks passed.")
 }

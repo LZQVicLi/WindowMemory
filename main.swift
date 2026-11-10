@@ -54,6 +54,7 @@ struct ConsoleShell: View {
                 Rectangle().fill(p.border).frame(height: 1)
                 ScrollView {
                     if model.selectedPage == "library" { LayoutLibraryView(model: model,p: p).padding(24) }
+                    else if model.selectedPage == "displays" { DisplayManagementView(demo: model.demoMode && !model.liveDisplayPreview,p: p).padding(24) }
                     else if model.selectedPage == "settings" { SettingsView(model: model,p: p).padding(24) }
                     else if model.selectedPage == "automation" { AutomationView(model: model,p: p).padding(24) }
                     else { WorkspaceView(model: model,p: p).padding(24) }
@@ -71,20 +72,28 @@ struct ConsoleShell: View {
                 }
             }.padding(.bottom,36)
             Text("WORKSPACE").font(.system(size: 9,weight: .medium,design: .monospaced)).tracking(1.5).foregroundStyle(p.muted).padding(.leading,10).padding(.bottom,12)
-            nav(L("布局控制台"),icon: "square.grid.2x2",page: "workspace")
-            nav(L("布局库"),icon: "rectangle.3.group",page: "library")
-            nav(L("启动与快捷键"),icon: "keyboard",page: "automation")
-            nav(L("设置"),icon: "slider.horizontal.3",page: "settings").keyboardShortcut(",",modifiers: .command)
+            if model.liveDisplayPreview {
+                nav(L("显示管理"),icon: "display.2",page: "displays")
+            } else {
+                nav(L("布局控制台"),icon: "square.grid.2x2",page: "workspace")
+                nav(L("布局库"),icon: "rectangle.3.group",page: "library")
+                nav(L("显示管理"),icon: "display.2",page: "displays")
+                nav(L("启动与快捷键"),icon: "keyboard",page: "automation")
+                nav(L("设置"),icon: "slider.horizontal.3",page: "settings").keyboardShortcut(",",modifiers: .command)
+            }
             Spacer(minLength: 30)
             VStack(alignment: .leading,spacing: 15) {
-                HStack(spacing: 7) {
-                    Circle().fill(model.permitted ? p.accent : .orange).frame(width: 5,height: 5)
-                    Text(model.permitted ? L("窗口控制已授权") : L("等待窗口控制权限")).font(.system(size: 10))
+                if !model.liveDisplayPreview {
+                    HStack(spacing: 7) {
+                        Circle().fill(model.permitted ? p.accent : .orange).frame(width: 5,height: 5)
+                        Text(model.permitted ? L("窗口控制已授权") : L("等待窗口控制权限")).font(.system(size: 10))
+                    }
+                    HStack(spacing: 7) {
+                        Image(systemName: "power").font(.system(size: 10))
+                        Text(model.loginEnabled ? L("登录启动已开启") : L("登录启动未开启")).font(.system(size: 10))
+                    }.foregroundStyle(p.muted)
                 }
-                HStack(spacing: 7) {
-                    Image(systemName: "power").font(.system(size: 10))
-                    Text(model.loginEnabled ? L("登录启动已开启") : L("登录启动未开启")).font(.system(size: 10))
-                }.foregroundStyle(p.muted)
+                if !model.demoMode { UpdateFooter(state: model.updates,p: p) }
                 Rectangle().fill(p.border).frame(height: 1)
                 HStack {
                     Text("LOCAL / v\(appVersion)").font(.system(size: 9,design: .monospaced)).foregroundStyle(p.muted)
@@ -108,13 +117,22 @@ struct ConsoleShell: View {
         }.buttonStyle(.plain).padding(.bottom,7)
     }
     private var header: some View {
-        HStack {
+        let heading: (String, String)
+        switch model.selectedPage {
+        case "library": heading = ("LAYOUTS / LIBRARY", L("布局库"))
+        case "displays": heading = ("DISPLAYS / CONTROL", L("显示管理"))
+        case "settings": heading = ("PREFERENCES / PERSONAL", L("设置"))
+        case "automation": heading = ("AUTOMATION / SHORTCUTS", L("启动与快捷键"))
+        default: heading = ("WORKSPACE / CONTROL", L("布局控制台"))
+        }
+        return HStack {
             VStack(alignment: .leading,spacing: 5) {
-                Text((model.selectedPage == "library" ? "LAYOUTS / LIBRARY" : (model.selectedPage == "settings" ? "PREFERENCES / PERSONAL" : (model.selectedPage == "automation" ? "AUTOMATION / SHORTCUTS" : "WORKSPACE / CONTROL"))) + (model.demoMode ? " / DEMO" : ""))
+                Text(heading.0 + (model.liveDisplayPreview && model.selectedPage == "displays" ? " / LIVE PREVIEW" : (model.demoMode ? " / DEMO" : "")))
                     .font(.system(size: 9,weight: .medium,design: .monospaced)).tracking(1.6).foregroundStyle(p.muted)
-                Text(model.selectedPage == "library" ? L("布局库") : (model.selectedPage == "settings" ? L("设置") : (model.selectedPage == "automation" ? L("启动与快捷键") : L("布局控制台")))).font(.system(size: 23,weight: .semibold))
+                Text(heading.1).font(.system(size: 23,weight: .semibold))
             }
             Spacer()
+            if !model.liveDisplayPreview {
             Button { model.setPreference(\.automatic,!model.state.preferences.automatic) } label: {
                 HStack(spacing: 7) {
                     Circle().fill(model.state.preferences.automatic ? p.accent : p.muted).frame(width: 5,height: 5)
@@ -123,6 +141,7 @@ struct ConsoleShell: View {
                     .padding(.horizontal,12).padding(.vertical,9).background(p.raised,in: RoundedRectangle(cornerRadius: 6))
                     .overlay(RoundedRectangle(cornerRadius: 6).stroke(p.border,lineWidth: 1))
             }.buttonStyle(.plain).help(L("暂停或继续自动恢复")).accessibilityLabel(model.state.preferences.automatic ? L("暂停自动恢复") : L("继续自动恢复"))
+            }
         }.padding(.horizontal,26).padding(.top,43).padding(.bottom,18)
     }
 }
@@ -458,6 +477,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 if CommandLine.arguments.contains("--self-test") { runSelfTests() }
 else if CommandLine.arguments.contains("--ui-self-test") { runAppearanceUITests() }
+else if CommandLine.arguments.contains("--update-diagnostics") { runUpdateDiagnostics() }
+else if CommandLine.arguments.count == 4, CommandLine.arguments[1] == "--verify-update-archive" {
+    do {
+        guard let version = ReleaseVersion(CommandLine.arguments[3]) else { throw UpdateIssue.feed }
+        try verifyUpdateArchive(URL(fileURLWithPath: CommandLine.arguments[2]), version: version)
+        print("Verified v\(version) archive is compatible with the updater.")
+    } catch { print("Update archive validation failed: \(error)"); exit(EXIT_FAILURE) }
+}
+else if CommandLine.arguments.contains("--display-diagnostics") {
+    for display in ConnectedDisplay.online() {
+        let profile = MonitorProfile.probe(display)
+        print("\(display.name): \(display.width)×\(display.height) @ \(display.refresh) Hz · DDC/CI: \(profile.ddcResponded)")
+        for control in profile.controls {
+            print("  \(control.code.title) [\(String(format: "0x%02X", control.id))] = \(control.current) · \(control.style)")
+        }
+    }
+}
 else if CommandLine.arguments.contains("--diagnostics") {
     let app = NSApplication.shared
     app.setActivationPolicy(.prohibited)
