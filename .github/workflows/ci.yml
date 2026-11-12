@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Compile universal app and run self-tests
         run: BUILD_MODE=release zsh build.sh
       - name: Verify architecture and signature
